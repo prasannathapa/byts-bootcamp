@@ -3,7 +3,15 @@
 Slides and hands-on capstones for a four-day bootcamp on object-oriented design,
 design patterns, and high-level system design.
 
-**Slides (open in a browser):** https://prasannathapa.github.io/byts-bootcamp/
+**Get everything:** clone or download this repo. The slides are self-contained HTML,
+so open any `presentation.html` directly, or open `index.html` as a launcher.
+
+```
+git clone https://github.com/prasannathapa/byts-bootcamp
+```
+
+**View the slides online without cloning** (rendered via githack):
+<https://raw.githack.com/prasannathapa/byts-bootcamp/main/index.html>
 
 ## Days
 
