@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Instagram / Build Your Technical Skills</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@400;600&display=swap">
+
+<style>
+  :root{
+    --bg:#0e0e10; --bg-soft:#16161a; --line:#26262c; --text:#e8e8ea;
+    --muted:#8a8a93; --dim:#5a5a63; --accent:#d4ff3a; --accent-2:#6ea8ff;
+    --good:#7ddc9a; --bad:#ff7a7a; --warn:#f5b840;
+  }
+  html, body { background: var(--bg); }
+  .reveal-viewport { background: var(--bg) !important; }
+
+  .reveal { font-family:'Inter',system-ui,sans-serif; font-weight:400; color:var(--text);
+            font-size:22px; letter-spacing:-0.005em; }
+  .reveal .slides { text-align:left; }
+  .reveal .slides > section, .reveal .slides > section > section {
+    padding:56px 80px; height:100%; box-sizing:border-box; }
+
+  .reveal h1,.reveal h2,.reveal h3,.reveal h4 { font-family:'Inter',sans-serif; font-weight:600;
+    color:var(--text); text-transform:none; letter-spacing:-0.02em; margin:0 0 0.4em 0; line-height:1.1; }
+  .reveal h1 { font-size:64px; font-weight:700; letter-spacing:-0.04em; }
+  .reveal h2 { font-size:38px; font-weight:600; }
+  .reveal h3 { font-size:22px; font-weight:600; }
+  .reveal p,.reveal li { font-size:20px; line-height:1.55; color:#d4d4d8; }
+  .reveal ul,.reveal ol { margin:0.4em 0 0 1.2em; }
+  .reveal li { margin:0.35em 0; }
+  .reveal strong { color:var(--text); font-weight:600; }
+  .reveal em { font-style:italic; color:var(--accent); }
+
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:1.2em; display:block; }
+  .eyebrow .dot { display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--accent); vertical-align:middle; margin-right:3px; }
+
+  .title-wrap { display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .title-wrap .num { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--dim); }
+  .display { font-family:'Fraunces',serif; font-weight:400; font-size:120px; line-height:0.95;
+    letter-spacing:-0.04em; margin:0; }
+  .display em { font-style:italic; color:var(--accent); }
+  .subtitle { font-size:22px; color:var(--muted); margin-top:1.2em; max-width:64ch; }
+
+  .lede { font-size:26px; line-height:1.4; color:#e8e8ea; max-width:70ch; font-weight:400; }
+
+  .quote { font-family:'Fraunces',serif; font-style:italic; font-size:28px; line-height:1.35;
+    color:#e0e0e4; border-left:2px solid var(--accent); padding-left:22px; max-width:72ch; }
+  .quote-attr { font-family:'Inter',sans-serif; font-style:normal; font-size:14px; color:var(--muted);
+    margin-top:0.6em; letter-spacing:0.1em; text-transform:uppercase; }
+
+  .grid { display:grid; gap:28px; margin-top:22px; }
+  .g2 { grid-template-columns:1fr 1fr; } .g3 { grid-template-columns:1fr 1fr 1fr; }
+  .split { display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center; height:calc(100% - 70px); }
+
+  .card { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:20px 22px; }
+  .card h3 { margin-bottom:8px; font-size:18px; }
+  .card p { font-size:16px; color:var(--muted); margin:0; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; padding:4px 10px; border-radius:4px; background:rgba(212,255,58,0.08);
+    color:var(--accent); border:1px solid rgba(212,255,58,0.2); margin-bottom:12px; }
+  .tag.muted { background:transparent; color:var(--muted); border-color:var(--line); }
+  .tag.bad { background:rgba(255,122,122,0.06); color:var(--bad); border-color:rgba(255,122,122,0.25); }
+  .tag.good { background:rgba(125,220,154,0.06); color:var(--good); border-color:rgba(125,220,154,0.25); }
+
+  .reveal pre { background:#0a0a0c; border:1px solid var(--line); border-radius:10px; box-shadow:none;
+    margin:14px 0; width:100%; }
+  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.55;
+    padding:20px 22px; border-radius:10px; background:transparent; }
+  .reveal code:not(pre code) { font-family:'JetBrains Mono',monospace; font-size:0.88em;
+    background:var(--bg-soft); border:1px solid var(--line); padding:1px 6px; border-radius:4px; color:#e0e0e4; }
+
+  table.tbl { width:100%; border-collapse:collapse; font-size:16px; margin-top:14px; }
+  table.tbl th, table.tbl td { padding:11px 14px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  table.tbl th { color:var(--muted); font-weight:500; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; }
+  table.tbl tr:last-child td { border-bottom:none; }
+  table.tbl td code { font-size:13px; }
+
+  /* yes/no dots drawn in CSS (no glyphs) */
+  .y,.n { display:inline-block; width:11px; height:11px; border-radius:50%; }
+  .y { background:var(--good); }
+  .n { border:1.5px solid var(--dim); }
+
+  .stat { font-family:'Fraunces',serif; font-size:104px; line-height:1; color:var(--accent); letter-spacing:-0.04em; }
+  .stat-label { color:var(--muted); font-size:16px; margin-top:6px; }
+
+  .footer-line { position:absolute; bottom:26px; left:80px; right:80px; display:flex; justify-content:space-between;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; }
+
+  .reveal ul.clean { list-style:none; margin-left:0; }
+  .reveal ul.clean li { padding-left:22px; position:relative; }
+  .reveal ul.clean li::before { content:''; position:absolute; left:0; top:12px; width:8px; height:1px; background:var(--accent); }
+
+  .reveal .slide-number { background:transparent; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:12px; }
+  .reveal .progress { color:var(--accent); height:2px; }
+  .reveal .controls { color:var(--dim); }
+  .reveal svg text { font-family:'Inter',sans-serif; }
+
+  .codeflex { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+  .codeflex .label { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .diagram { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:22px; }
+
+  /* project-structure tree with file-change coloring */
+  .tree { font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.7; color:#8a8a93; }
+  .tree .pk { color:#c5c5cc; }
+  .fn { color:#d4ff3a; }   /* new file */
+  .fe { color:#f5b840; }   /* edited file */
+  .fd { color:#ff7a7a; }   /* deleted file */
+  .legend { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.04em; color:var(--dim); margin-top:14px; }
+  .legend .fn, .legend .fe, .legend .fd { font-weight:600; }
+
+  /* Byts brand mark, fixed corner */
+  .brand { position:fixed; top:20px; right:26px; z-index:40; display:flex; align-items:center; gap:8px; opacity:0.9; }
+  .brand img { height:26px; width:auto; display:block; }
+  .brand span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dim); }
+
+  /* HANDS-ON slide treatment */
+  .reveal section.handson { background:
+      radial-gradient(1200px 500px at 90% -10%, rgba(212,255,58,0.06), transparent 60%); }
+  .handson-head { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+  .handson-badge { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:#0a0a0c; background:var(--accent); padding:5px 12px; border-radius:5px; font-weight:600; }
+  .handson-step { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); }
+  .cmd { background:#0a0a0c; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px;
+    font-family:'JetBrains Mono',monospace; font-size:15px; color:#e0e0e4; padding:14px 18px; margin:10px 0; line-height:1.7; }
+  .cmd .c { color:var(--dim); } /* comment */
+  .do { list-style:none; margin:8px 0 0 0; }
+  .do li { position:relative; padding-left:30px; margin:10px 0; font-size:19px; }
+  .do li::before { content:''; position:absolute; left:0; top:3px; width:16px; height:16px; border-radius:4px;
+    border:1.5px solid var(--accent); background:rgba(212,255,58,0.08); }
+  .sync { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); margin-top:16px;
+    letter-spacing:0.05em; }
+  .sync b { color:var(--accent); }
+
+  /* Act divider */
+  .reveal section.act { background:
+      radial-gradient(900px 600px at 15% 20%, rgba(110,168,255,0.05), transparent 55%); }
+  .act .kicker { font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <img src="https://byts.co.in/imgs/bytsLogo.png" alt="Byts" />
+</div>
+
+<div class="reveal">
+  <div class="slides">
+
+  <!-- 01 TITLE -->
+  <section class="act">
+    <div class="title-wrap">
+      <span class="num">MINI INSTAGRAM / A BUILD-ALONG WORKSHOP</span>
+      <h1 class="display">We build <em>Instagram.</em></h1>
+      <p class="subtitle">Not the app you scroll. The system underneath it. In one console program, one commit at a time, we build the spine of a social network and every design decision that holds it up.</p>
+    </div>
+    <div class="footer-line"><span>byts / mini instagram</span></div>
+  </section>
+
+  <!-- 02 HOW TODAY RUNS -->
+  <section>
+    <span class="eyebrow"><span class="dot"></span> &nbsp;how today works</span>
+    <h2>Two sessions. One system.</h2>
+    <div class="grid g2">
+      <div class="card">
+        <span class="tag muted">session one</span>
+        <h3>Foundations</h3>
+        <p>The story, the setup, and the object-oriented spine: the model, the seams, the services, the factory. Heavy on the why.</p>
+      </div>
+      <div class="card">
+        <span class="tag">session two</span>
+        <h3>Patterns, data, scale</h3>
+        <p>Events, adapters, ranking, a real database, the feed, caching, the finished app, and how all of it scales out.</p>
+      </div>
+    </div>
+    <p class="quote" style="margin-top:30px;">You will not just watch. You will build it on your own machine, and tests will tell you when you are right.</p>
+    <div class="footer-line"><span>orientation</span></div>
+  </section>
+
+  <!-- 03 WHY A CLONE (question first) -->
+  <section>
+    <span class="eyebrow">before we begin</span>
+    <p class="display" style="font-size:80px;">You know what it <em>does.</em><br/>Could you <em>build</em> it?</p>
+    <p class="lede fragment" style="margin-top:34px;">Good. Then no attention goes to <em>what</em> to build. All of it goes to <em>how</em>.</p>
+    <div class="footer-line"><span>the why</span></div>
+  </section>
+
+  <!-- 04 THE DOMAIN (question, then reveal a diagram) -->
+  <section>
+    <span class="eyebrow">the domain</span>
+    <h2>Strip Instagram down to nouns. How many?</h2>
+    <div class="fragment" style="display:grid; grid-template-columns:0.7fr 1.3fr; gap:44px; align-items:center; margin-top:8px;">
+      <div style="text-align:center;">
+        <div class="stat" style="font-size:150px;">8</div>
+        <div class="stat-label">the entire product</div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 460 300" width="100%">
+          <g stroke="#26262c">
+            <line x1="230" y1="150" x2="230" y2="58"/>
+            <line x1="230" y1="150" x2="360" y2="98"/>
+            <line x1="230" y1="150" x2="360" y2="202"/>
+            <line x1="230" y1="150" x2="230" y2="242"/>
+            <line x1="230" y1="150" x2="100" y2="202"/>
+            <line x1="230" y1="150" x2="100" y2="98"/>
+          </g>
+          <circle cx="230" cy="150" r="42" fill="#16161a" stroke="#d4ff3a" stroke-width="1.5"/>
+          <text x="230" y="155" text-anchor="middle" fill="#d4ff3a" font-size="14">people</text>
+          <g font-size="12.5" fill="#e8e8ea" text-anchor="middle">
+            <rect x="192" y="30" width="76" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="230" y="50">posts</text>
+            <rect x="318" y="83" width="84" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="360" y="103">feed</text>
+            <rect x="316" y="187" width="88" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="360" y="207">stories</text>
+            <rect x="176" y="227" width="108" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="230" y="247">notifications</text>
+            <rect x="60"  y="187" width="82" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="101" y="207">search</text>
+            <rect x="66"  y="83" width="74" height="30" rx="15" fill="#16161a" stroke="#26262c"/><text x="103" y="103">DMs</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>the domain</span></div>
+  </section>
+
+  <!-- 05 THE SHAPE (reject two options, then reveal) -->
+  <section>
+    <span class="eyebrow">the shape of our build</span>
+    <h2>One giant class? A dozen microservices?</h2>
+    <div class="grid g2 fragment">
+      <div class="card"><span class="tag bad">one class</span><p>Everything tangled. Nothing testable on its own.</p></div>
+      <div class="card"><span class="tag bad">microservices on day one</span><p>Network and ops pain, before you have a single user.</p></div>
+    </div>
+    <div class="fragment" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; margin-top:24px;">
+      <p class="lede">Neither. A <em>modular monolith</em>: one process, real internal seams.</p>
+      <div class="diagram" style="text-align:center;">
+        <svg viewBox="0 0 340 210" width="100%" style="max-width:340px;">
+          <rect x="10" y="10" width="320" height="190" rx="10" fill="none" stroke="#26262c"/>
+          <text x="170" y="30" text-anchor="middle" fill="#5a5a63" font-size="11" font-style="italic">one process</text>
+          <g font-size="11">
+            <rect x="26"  y="44" width="88" height="36" rx="6" fill="#16161a" stroke="#d4ff3a"/><text x="70"  y="66" text-anchor="middle" fill="#d4ff3a">user</text>
+            <rect x="126" y="44" width="88" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="170" y="66" text-anchor="middle" fill="#e8e8ea">post</text>
+            <rect x="226" y="44" width="88" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="270" y="66" text-anchor="middle" fill="#e8e8ea">graph</text>
+            <rect x="26"  y="92" width="88" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="70"  y="114" text-anchor="middle" fill="#e8e8ea">feed</text>
+            <rect x="126" y="92" width="88" height="36" rx="6" fill="#16161a" stroke="#6ea8ff"/><text x="170" y="114" text-anchor="middle" fill="#6ea8ff">search</text>
+            <rect x="226" y="92" width="88" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="270" y="114" text-anchor="middle" fill="#e8e8ea">story</text>
+            <rect x="76"  y="140" width="88" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="120" y="162" text-anchor="middle" fill="#e8e8ea">messaging</text>
+            <rect x="176" y="140" width="98" height="36" rx="6" fill="#16161a" stroke="#26262c"/><text x="225" y="162" text-anchor="middle" fill="#e8e8ea">notification</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>scope</span></div>
+  </section>
+
+  <!-- 06 THE PROMISE (question, then a seam diagram) -->
+  <section>
+    <span class="eyebrow">the one idea to hold onto</span>
+    <h2>How does a monolith become microservices, with no rewrite?</h2>
+    <div class="diagram fragment" style="margin-top:16px;">
+      <svg viewBox="0 0 900 210" width="100%">
+        <defs><marker id="p" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a5a63"/></marker></defs>
+        <rect x="30" y="80" width="150" height="50" rx="8" fill="#16161a" stroke="#e8e8ea"/><text x="105" y="110" text-anchor="middle" fill="#e8e8ea" font-size="15">a service</text>
+        <line x1="180" y1="105" x2="270" y2="105" stroke="#5a5a63" marker-end="url(#p)"/>
+        <rect x="272" y="78" width="170" height="54" rx="8" fill="#16161a" stroke="#d4ff3a"/><text x="357" y="100" text-anchor="middle" fill="#d4ff3a" font-size="14">a port</text><text x="357" y="120" text-anchor="middle" fill="#8a8a93" font-size="11">( an interface )</text>
+        <line x1="442" y1="95"  x2="560" y2="55"  stroke="#5a5a63" marker-end="url(#p)"/>
+        <line x1="442" y1="115" x2="560" y2="155" stroke="#5a5a63" marker-end="url(#p)"/>
+        <rect x="562" y="34" width="300" height="46" rx="8" fill="#16161a" stroke="#7ddc9a"/><text x="712" y="55" text-anchor="middle" fill="#7ddc9a" font-size="13">in-memory map</text><text x="712" y="72" text-anchor="middle" fill="#5a5a63" font-size="10">today</text>
+        <rect x="562" y="132" width="300" height="46" rx="8" fill="#16161a" stroke="#6ea8ff"/><text x="712" y="153" text-anchor="middle" fill="#6ea8ff" font-size="13">sharded Postgres, Kafka, Redis</text><text x="712" y="170" text-anchor="middle" fill="#5a5a63" font-size="10">the day you outgrow it</text>
+      </svg>
+    </div>
+    <p class="quote fragment" style="margin-top:20px;">Every network hop over there is an <em>interface</em> in here. Swap what sits behind it. The code above never knows.</p>
+    <div class="footer-line"><span>the promise</span></div>
+  </section>
+
+  <!-- 07 THE MAP (progressive) -->
+  <section>
+    <span class="eyebrow">the shape of the day</span>
+    <h2>Twelve checkpoints, three arcs.</h2>
+    <div style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
+      <div class="card fragment" style="display:flex; align-items:center; gap:22px;">
+        <span class="tag muted" style="margin:0; min-width:140px; text-align:center;">foundations</span>
+        <span>the model, the seams, the services, the factory</span>
+      </div>
+      <div class="card fragment" style="display:flex; align-items:center; gap:22px;">
+        <span class="tag" style="margin:0; min-width:140px; text-align:center;">patterns</span>
+        <span>events, adapters, the ranking strategy</span>
+      </div>
+      <div class="card fragment" style="display:flex; align-items:center; gap:22px;">
+        <span class="tag good" style="margin:0; min-width:140px; text-align:center;">data and scale</span>
+        <span>a real database, the feed, caching, the finished app</span>
+      </div>
+    </div>
+    <p class="sync fragment" style="margin-top:22px;">Each checkpoint compiles, runs, and passes its tests. You can stand at any one and it works.</p>
+    <div class="footer-line"><span>the map</span></div>
+  </section>
+
+  <!-- 08 THE LOOP (dictation model, progressive) -->
+  <section>
+    <span class="eyebrow">how we work, every checkpoint</span>
+    <h2>You write the code. Tests judge it.</h2>
+    <div class="grid g2" style="margin-top:14px;">
+      <div class="card fragment"><span class="tag muted" style="margin:0;">01</span><h3 style="margin-top:10px;">I show the shape</h3><p>On screen: the packages, the classes, and a hint at what each holds.</p></div>
+      <div class="card fragment"><span class="tag muted" style="margin:0;">02</span><h3 style="margin-top:10px;">You build it</h3><p>On your laptop, from that shape. Names and layout match; the code is your own.</p></div>
+      <div class="card fragment"><span class="tag good" style="margin:0;">03</span><h3 style="margin-top:10px;">Tests prove it</h3><p><code>mvnw test</code> green means the behavior is right, however you wrote it.</p></div>
+      <div class="card fragment"><span class="tag" style="margin:0;">04</span><h3 style="margin-top:10px;">We unpack the why</h3><p>Then we talk through the decisions: the types, the modifiers, the trade-offs.</p></div>
+    </div>
+    <p class="quote fragment" style="margin-top:22px;">Pass the tests and your version is not wrong. It is simply yours.</p>
+    <div class="footer-line"><span>the method</span></div>
+  </section>
+
+  <!-- 09 HANDS-ON step-01 / clone + rewind to scaffold -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-01 / start clean</span></div>
+    <h2>Clone, then rewind to the scaffold.</h2>
+    <div class="cmd">
+      <span class="c"># a fresh clone puts you on main: the FINISHED app, all code present</span><br/>
+      git clone &lt;repo-url&gt; &amp;&amp; cd mini-instagram<br/><br/>
+      <span class="c"># rewind to the empty scaffold, on your own branch to build on</span><br/>
+      git switch -c my-build step-01-scaffold
+    </div>
+    <ul class="do">
+      <li>Confirm a JDK 25 or newer with <code>java -version</code>.</li>
+      <li>You are now at the scaffold: build tooling and an empty <code>Main</code>, no solution code.</li>
+      <li><code>mvnw test</code> passes the single scaffold test. You are ready.</li>
+    </ul>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-01</b> has the copy buttons.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 10 PROJECT STRUCTURE (progressive disclosure) -->
+  <section>
+    <span class="eyebrow">on your machine</span>
+    <h2>What you are about to build.</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start; margin-top:12px;">
+      <div class="diagram" style="font-family:'JetBrains Mono',monospace; font-size:16px; line-height:2; color:#c5c5cc;">
+        com.miniinsta<br/>
+        <span class="fragment">&nbsp;&nbsp;user&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#5a5a63;">accounts</span></span><br/>
+        <span class="fragment">&nbsp;&nbsp;post&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#5a5a63;">photos, videos, text</span></span><br/>
+        <span class="fragment">&nbsp;&nbsp;graph&nbsp;&nbsp;&nbsp;<span style="color:#5a5a63;">who follows whom</span></span><br/>
+        <span class="fragment">&nbsp;&nbsp;feed&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#5a5a63;">timelines</span></span><br/>
+        <span class="fragment">&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#5a5a63;">story, search, messaging, notification</span></span>
+      </div>
+      <div>
+        <p>One package per bounded context. You will create them one at a time, as we go.</p>
+        <p class="fragment" style="margin-top:16px; color:var(--muted);">These names are not decoration. The tests import these exact packages, so the structure itself is part of the contract.</p>
+      </div>
+    </div>
+    <div class="footer-line"><span>the build</span></div>
+  </section>
+
+  <!-- STEP-02 STORY (the need) -->
+  <section>
+    <span class="eyebrow">step 02 / the need</span>
+    <h2>Before we can store anything, we model it.</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-top:12px;">
+      <div>
+        <p class="lede fragment">Every post knows a few things.</p>
+        <ul class="clean">
+          <li class="fragment">who wrote it, and its caption</li>
+          <li class="fragment">when it was created</li>
+          <li class="fragment">how many likes and comments it carries</li>
+        </ul>
+      </div>
+      <div class="fragment">
+        <div class="diagram" style="font-family:'JetBrains Mono',monospace; font-size:16px; color:#c5c5cc; line-height:1.9;">
+          class Post {<br/>
+          &nbsp;&nbsp;<span style="color:#5a5a63;">// author, caption, createdAt ?</span><br/>
+          &nbsp;&nbsp;<span style="color:#5a5a63;">// likeCount, commentCount ?</span><br/>
+          }
+        </div>
+      </div>
+    </div>
+    <p class="fragment" style="margin-top:18px; color:var(--muted);">And it comes in three kinds: photo, video, text. Same core, different media. So how do you model a family of three that is mostly the same?</p>
+    <div class="footer-line"><span>step-02 / story</span></div>
+  </section>
+
+  <!-- STEP-02 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-02 / get the spec</span></div>
+    <h2>Pull the tests that pin the model down.</h2>
+    <div class="cmd"><span class="c"># copies only the tests onto your scaffold, never the answers</span><br/>git checkout step-02-domain -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>post/PostTest.java</code> and <code>user/UserTest.java</code>. Between them they say exactly how a post and a user must behave.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-02 READ THE TEST (derive the model) -->
+  <section>
+    <span class="eyebrow">step 02 / what the tests demand</span>
+    <h2>Read the tests. The model falls out of them.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+class PostTest {
+  newPostStartsWithZeroEngagement()
+  likeCounterNeverGoesNegative()
+  subtypesReportTheirType()  // PHOTO, VIDEO, TEXT
+}
+
+class UserTest {
+  identityIsById()           // not by username
+  usernameIsNormalised()     // trimmed, lower-cased
+}
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">Three subtypes each report a <code>PostType</code>, so <code>Post</code> is a family. We <code>seal</code> it: the set is exactly these three, and a <code>switch</code> needs no <code>default</code>.</li>
+          <li class="fragment">That is inheritance for a <em>closed set of variants</em>, not for reuse. Everywhere else in this app we compose.</li>
+          <li class="fragment">Likes never go negative, so the count is <em>behaviour on the entity</em>, not a public field. A denormalized counter, kept in step by hand.</li>
+          <li class="fragment">A user is equal by <code>id</code>, not name. That id is how every other context refers to it: only the id crosses the line.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-02 / model</span></div>
+  </section>
+
+  <!-- STEP-02 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-02 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:4px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; now write the classes</span><br/>mvnw test&nbsp;&nbsp;<span class="c"># red, then green</span></div>
+        <ul class="do">
+          <li>The <code>util</code> id generator and the <code>user.User</code> entity.</li>
+          <li><code>post.PostType</code> and the sealed <code>Post</code> with its three subclasses.</li>
+          <li><code>post.Comment</code> as a record. <code>mvnw test</code> until green.</li>
+        </ul>
+        <p class="legend"><span class="fn">green = new file</span> &nbsp; <span class="fe">yellow = edited</span></p>
+      </div>
+      <div class="tree">
+        <span class="pk">util/</span>&nbsp; <span class="fn">IdGenerator</span><br/>
+        <span class="pk">user/</span>&nbsp; <span class="fn">User</span><br/>
+        <span class="pk">post/</span>&nbsp; <span class="fn">PostType, Post,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">PhotoPost, VideoPost,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">TextPost, Comment</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-02</b> lists the classes and a hint per field.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 17 STEP-03 STORY (the need) -->
+  <section>
+    <span class="eyebrow">step 03 / the need</span>
+    <h2>We have entities. Where do they live?</h2>
+    <p class="lede fragment">Nothing stores a user yet. We need somewhere to put them.</p>
+    <p class="lede fragment" style="margin-top:14px;">But whatever we choose, a hash map today or a database next week, our logic must not be welded to it.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">So the question is not "which database". It is "how do we depend on storage, without depending on a storage".</p>
+    <div class="footer-line"><span>step-03 / story</span></div>
+  </section>
+
+  <!-- 18 STEP-03 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-03 / get the spec</span></div>
+    <h2>Before we design it, pull the test.</h2>
+    <div class="cmd"><span class="c"># copies only the tests onto your code, never the answers</span><br/>git checkout step-03-ports -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>user/UserRepositoryContract.java</code>. That file is the specification. We will let it tell us what to build.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 19 STEP-03 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 03 / what the test demands</span>
+    <h2>Read the test. The design falls out of it.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+abstract class UserRepositoryContract {
+    abstract UserRepository newRepository();  // any store
+
+    @Test savedUserIsFoundById()
+    @Test findByUsernameIsCaseInsensitive()
+    @Test missingUserYieldsEmpty()
+    @Test findAllReturnsEverythingSaved()
+}
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">It never names SQLite or a map. It only talks to a <code>UserRepository</code>.</li>
+          <li class="fragment">The <em>same</em> suite must pass for any store, so storage has to be an interface.</li>
+          <li class="fragment">Depending on that interface, not a database, is dependency inversion. There is your seam.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-03 / read the test</span></div>
+  </section>
+
+  <!-- 20 STEP-03 BUILD (make the test green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-03 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <ul class="do">
+          <li>The <code>UserRepository</code> port ( the four methods the test calls ) and an <code>InMemoryUserRepository</code>.</li>
+          <li>The same shape for posts: <code>PostRepository</code> + <code>InMemoryPostRepository</code>.</li>
+          <li><code>AppContext</code>: the one Singleton that picks the concrete stores.</li>
+          <li><code>mvnw test</code> until the contract is green.</li>
+        </ul>
+        <p class="legend"><span class="fn">green = new file</span> &nbsp; <span class="fe">yellow = edited</span></p>
+      </div>
+      <div class="tree">
+        <span class="pk">user/</span>&nbsp; <span class="fn">UserRepository,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">InMemoryUserRepository</span><br/>
+        <span class="pk">post/</span>&nbsp; <span class="fn">PostRepository,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">InMemoryPostRepository</span><br/>
+        <span class="pk">app/</span>&nbsp;&nbsp; <span class="fn">AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-03</b> lists the methods per class.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-04 STORY (the need) -->
+  <section>
+    <span class="eyebrow">step 04 / the need</span>
+    <h2>The data has a home. Now, where do the rules live?</h2>
+    <div class="grid g3 fragment">
+      <div class="card"><h3>Entity</h3><p>Guards its own invariants. A like counts once; a story knows when it dies.</p></div>
+      <div class="card"><h3>Service</h3><p>One use case each. Register, follow, publish.</p></div>
+      <div class="card"><h3>Gateway</h3><p>Input and output only. No rules at all.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">One reason to change, each. Two more questions ride along: the console should not have to know all of them, and some rules involve time. Hold both.</p>
+    <div class="footer-line"><span>step-04 / story</span></div>
+  </section>
+
+  <!-- STEP-04 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-04 / get the spec</span></div>
+    <h2>Pull the service tests.</h2>
+    <div class="cmd"><span class="c"># the use cases, written down as tests</span><br/>git checkout step-04-services -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>GraphServiceTest</code>, <code>UserServiceTest</code>, <code>PostServiceTest</code> and <code>InstagramServiceTest</code>. Four files that answer all three questions.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-04 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 04 / what the tests demand</span>
+    <h2>Three questions, answered by the tests.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+new GraphService(followRepo, clock)
+new UserService(userRepo, clock)
+new PostService(postRepo, clock)
+
+new InstagramService(users, graph, posts)
+    .follow("alice")   // one door
+    .like(postId)
+
+Clock.fixed(instant, UTC)  // frozen time
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">Follow logic sits in <code>GraphService</code>, accounts in <code>UserService</code>, posts in <code>PostService</code>. One reason to change each: single responsibility.</li>
+          <li class="fragment">The end-to-end test drives everything through one <code>InstagramService</code>. That facade is all the console ever touches.</li>
+          <li class="fragment">Every service is built with <code>Clock.fixed(...)</code>. Time is passed in, so "expires after 24h" is tested in milliseconds.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-04 / services</span></div>
+  </section>
+
+  <!-- 24 HANDS-ON step-04 (build + structure grows) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-04 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the services</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>A <code>UserService</code>, with a unique-username rule.</li>
+          <li>A <code>graph</code> context: follow and unfollow, idempotent.</li>
+          <li>The <code>InstagramService</code> facade tying them together.</li>
+        </ul>
+      </div>
+      <div class="tree">
+        <span class="pk">graph/</span> <span class="fn">Follow, FollowRepository,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">InMemoryFollowRepository, GraphService</span><br/>
+        <span class="pk">user/</span>&nbsp; <span class="fn">UserService, UsernameTakenException</span><br/>
+        <span class="pk">post/</span>&nbsp; <span class="fn">PostService</span> &nbsp; <span class="fe">~ PostRepository (+likes)</span><br/>
+        <span class="pk">app/</span>&nbsp;&nbsp; <span class="fn">InstagramService</span> &nbsp; <span class="fe">~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-04</b> lists each method.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-05 STORY (the need) -->
+  <section>
+    <span class="eyebrow">step 05 / the need</span>
+    <h2>Three post types. Who decides which class to build?</h2>
+    <p class="lede fragment">Right now the caller has to know: photo, video, or text? Every place that makes a post grows its own little switch.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">We want one place that turns a request-to-post into the right object. The caller just says what it wants.</p>
+    <div class="footer-line"><span>step-05 / story</span></div>
+  </section>
+
+  <!-- STEP-05 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-05 / get the spec</span></div>
+    <h2>Pull the factory test.</h2>
+    <div class="cmd"><span class="c"># one call, three shapes</span><br/>git checkout step-05-factory -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>post/PostFactoryTest.java</code>. It calls one method and expects three different classes back.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-05 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 05 / what the test demands</span>
+    <h2>Read the test. The factory takes shape.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+create(PostRequest.photo(..))  // -> PhotoPost
+create(PostRequest.video(..))  // -> VideoPost
+create(PostRequest.text(..))   // -> TextPost
+
+// video keeps durationSeconds
+// every post keeps authorId, caption
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">One <code>create</code> call returns the right subtype. The caller never writes <code>new PhotoPost</code>.</li>
+          <li class="fragment">A <code>PostRequest</code> carries the type plus its fields, so the factory has all it needs in one argument.</li>
+          <li class="fragment">Inside, an exhaustive <code>switch</code> over <code>PostType</code>. Add a type and the compiler marks this one place: open for extension, closed for modification.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-05 / factory</span></div>
+  </section>
+
+  <!-- STEP-05 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-05 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the factory</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>A <code>PostRequest</code> ( a type plus the fields ).</li>
+          <li>A <code>PostFactory</code> with the exhaustive switch; route posting through it.</li>
+        </ul>
+        <p style="margin-top:12px; color:var(--muted); font-size:15px;">Then add <code>REEL</code> to <code>PostType</code> and watch the compiler point at the one switch to fix.</p>
+      </div>
+      <div class="tree">
+        <span class="pk">post/</span>&nbsp; <span class="fn">PostRequest, PostFactory</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fe">~ PostService (routes creation through the factory)</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-05</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 27 BREAK -->
+  <section class="act">
+    <div class="title-wrap">
+      <span class="kicker">intermission</span>
+      <p class="display" style="font-size:96px; margin-top:12px;">Take a <em>break.</em></p>
+      <p class="subtitle" style="margin-top:24px;">Session two: events that decouple, adapters that translate, a real database, the feed, and how all of this grows to millions of users.</p>
+    </div>
+    <div class="footer-line"><span>end of session one</span></div>
+  </section>
+
+  <!-- 28 SESSION 2 OPENER -->
+  <section class="act">
+    <div class="title-wrap">
+      <span class="kicker">session two</span>
+      <p class="display" style="font-size:104px; margin-top:12px;">Decouple, <em>then</em> scale.</p>
+      <p class="subtitle" style="margin-top:24px;">We stop calling code directly and start announcing that things happened. That one shift is what lets a system grow.</p>
+    </div>
+    <div class="footer-line"><span>session two</span></div>
+  </section>
+
+  <!-- 29 EVENTS (question) -->
+  <section>
+    <span class="eyebrow">the decoupling leap</span>
+    <h2>A new post must update the feed, notify followers, index hashtags. Who calls all three?</h2>
+    <div class="codeflex fragment" style="margin-top:6px;">
+      <div>
+        <span class="tag bad">direct: the post service knows everyone</span>
+<pre><code class="language-java" data-trim>
+void create(PostRequest r) {
+    var post = repo.save(...);
+    feed.fanOut(post);        // knows feed
+    notifier.notify(post);    // knows notifier
+    search.index(post);       // knows search
+}
+</code></pre>
+      </div>
+      <div>
+        <span class="tag good">announce: it knows no one</span>
+<pre><code class="language-java" data-trim>
+void create(PostRequest r) {
+    var post = repo.save(...);
+    events.publish(new PostCreated(post.id()));
+}
+// feed, notifier, search subscribe elsewhere
+</code></pre>
+      </div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">A fourth reaction on the left means editing the post service. On the right, it means adding a subscriber. The post service never changes again.</p>
+    <div class="footer-line"><span>step-06 / events</span></div>
+  </section>
+
+  <!-- 30 ONE EVENT, THREE CONSUMERS -->
+  <section>
+    <div class="split">
+      <div>
+        <span class="eyebrow">one event, three reactions</span>
+        <h2>This is the message-queue seam.</h2>
+        <p>One <code>PostCreated</code> event. Three independent consumers react: the feed fans it out, the notifier alerts followers, search indexes the hashtags.</p>
+        <p style="margin-top:12px;">Today the bus is an in-process method call. Swap it for Kafka and those three consumers become three separate services. Nothing that publishes or subscribes changes.</p>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 360 240" width="100%">
+          <defs><marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#5a5a63"/></marker></defs>
+          <rect x="120" y="24" width="120" height="40" rx="6" fill="#16161a" stroke="#d4ff3a"/>
+          <text x="180" y="49" text-anchor="middle" fill="#d4ff3a" font-size="12">PostCreated</text>
+          <line x1="180" y1="64" x2="70"  y2="150" stroke="#5a5a63" marker-end="url(#a)"/>
+          <line x1="180" y1="64" x2="180" y2="150" stroke="#5a5a63" marker-end="url(#a)"/>
+          <line x1="180" y1="64" x2="290" y2="150" stroke="#5a5a63" marker-end="url(#a)"/>
+          <g font-size="11">
+            <rect x="24"  y="152" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="70"  y="175" text-anchor="middle" fill="#e8e8ea">feed</text>
+            <rect x="134" y="152" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="180" y="175" text-anchor="middle" fill="#e8e8ea">notify</text>
+            <rect x="244" y="152" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="290" y="175" text-anchor="middle" fill="#e8e8ea">search</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-06 / events</span></div>
+  </section>
+
+  <!-- 31 EVENTS TRADE-OFF (question) -->
+  <section>
+    <span class="eyebrow">the honest cost</span>
+    <h2>Events decouple. So what do they cost?</h2>
+    <p class="lede fragment"><em>Traceability.</em> With a direct call you read the stack and see what happens next. With an event, you have to know who subscribed.</p>
+    <ul class="clean fragment" style="margin-top:18px;">
+      <li>Reach for events only when the publisher truly should not care who reacts.</li>
+      <li>Not everywhere. A plain method call is simpler and easier to follow.</li>
+      <li>We keep it honest by wiring every subscription in one visible place: the composition root.</li>
+    </ul>
+    <p class="quote fragment" style="margin-top:20px;">If you cannot name what a pattern costs, you do not understand it yet.</p>
+    <div class="footer-line"><span>design decision</span></div>
+  </section>
+
+  <!-- STEP-06 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-06 / get the spec</span></div>
+    <h2>Pull the bus and notification tests.</h2>
+    <div class="cmd"><span class="c"># publish, subscribe, and one observer reacting</span><br/>git checkout step-06-events -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>platform/events/InProcessEventBusTest</code> and <code>notification/NotificationServiceTest</code>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-06 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 06 / what the tests demand</span>
+    <h2>Read the tests. The bus and the observer appear.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+bus.subscribe(PostCreated.class, h1);
+bus.subscribe(PostCreated.class, h2);
+bus.publish(event);   // both h1 and h2 run
+
+bus.publish(event);   // no subscribers -> harmless
+
+// notifications.onPostCreated(event)
+//   only the author's followers get an inbox entry
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">Publish reaches <em>every</em> subscriber for that event type. That is the bus: an observer list keyed by event.</li>
+          <li class="fragment">Publishing with nobody listening is harmless, so the publisher truly does not care who reacts.</li>
+          <li class="fragment">The notification service is just one subscriber: followers are notified, others are not. A fourth reaction later leaves the post service untouched.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-06 / events</span></div>
+  </section>
+
+  <!-- STEP-06 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-06 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the bus and observer</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>In <code>platform.events</code>: an <code>EventBus</code> port, an in-process bus, a <code>PostCreated</code> event.</li>
+          <li>A <code>notification</code> context that subscribes and notifies followers.</li>
+          <li>Have the post service publish; wire the subscription in <code>AppContext</code>.</li>
+        </ul>
+        <p style="margin-top:10px; color:var(--muted); font-size:15px;">Then add a fourth subscriber that logs every post. The post service stays untouched.</p>
+      </div>
+      <div class="tree">
+        <span class="pk">platform.events/</span> <span class="fn">DomainEvent, EventBus,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">InProcessEventBus, PostCreated</span><br/>
+        <span class="pk">notification/</span> <span class="fn">NotificationType, Notification, NotificationService,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">NotificationRepository, InMemoryNotificationRepository</span><br/>
+        <span class="fe">~ PostService publishes &nbsp; ~ InstagramService &nbsp; ~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-06</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 33 ADAPTER (question) -->
+  <section>
+    <span class="eyebrow">making incompatible things fit</span>
+    <h2>The email and SMS libraries each speak their own language. How do you deliver through one channel?</h2>
+    <p class="lede fragment">Wrap each in an <em>adapter</em> that translates our call into theirs.</p>
+    <pre class="fragment"><code class="language-java" data-trim>
+class EmailNotificationAdapter implements NotificationChannel {
+    void deliver(String handle, Notification n) {
+        legacyEmail.sendEmail(handle + "@app.com", "New activity", n.message());
+    }
+}
+</code></pre>
+    <p class="fragment" style="color:var(--muted);">The console channel needs no adapter, it already speaks our language. Add push notifications tomorrow by writing one more.</p>
+    <div class="footer-line"><span>step-07 / adapter</span></div>
+  </section>
+
+  <!-- STEP-07 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-07 / get the spec</span></div>
+    <h2>Pull the adapter test.</h2>
+    <div class="cmd"><span class="c"># one channel, two foreign libraries behind it</span><br/>git checkout step-07-adapter -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>notification/channel/NotificationChannelAdapterTest.java</code>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-07 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 07 / what the test demands</span>
+    <h2>Read the test. The adapters translate.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+new EmailNotificationAdapter(legacyClient, "mini.gram")
+    .deliver("bob", n);
+// legacyClient.lastAddress == "bob@mini.gram"
+// legacyClient.lastSubject contains "NEW_POST"
+
+new SmsNotificationAdapter(gateway).deliver("bob", n);
+// gateway.lastNumber starts "+1-555-"
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">Both adapters implement one <code>NotificationChannel</code>, so the caller says <code>deliver(handle, n)</code> and never learns which library runs.</li>
+          <li class="fragment">Each adapter turns our call into the foreign API's shape: an address and subject, or a phone number and text.</li>
+          <li class="fragment">The foreign clients stay untouched. To add push tomorrow you write one more adapter, nothing else moves.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-07 / adapter</span></div>
+  </section>
+
+  <!-- STEP-07 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-07 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the channel and adapters</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>A <code>NotificationChannel</code> port and a console channel.</li>
+          <li>An email and an SMS adapter, each wrapping a foreign API.</li>
+          <li>Deliver through the channel on fan-out; <code>mvnw test</code> until green.</li>
+        </ul>
+      </div>
+      <div class="tree">
+        <span class="pk">notification.channel/</span> <span class="fn">NotificationChannel,</span><br/>
+        &nbsp;&nbsp;&nbsp;<span class="fn">ConsoleNotificationChannel,</span><br/>
+        &nbsp;&nbsp;&nbsp;<span class="fn">EmailNotificationAdapter, SmsNotificationAdapter</span><br/>
+        <span class="pk">&nbsp;&nbsp;...external/</span> <span class="fn">LegacyEmailClient, SmsGateway</span><br/>
+        <span class="fe">~ NotificationService delivers &nbsp; ~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-07</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 35 STRATEGY (question) -->
+  <section>
+    <span class="eyebrow">swap the algorithm, keep the code</span>
+    <h2>The same feed, two orders. How do you switch the algorithm at runtime?</h2>
+    <div class="grid g2 fragment">
+      <div class="card"><span class="tag muted">chronological</span><h3>Newest first</h3><p>Sort by time. Simple, predictable, what people say they want.</p></div>
+      <div class="card"><span class="tag">engagement</span><h3>Top posts first</h3><p>Score by likes, comments, recency. What actually keeps people scrolling.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:18px; color:var(--muted);">The feed service holds one <code>FeedRankingStrategy</code>. Hand it a different one and the whole feed reorders. How feeds are built and read never changes.</p>
+    <div class="footer-line"><span>step-08 / strategy</span></div>
+  </section>
+
+  <!-- 36 FAN-OUT (question + visual) -->
+  <section>
+    <span class="eyebrow">the central scaling decision</span>
+    <h2>When do you build a feed: when you <em>post</em>, or when you <em>open the app</em>?</h2>
+    <div class="diagram fragment" style="margin-top:14px;">
+      <svg viewBox="0 0 940 300" width="100%">
+        <defs><marker id="fo" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a5a63"/></marker></defs>
+        <line x1="470" y1="56" x2="470" y2="252" stroke="#26262c" stroke-dasharray="3 5"/>
+
+        <text x="228" y="26" text-anchor="middle" fill="#e8e8ea" font-size="16">fan-out on READ</text>
+        <text x="228" y="46" text-anchor="middle" fill="#8a8a93" font-size="12">pull when you open the app</text>
+        <g font-size="12" fill="#c5c5cc" text-anchor="middle">
+          <rect x="24" y="86" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="70" y="110">a post</text>
+          <rect x="24" y="146" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="70" y="170">a post</text>
+          <rect x="24" y="206" width="92" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="70" y="230">a post</text>
+        </g>
+        <rect x="250" y="132" width="150" height="56" rx="8" fill="#16161a" stroke="#d4ff3a"/><text x="325" y="165" text-anchor="middle" fill="#d4ff3a" font-size="14">your feed</text>
+        <g stroke="#5a5a63">
+          <line x1="116" y1="105" x2="248" y2="150" marker-end="url(#fo)"/>
+          <line x1="116" y1="165" x2="248" y2="160" marker-end="url(#fo)"/>
+          <line x1="116" y1="225" x2="248" y2="172" marker-end="url(#fo)"/>
+        </g>
+        <text x="228" y="278" text-anchor="middle" fill="#ff7a7a" font-size="12">read: slow, it joins everything every time</text>
+
+        <text x="712" y="26" text-anchor="middle" fill="#e8e8ea" font-size="16">fan-out on WRITE</text>
+        <text x="712" y="46" text-anchor="middle" fill="#8a8a93" font-size="12">push when the author posts</text>
+        <rect x="500" y="132" width="150" height="56" rx="8" fill="#16161a" stroke="#d4ff3a"/><text x="575" y="165" text-anchor="middle" fill="#d4ff3a" font-size="14">author posts</text>
+        <g font-size="12" fill="#c5c5cc" text-anchor="middle">
+          <rect x="822" y="86" width="104" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="874" y="110">a timeline</text>
+          <rect x="822" y="146" width="104" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="874" y="170">a timeline</text>
+          <rect x="822" y="206" width="104" height="38" rx="6" fill="#16161a" stroke="#26262c"/><text x="874" y="230">a timeline</text>
+        </g>
+        <g stroke="#5a5a63">
+          <line x1="650" y1="150" x2="820" y2="105" marker-end="url(#fo)"/>
+          <line x1="650" y1="160" x2="820" y2="165" marker-end="url(#fo)"/>
+          <line x1="650" y1="172" x2="820" y2="225" marker-end="url(#fo)"/>
+        </g>
+        <text x="712" y="270" text-anchor="middle" fill="#f5b840" font-size="12">write: heavy, one copy per follower</text>
+        <text x="712" y="288" text-anchor="middle" fill="#7ddc9a" font-size="12">read: instant, one lookup</text>
+      </svg>
+    </div>
+    <p class="quote fragment" style="margin-top:16px;">We push on write. You open your feed far more often than you post, so pay once at write time and make every read instant.</p>
+    <div class="footer-line"><span>step-08 / feed</span></div>
+  </section>
+
+  <!-- 37 CELEBRITY (question) -->
+  <section>
+    <span class="eyebrow">where fan-out on write hurts</span>
+    <h2>You have fifty million followers. You post once. What just happened?</h2>
+    <div class="split fragment" style="margin-top:4px;">
+      <div>
+        <p class="lede">Fifty million timeline writes, for one post. That is <em>write amplification</em>, and it does not scale.</p>
+        <p style="margin-top:12px; color:var(--muted);">Real systems go hybrid: fan-out on write for normal accounts, fan-out on read for the few huge ones, merged when you open the app. We build the write path and name the hybrid.</p>
+      </div>
+      <div class="card">
+        <span class="tag bad">also honest</span>
+        <h3>Following does not backfill.</h3>
+        <p>Fan-out on write reaches only current followers. Follow someone new and you do not get their old posts. Real Instagram behavior, free from this design.</p>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-08 / feed</span></div>
+  </section>
+
+  <!-- 38 DENORMALIZATION (question) -->
+  <section>
+    <span class="eyebrow">the trade at the heart of scale</span>
+    <h2>Rendering a feed should never run <code>COUNT(*)</code>. So where does the like count live?</h2>
+    <div class="grid g2 fragment">
+      <div class="card"><span class="tag good">normalized</span><h3>One fact, one place</h3><p>Likes live in a <code>likes</code> table. Correct, no duplication, easy to change.</p></div>
+      <div class="card"><span class="tag">denormalized</span><h3>A copy, for speed</h3><p>A <code>like_count</code> on the post and a materialized <code>feed</code> table, so reads never count or join.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">The cost: every like updates two places, and the copy can briefly drift. That upkeep is the price of fast reads. Knowing when to pay it is most of systems design.</p>
+    <div class="footer-line"><span>design decision</span></div>
+  </section>
+
+  <!-- STEP-08 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-08 / get the spec</span></div>
+    <h2>Pull the feed tests.</h2>
+    <div class="cmd"><span class="c"># fan-out, and a swappable ranking</span><br/>git checkout step-08-feed -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>feed/FeedStrategyTest</code> and <code>feed/FeedServiceTest</code>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-08 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 08 / what the tests demand</span>
+    <h2>Read the tests. Fan-out and Strategy fall out.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+new ChronologicalFeedStrategy().rank(posts, now)
+    // newest first
+new EngagementFeedStrategy().rank(posts, now)
+    // most-liked first
+
+feed.onPostCreated(event) // author + followers only
+feed.setStrategy(new EngagementFeedStrategy())
+    // same posts reorder at runtime
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">Two classes rank the same list differently behind one <code>rank(posts, now)</code>. That is Strategy: swap the algorithm, keep the caller.</li>
+          <li class="fragment"><code>setStrategy(...)</code> reorders an existing feed with no other change. The choice is data, not code.</li>
+          <li class="fragment">The feed subscribes to <code>PostCreated</code> and fans a new post to the author and followers only. Fan-out on write, done at post time.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-08 / feed</span></div>
+  </section>
+
+  <!-- STEP-08 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-08 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the feed and strategies</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>A <code>feed</code> context: a <code>FeedRepository</code> and a <code>FeedService</code> that subscribes to <code>PostCreated</code> and fans out.</li>
+          <li>A <code>FeedRankingStrategy</code>, with a chronological and an engagement version.</li>
+          <li>Run, toggle the ranking, and watch the same posts reorder.</li>
+        </ul>
+      </div>
+      <div class="tree">
+        <span class="pk">feed/</span>&nbsp; <span class="fn">FeedEntry, FeedRepository,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">InMemoryFeedRepository, FeedService,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">FeedRankingStrategy,</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">ChronologicalFeedStrategy, EngagementFeedStrategy</span><br/>
+        <span class="fe">~ InstagramService &nbsp; ~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-08</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 40 SCHEMA (question) -->
+  <section>
+    <span class="eyebrow">a real database enters</span>
+    <h2>Five tables. What do we protect, and what do we deliberately duplicate?</h2>
+    <pre class="fragment"><code class="language-sql" data-trim>
+users(id PK, username UNIQUE, follower_count)          -- follower_count: a copy
+follows(follower_id, followee_id, PRIMARY KEY(both))   -- the graph, one edge per row
+posts(id PK, author_id FK, type, like_count, comment_count)
+likes(post_id, user_id, PRIMARY KEY(both))             -- the truth about likes
+feed(user_id, post_id, created_at)                     -- the materialized timeline
+</code></pre>
+    <p class="fragment" style="color:var(--muted);">Foreign keys keep it honest: you cannot like a post that does not exist. The counters and the feed table are the copies we accept for speed.</p>
+    <div class="footer-line"><span>step-09 / sqlite</span></div>
+  </section>
+
+  <!-- 41 CAP (question) -->
+  <section>
+    <span class="eyebrow">consistency versus availability</span>
+    <h2>Must a like count be exact the instant you read it?</h2>
+    <div class="grid g2 fragment">
+      <div class="card"><span class="tag">must be consistent</span><h3>Follows, auth</h3><p>Unfollow someone and it must take effect now. Correctness beats availability.</p></div>
+      <div class="card"><span class="tag muted">can be eventual</span><h3>Feed, like counts</h3><p>Off by one for a second is fine. Availability beats strict correctness.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">That is why counters and feed can be denormalized and updated a beat later. CAP tells you which data you are allowed to be lazy about.</p>
+    <div class="footer-line"><span>design decision</span></div>
+  </section>
+
+  <!-- 42 DIP PAYOFF (question) -->
+  <section>
+    <span class="eyebrow">the seam pays off</span>
+    <h2>We wrote the storage test once, at step 3. How many databases can it check?</h2>
+    <p class="lede fragment">Both. The SQLite adapter runs the exact same <code>UserRepositoryContract</code>.</p>
+    <pre class="fragment"><code class="language-java" data-trim>
+class InMemoryUserRepositoryTest extends UserRepositoryContract { ... }
+class SqliteUserRepositoryTest   extends UserRepositoryContract { ... }   // same tests, green
+</code></pre>
+    <p class="fragment" style="color:var(--muted);">If SQLite behaved differently, the shared test would fail. Green on both proves they are interchangeable. Liskov substitution at the storage boundary, and the whole point of a port.</p>
+    <div class="footer-line"><span>step-09 / sqlite</span></div>
+  </section>
+
+  <!-- 43 SQLITE CEILING (question) -->
+  <section>
+    <span class="eyebrow">know your tool's limit</span>
+    <h2>So why not just ship SQLite to production?</h2>
+    <ul class="clean fragment">
+      <li>It is safe across processes, but <strong>single-writer</strong>: writes take a lock and serialize.</li>
+      <li>Two copies of the app on one file contend. That is why a single-writer database cannot scale writes across machines.</li>
+      <li>Worse in our code: the id generator is a per-process counter. Two instances mint the <em>same</em> ids and collide. Real systems use DB sequences, UUIDs, or Snowflake.</li>
+    </ul>
+    <p class="quote fragment" style="margin-top:18px;">The lesson is not "SQLite is bad". It is that the port lets you swap it for Postgres the day you outgrow it.</p>
+    <div class="footer-line"><span>design decision</span></div>
+  </section>
+
+  <!-- STEP-09 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-09 / get the spec</span></div>
+    <h2>Pull the SQLite tests.</h2>
+    <div class="cmd"><span class="c"># the old contract, pointed at a real database</span><br/>git checkout step-09-sqlite -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>user/SqliteUserRepositoryTest</code> and <code>post/SqlitePostRepositoryTest</code>. Notice what they <em>do not</em> contain.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-09 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 09 / what the tests demand</span>
+    <h2>Read the test. It is the step-03 contract, again.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+class SqliteUserRepositoryTest
+        extends UserRepositoryContract {
+    UserRepository newRepository() {
+        return new SqliteUserRepository(Database.inMemory());
+    }
+}
+// posts too: SqlitePostRepositoryTest
+//            extends PostRepositoryContract
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">No new test methods. We only tell the old contract to build a SQLite store instead of a map.</li>
+          <li class="fragment">Green on the in-memory subclass <em>and</em> green on the SQLite subclass is the proof that the two are substitutable.</li>
+          <li class="fragment">This is the seam from step 3 paying off: one specification, checked against every store we ship.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-09 / persistence</span></div>
+  </section>
+
+  <!-- STEP-09 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-09 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build the SQLite adapters</span><br/>mvnw test</div>
+        <ul class="do">
+          <li>A <code>Database</code> and <code>schema.sql</code> in <code>platform.db</code>.</li>
+          <li>SQLite adapters that implement the same repository ports.</li>
+          <li>Swap them in at <code>AppContext</code>; the same contract test now runs on both stores.</li>
+        </ul>
+        <p style="margin-top:10px; color:var(--muted); font-size:15px;">Run with <code>-Dmini.store=sqlite</code>, register, exit, run again: your account survived.</p>
+      </div>
+      <div class="tree">
+        <span class="pk">platform.db/</span> <span class="fn">Database, DataAccessException</span> &nbsp; <span class="fn">+ resources/schema.sql</span><br/>
+        <span class="fn">SqliteUserRepository, SqlitePostRepository, SqliteFollowRepository,</span><br/>
+        <span class="fn">SqliteNotificationRepository, SqliteFeedRepository</span><br/>
+        <span class="fe">~ IdGenerator (seed) &nbsp; ~ User + Post (fromStorage) &nbsp; ~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-09</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 45 RICH FEATURES (question) -->
+  <section>
+    <span class="eyebrow">the rest of the product</span>
+    <h2>Stories, search, and DMs. How many new ideas do they need?</h2>
+    <p class="lede fragment">None. Each reuses something you already built.</p>
+    <div class="grid g3 fragment">
+      <div class="card"><h3>Stories</h3><p>Expire in 24 hours, checked against the injected clock. Tested in microseconds.</p></div>
+      <div class="card"><h3>Search</h3><p>An inverted index, filled by a fourth subscriber to <code>PostCreated</code>.</p></div>
+      <div class="card"><h3>Direct messages</h3><p>Conversations keyed by the pair of users. The simplest context of all.</p></div>
+    </div>
+    <div class="footer-line"><span>step-10 / extras</span></div>
+  </section>
+
+  <!-- 46 CACHE (question) -->
+  <section>
+    <span class="eyebrow">the last seam</span>
+    <h2>You open your feed twice in a row. Should we build it twice?</h2>
+    <div class="fragment" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; margin-top:8px;">
+      <div>
+        <p class="lede">No. Read through a cache: a miss builds and stores, a hit returns instantly. A new post invalidates the affected feeds.</p>
+        <p style="margin-top:12px; color:var(--muted);">Today a hash map behind a <code>Cache</code> interface. Need Redis? Swap one adapter, the feed service does not change. You have seen this move four times now. That is the point.</p>
+      </div>
+      <pre><code class="language-java" data-trim>
+List&lt;Post&gt; feed(long viewer) {
+    return cache.get(viewer)
+        .orElseGet(() -&gt; {
+            var built = build(viewer);
+            cache.put(viewer, built);
+            return built;
+        });
+}
+</code></pre>
+    </div>
+    <div class="footer-line"><span>step-11 / cache</span></div>
+  </section>
+
+  <!-- STEP-10+11 CHECKOUT (get the spec) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-10 and 11 / get the spec</span></div>
+    <h2>Pull both steps' tests.</h2>
+    <div class="cmd"><span class="c"># the extras, then the cache</span><br/>git checkout step-10-extras -- src/test/java<br/>git checkout step-11-cache -- src/test/java</div>
+    <p class="lede fragment" style="margin-top:18px;">Open <code>StoryServiceTest</code>, <code>SearchServiceTest</code>, <code>MessagingServiceTest</code> and <code>InMemoryCacheTest</code>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- STEP-10+11 READ THE TEST (derive the design) -->
+  <section>
+    <span class="eyebrow">step 10 and 11 / what the tests demand</span>
+    <h2>Read the tests. Almost nothing here is new.</h2>
+    <div class="codeflex">
+      <div>
+<pre><code class="language-java" data-trim>
+story.isActiveAt(t.plusHours(23))  // true
+story.isExpiredAt(t.plusHours(25)) // true
+
+// search: a subscriber indexes hashtags on PostCreated
+// messaging: send and read, regardless of order
+
+cache.get("a")  // miss, then put, then hit
+cache.invalidate("a")
+</code></pre>
+      </div>
+      <div>
+        <ul class="clean">
+          <li class="fragment">A story expires after 24h, checked against the injected clock. The step-04 technique, cashed in.</li>
+          <li class="fragment">Search is just a fourth subscriber to <code>PostCreated</code>; messaging is a repository and a service. The same shapes as before.</li>
+          <li class="fragment">The cache proves miss, then put, then hit, plus invalidate. Read-through: a hit skips the rebuild. Swap in Redis and the feed never knows.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-line"><span>step-10 and 11</span></div>
+  </section>
+
+  <!-- STEP-10+11 BUILD (make it green) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-10 and 11 / make it green</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:6px;">
+      <div>
+        <div class="cmd"><span class="c"># the tests are already here; build extras, then the cache</span><br/>mvnw test</div>
+        <ul class="do">
+          <li><code>story</code>, <code>search</code> ( an inverted index ), and <code>messaging</code> contexts.</li>
+          <li>A <code>Cache</code> port and an in-memory cache in front of feed reads.</li>
+          <li>Post with a hashtag, search it; read a feed twice and watch the cache hit.</li>
+        </ul>
+      </div>
+      <div class="tree" style="font-size:12px;">
+        <span class="pk">story/</span> <span class="fn">Story, StoryRepository, InMemoryStoryRepository, StoryService</span><br/>
+        <span class="pk">search/</span> <span class="fn">Hashtags, HashtagIndex, InMemoryHashtagIndex, SearchService</span><br/>
+        <span class="pk">messaging/</span> <span class="fn">DirectMessage, MessageRepository, InMemoryMessageRepository, MessagingService</span><br/>
+        <span class="pk">platform.cache/</span> <span class="fn">Cache, InMemoryCache</span> <span style="color:var(--dim);">(step 11)</span><br/>
+        <span class="fe">~ FeedService (cache) &nbsp; ~ AppContext</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-10</b> and <b>step-11</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 48 THE FINISHED APP (question) -->
+  <section>
+    <span class="eyebrow">it all comes together</span>
+    <h2>The console does everything. How much business logic does it hold?</h2>
+    <p class="lede fragment">None. It is a thin gateway that calls only <code>InstagramService</code>.</p>
+    <p class="fragment" style="margin-top:16px;">In a web version that gateway is your REST controllers, behind a load balancer, with the same services underneath. The console is a placeholder for the network edge.</p>
+    <div class="footer-line"><span>step-12 / the app</span></div>
+  </section>
+
+  <!-- STEP-12 READ (no new test, and why) -->
+  <section>
+    <span class="eyebrow">step 12 / what the tests demand</span>
+    <h2>This step ships no new test. That is the point.</h2>
+    <p class="lede fragment">The console is pure input and output: the network edge. You do not unit-test a REPL, you run it.</p>
+    <p class="fragment" style="margin-top:14px;">Everything it calls was proven green over the last eleven steps. So run the whole suite once, watch it pass, and know the logic is done.</p>
+    <div class="cmd fragment"><span class="c"># every layer, still green</span><br/>mvnw test</div>
+    <div class="footer-line"><span>step-12 / the app</span></div>
+  </section>
+
+  <!-- STEP-12 BUILD (write the edge, run it) -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Hands-on</span><span class="handson-step">step-12 / build and run</span></div>
+    <div style="display:grid; grid-template-columns:1.05fr 1fr; gap:40px; align-items:center; margin-top:4px;">
+      <div>
+        <div class="cmd"><span class="c"># write the console edge, then launch it</span><br/>mvnw exec:java</div>
+        <ul class="do">
+          <li>Build <code>ui.ConsoleGateway</code> ( the REPL ) and <code>ui.SeedData</code>.</li>
+          <li>Point <code>Main</code> at the gateway; sign in as alice and use it end to end.</li>
+          <li>Confirm every action in the gateway is one facade call.</li>
+        </ul>
+      </div>
+      <div class="tree">
+        <span class="pk">ui/</span>&nbsp;&nbsp; <span class="fn">ConsoleGateway, SeedData</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fe">~ Main (launches the app)</span>
+      </div>
+    </div>
+    <p class="sync">Your <b>hands-on deck</b> at <b>step-12</b>.</p>
+    <div class="footer-line"><span>hands-on</span></div>
+  </section>
+
+  <!-- 50 SEAMS TO SCALE (question) -->
+  <section>
+    <span class="eyebrow">the payoff, all at once</span>
+    <h2>Five seams. What does each become the day you outgrow it?</h2>
+    <table class="tbl fragment">
+      <tr><th>Seam ( interface )</th><th>Today</th><th>The day you outgrow it</th></tr>
+      <tr><td>Repository</td><td>SQLite file</td><td>Sharded Postgres</td></tr>
+      <tr><td>Event bus</td><td>In-process call</td><td>Kafka</td></tr>
+      <tr><td>Cache</td><td>Hash map</td><td>Redis</td></tr>
+      <tr><td>Services ( stateless )</td><td>One process</td><td>Many, behind a load balancer</td></tr>
+      <tr><td>Console gateway</td><td>A text menu</td><td>REST plus an API gateway</td></tr>
+    </table>
+    <p style="margin-top:16px; color:var(--muted);">Because the services hold no state ( it all lives in the stores ), you can run a hundred copies at once. That is horizontal scaling, and the whole design was pointed at it from slide one.</p>
+    <div class="footer-line"><span>the payoff</span></div>
+  </section>
+
+  <!-- 51 PHILOSOPHY RECAP -->
+  <section>
+    <span class="eyebrow">what to actually remember</span>
+    <h2>The five ideas under everything.</h2>
+    <div class="grid g2">
+      <ul class="clean">
+        <li><strong>Encapsulation</strong> is cognitive-load control, not security.</li>
+        <li><strong>Compose</strong> by default; inherit only a closed, sealed set.</li>
+        <li><strong>Depend on interfaces.</strong> Every seam is a future swap.</li>
+      </ul>
+      <ul class="clean">
+        <li><strong>Announce events</strong> to decouple; accept the traceability cost.</li>
+        <li><strong>Normalize the truth, denormalize the hot path,</strong> and know which data can lag ( CAP ).</li>
+      </ul>
+    </div>
+    <p class="quote" style="margin-top:24px;">Patterns are not the goal. They are named answers to forces. Learn the forces.</p>
+    <div class="footer-line"><span>recap</span></div>
+  </section>
+
+  <!-- 52 MISTAKES AVOIDED -->
+  <section>
+    <span class="eyebrow">the traps, named</span>
+    <h2>What did we deliberately not do?</h2>
+    <table class="tbl fragment">
+      <tr><th>Trap</th><th>Why it bites</th><th>What we did instead</th></tr>
+      <tr><td>Anemic model</td><td>Rules scatter, invariants break</td><td>Behavior lives with its data</td></tr>
+      <tr><td>Leaked public field</td><td>A permanent API you never meant to sign</td><td>Encapsulated state, small ports</td></tr>
+      <tr><td>God facade</td><td>One class knows everything, changes constantly</td><td>Thin facade over focused services</td></tr>
+      <tr><td>Premature microservices</td><td>Network pain with none of the payoff</td><td>Modular monolith with real seams</td></tr>
+    </table>
+    <div class="footer-line"><span>recap</span></div>
+  </section>
+
+  <!-- 53 HOMEWORK -->
+  <section>
+    <span class="eyebrow">take it further</span>
+    <h2>Homework, in rising difficulty.</h2>
+    <div class="grid g2">
+      <div class="card"><span class="tag muted">warm-up</span><h3>New post type and channel</h3><p>Add a <code>ReelPost</code> and let the compiler guide you. Add a channel that delivers to console and email at once.</p></div>
+      <div class="card"><span class="tag muted">core</span><h3>Persist the extras</h3><p>Write <code>SqliteStoryRepository</code> and run the same contract test against both adapters.</p></div>
+      <div class="card"><span class="tag">stretch</span><h3>Private accounts</h3><p>Add a private flag; make follow a request that needs approval; check permission on reads. This makes authorization real.</p></div>
+      <div class="card"><span class="tag">stretch</span><h3>Sketch a shard router</h3><p>Route by user id behind the repository port. Note which query ( the social graph ) becomes the hard one.</p></div>
+    </div>
+    <div class="footer-line"><span>homework</span></div>
+  </section>
+
+  <!-- 54 CLOSER -->
+  <section class="act">
+    <div class="title-wrap">
+      <span class="eyebrow">closing</span>
+      <p class="display" style="font-size:88px;">You built the <em>spine</em><br/>of Instagram.</p>
+      <p class="subtitle" style="margin-top:30px;">Not the pixels. The decisions. The seams are the lesson, and they are the same seams that carry a billion users.</p>
+    </div>
+    <div class="footer-line"><span>fin</span></div>
+  </section>
+
+  <!-- 55 OUTRO / BYTS -->
+  <section class="act">
+    <div class="title-wrap" style="align-items:flex-start;">
+      <img src="https://byts.co.in/imgs/bytsLogo.png" alt="Byts" style="height:72px; margin-bottom:28px;" />
+      <h2 style="font-size:44px;">Now go build something real.</h2>
+      <p class="subtitle">The full repo, the checkpoints, and your hands-on deck are yours to keep. Fork it, break it, extend it. That is how it sticks.</p>
+    </div>
+    <div class="footer-line"><span>byts / thank you</span></div>
+  </section>
+
+  <!-- MORE -->
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1600, height: 900, margin: 0.04, minScale: 0.2, maxScale: 1.4,
+    hash: true, slideNumber: 'c/t', controls: true, progress: true,
+    center: false, transition: 'fade', backgroundTransition: 'fade',
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+
+  // A paired tab in this same folder (same origin) can drive this deck: it sends
+  // "go to slide N" and we jump there and reveal the whole slide. On load we say hello
+  // so the controller re-sends its current position. (Same origin only; file:// tabs
+  // are isolated, so serve the folder over http.)
+  // Scoped to this deck's folder, so multiple days' decks (same origin) never collide.
+  var SCOPE = location.pathname.replace(/[^/]*$/, '');   // the folder this file lives in
+  var CH = 'byts-deck' + SCOPE, K_GOTO = 'byts-deck-goto' + SCOPE, K_HELLO = 'byts-deck-hello' + SCOPE;
+  var deckChan = ('BroadcastChannel' in window) ? new BroadcastChannel(CH) : null;
+  function pIdx() { return Reveal.getSlides().indexOf(Reveal.getCurrentSlide()); }
+  function goTo(i) {
+    if (isNaN(i) || i === pIdx()) return;
+    Reveal.slide(i, 0);
+    var n = Reveal.getCurrentSlide().querySelectorAll('.fragment').length;
+    if (n > 0) Reveal.slide(i, 0, n - 1);   // reveal the full slide, the presenter narrates the pacing
+  }
+  function hello() {
+    try { localStorage.setItem(K_HELLO, String(Date.now())); } catch (e) {}
+    if (deckChan) deckChan.postMessage({ type: 'hello' });
+  }
+  Reveal.on('ready', hello);
+  if (deckChan) deckChan.onmessage = function (e) {
+    if (e.data && e.data.type === 'goto' && typeof e.data.slide === 'number') goTo(e.data.slide);
+  };
+  window.addEventListener('storage', function (e) {
+    if (e.key === K_GOTO && e.newValue != null) goTo(parseInt(e.newValue, 10));
+  });
+</script>
+</body>
+</html>

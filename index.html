@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design + HLD Bootcamp</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@400;600&display=swap">
+<style>
+  :root{--bg:#0e0e10;--soft:#16161a;--line:#26262c;--text:#e8e8ea;--muted:#9a9aa3;--dim:#5a5a63;--accent:#d4ff3a;--accent2:#6ea8ff}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text)}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6}
+  header{max-width:920px;margin:0 auto;padding:56px 26px 20px}
+  .brand img{height:26px;display:block;margin-bottom:26px;opacity:.9}
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:56px;letter-spacing:-.03em;margin:0 0 .3em}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{color:var(--muted);font-size:19px;max-width:60ch}
+  main{max-width:920px;margin:0 auto;padding:20px 26px 90px}
+  h2{font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:40px 0 16px;font-weight:500}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{display:block;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:18px 20px;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card .day{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .card h3{margin:6px 0 4px;font-size:20px;font-weight:600}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .card.alt:hover{border-color:var(--accent2)}
+  .card.alt .day{color:var(--accent2)}
+  code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:2px 7px;color:#e0e0e4}
+  .note{background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:16px 20px;color:#cfcfd6;font-size:15px}
+  .note pre{margin:10px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;color:#e0e0e4;white-space:pre-wrap}
+  a.inline{color:var(--accent2);text-decoration:none}a.inline:hover{text-decoration:underline}
+  footer{max-width:920px;margin:0 auto;padding:24px 26px 60px;border-top:1px solid var(--line);color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><img src="https://byts.co.in/imgs/bytsLogo.png" alt="Byts" /></div>
+  <h1>Design + HLD <em>Bootcamp</em></h1>
+  <p class="sub">Slides and hands-on capstones for object-oriented design, design patterns, and high-level system design. Open a deck below; use the arrow keys to advance.</p>
+</header>
+<main>
+  <h2>Slides</h2>
+  <div class="grid">
+    <a class="card" href="oop/presentation.html"><span class="day">Day 1 / morning</span><h3>Object-Oriented Programming</h3><p>Encapsulation, abstraction, inheritance, polymorphism.</p></a>
+    <a class="card" href="solid/presentation.html"><span class="day">Day 1 / afternoon</span><h3>The SOLID Principles</h3><p>Five rules that keep OO code easy to change.</p></a>
+    <a class="card" href="patterns/presentation.html"><span class="day">Day 2</span><h3>Design Patterns</h3><p>Creational, structural, and behavioral patterns.</p></a>
+    <a class="card" href="hld/presentation.html"><span class="day">Day 3</span><h3>High-Level Design</h3><p>Load balancers, caches, queues, and designing Instagram.</p></a>
+    <a class="card alt" href="instagram/presentation.html"><span class="day">Day 4</span><h3>Mini Instagram</h3><p>Building the system, package by package.</p></a>
+    <a class="card alt" href="instagram/students.html"><span class="day">Day 4 / self-paced</span><h3>Mini Instagram: hands-on</h3><p>Step-by-step guide you can work through on your own.</p></a>
+  </div>
+
+  <h2>Capstones</h2>
+  <div class="note">
+    Each <code>*-capstone/</code> folder is a small Java exercise. Clone or download this repo, read
+    <code>RunTests.java</code> (the spec), fill in the TODOs, and run until every test is green.
+    Requires a JDK 17 or newer; no build tools to install.
+    <pre>git clone https://github.com/prasannathapa/byts-bootcamp
+cd byts-bootcamp/oop-capstone      # or solid-capstone, patterns-capstone
+./run.sh                           # Windows: run.cmd</pre>
+    Day 4's capstone is the full Mini Instagram project, in its own repo:
+    <a class="inline" href="https://github.com/prasannathapa/mini-insta">github.com/prasannathapa/mini-insta</a>.
+  </div>
+</main>
+<footer>Build Your Technical Skills</footer>
+</body>
+</html>

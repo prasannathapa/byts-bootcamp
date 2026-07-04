@@ -1,0 +1,15 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Java build output
+*.class
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

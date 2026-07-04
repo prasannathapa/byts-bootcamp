@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>High-Level Design / Build Your Technical Skills</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@400;600&display=swap">
+
+<style>
+  :root{
+    --bg:#0e0e10; --bg-soft:#16161a; --line:#26262c; --text:#e8e8ea;
+    --muted:#8a8a93; --dim:#5a5a63; --accent:#d4ff3a; --accent-2:#6ea8ff;
+    --good:#7ddc9a; --bad:#ff7a7a; --warn:#f5b840;
+  }
+  html, body { background: var(--bg); }
+  .reveal-viewport { background: var(--bg) !important; }
+
+  .reveal { font-family:'Inter',system-ui,sans-serif; font-weight:400; color:var(--text);
+            font-size:22px; letter-spacing:-0.005em; }
+  .reveal .slides { text-align:left; }
+  .reveal .slides > section { padding:54px 78px; height:100%; box-sizing:border-box; }
+
+  /* per-theme accent tint */
+  .reveal section.found { --accent:#6ea8ff; }   /* foundations - blue */
+  .reveal section.data  { --accent:#f5a524; }   /* data        - amber */
+  .reveal section.scale { --accent:#34d399; }   /* scale       - emerald */
+  /* design-instagram slides keep the base lime accent */
+
+  .reveal h1,.reveal h2,.reveal h3,.reveal h4 { font-family:'Inter',sans-serif; font-weight:600;
+    color:var(--text); text-transform:none; letter-spacing:-0.02em; margin:0 0 0.4em 0; line-height:1.12; }
+  .reveal h1 { font-size:60px; font-weight:700; letter-spacing:-0.04em; }
+  .reveal h2 { font-size:36px; font-weight:600; }
+  .reveal h3 { font-size:22px; font-weight:600; }
+  .reveal p,.reveal li { font-size:21px; line-height:1.5; color:#d4d4d8; }
+  .reveal ul,.reveal ol { margin:0.4em 0 0 1.2em; }
+  .reveal li { margin:0.35em 0; }
+  .reveal strong { color:var(--text); font-weight:600; }
+  .reveal em { font-style:italic; color:var(--accent); }
+
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:1.0em; display:block; }
+  .eyebrow .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
+    background:var(--accent); vertical-align:middle; margin-right:6px; }
+
+  .title-wrap { display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .display { font-family:'Fraunces',serif; font-weight:400; font-size:100px; line-height:0.96;
+    letter-spacing:-0.04em; margin:0; }
+  .display em { font-style:italic; color:var(--accent); }
+  .subtitle { font-size:23px; color:var(--muted); margin-top:1.2em; max-width:62ch; }
+
+  .lede { font-size:26px; line-height:1.4; color:#e8e8ea; max-width:66ch; font-weight:400; }
+  .quote { font-family:'Fraunces',serif; font-style:italic; font-size:29px; line-height:1.35;
+    color:#e0e0e4; border-left:2px solid var(--accent); padding-left:22px; max-width:64ch; }
+
+  .grid { display:grid; gap:22px; margin-top:18px; }
+  .g2 { grid-template-columns:1fr 1fr; } .g3 { grid-template-columns:1fr 1fr 1fr; }
+  .card { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin-bottom:6px; font-size:17px; color:var(--accent); }
+  .card p { font-size:15px; color:var(--muted); margin:0; line-height:1.45; }
+
+  .tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; padding:4px 10px; border-radius:4px; background:rgba(212,255,58,0.08);
+    color:var(--accent); border:1px solid rgba(212,255,58,0.2); margin-bottom:10px; }
+  .tag.bad { background:rgba(255,122,122,0.06); color:var(--bad); border-color:rgba(255,122,122,0.25); }
+  .tag.good { background:rgba(125,220,154,0.06); color:var(--good); border-color:rgba(125,220,154,0.25); }
+
+  .reveal code:not(pre code) { font-family:'JetBrains Mono',monospace; font-size:0.85em;
+    background:var(--bg-soft); border:1px solid var(--line); padding:1px 6px; border-radius:4px; color:var(--accent); }
+
+  .diagram { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .dgrid { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center; margin-top:6px; }
+  .reveal svg text { font-family:'Inter',sans-serif; }
+  .reveal svg .mono { font-family:'JetBrains Mono',monospace; }
+
+  .footer-line { position:absolute; bottom:24px; left:78px; right:78px; display:flex; justify-content:space-between;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; }
+
+  .reveal ul.clean { list-style:none; margin-left:0; }
+  .reveal ul.clean li { padding-left:22px; position:relative; }
+  .reveal ul.clean li::before { content:''; position:absolute; left:0; top:12px; width:9px; height:1px; background:var(--accent); }
+
+  .reveal .slide-number { background:transparent; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:12px; }
+  .reveal .progress { color:var(--accent); height:2px; }
+  .reveal .controls { color:var(--dim); }
+
+  .brand { position:fixed; top:20px; right:26px; z-index:40; display:flex; align-items:center; gap:8px; opacity:0.9; }
+  .brand img { height:26px; width:auto; display:block; }
+
+  .reveal section.handson { background:
+      radial-gradient(1200px 500px at 90% -10%, rgba(212,255,58,0.06), transparent 60%); }
+  .handson-head { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+  .handson-badge { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:#0a0a0c; background:var(--accent); padding:5px 12px; border-radius:5px; font-weight:600; }
+  .cmd { background:#0a0a0c; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px;
+    font-family:'JetBrains Mono',monospace; font-size:16px; color:#e0e0e4; padding:12px 16px; margin:10px 0; line-height:1.6; }
+  .cmd .c { color:var(--dim); }
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="https://byts.co.in/imgs/bytsLogo.png" alt="Byts" /></div>
+
+<div class="reveal"><div class="slides">
+
+  <!-- 01 TITLE -->
+  <section class="title-wrap">
+    <span class="eyebrow"><span class="dot"></span> day 3</span>
+    <h1 class="display">High-Level<br/><em>Design</em></h1>
+    <p class="subtitle">Boxes and arrows: the building blocks of a system that has to serve millions. Today we learn the vocabulary and the trade-offs, then design Instagram, the exact system you build tomorrow.</p>
+    <div class="footer-line"><span>high-level design</span><span>build your technical skills</span></div>
+  </section>
+
+  <!-- 02 HOW TODAY RUNS -->
+  <section>
+    <span class="eyebrow">how today works</span>
+    <h2>Vocabulary, then a real design.</h2>
+    <ul class="clean">
+      <li class="fragment">First the building blocks: load balancers, databases, caches, queues, and the trade-offs that decide when to use each.</li>
+      <li class="fragment">Then we design Instagram end to end, using those blocks, arriving at a real architecture.</li>
+      <li class="fragment">That architecture is not hypothetical. It is exactly the Mini Instagram you build tomorrow, so today's boxes become tomorrow's packages.</li>
+    </ul>
+    <div class="footer-line"><span>high-level design</span><span>overview</span></div>
+  </section>
+
+  <!-- 03 HLD vs LLD -->
+  <section>
+    <span class="eyebrow">what HLD is, and isn't</span>
+    <h2>The whole system, from ten thousand feet.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><em>High-level design</em>: which services exist, which datastores, how they talk. Boxes and arrows.</li>
+        <li class="fragment"><em>Low-level design</em>: the classes, methods, and schemas inside a box. That was days one and two.</li>
+        <li class="fragment">Today is the zoom-out. Same discipline, one altitude higher.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 240" width="100%">
+          <text x="105" y="24" text-anchor="middle" fill="var(--accent)" font-size="13">HLD</text>
+          <rect x="55" y="36" width="100" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="105" y="56" text-anchor="middle" fill="var(--text)" font-size="11">Load balancer</text>
+          <rect x="55" y="92" width="100" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="105" y="112" text-anchor="middle" fill="var(--text)" font-size="11">App server</text>
+          <rect x="55" y="148" width="100" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="105" y="168" text-anchor="middle" fill="var(--text)" font-size="11">Database</text>
+          <line x1="105" y1="66" x2="105" y2="92" stroke="var(--dim)"/><line x1="105" y1="122" x2="105" y2="148" stroke="var(--dim)"/>
+          <text x="105" y="206" text-anchor="middle" fill="var(--muted)" font-size="11">boxes and arrows</text>
+          <line x1="210" y1="20" x2="210" y2="220" stroke="var(--line)"/>
+          <text x="320" y="24" text-anchor="middle" fill="var(--muted)" font-size="13">LLD</text>
+          <rect x="250" y="40" width="140" height="140" rx="8" fill="#0a0a0c" stroke="var(--line)"/>
+          <text x="266" y="66" fill="var(--muted)" font-size="11" class="mono">class Feed {</text>
+          <text x="276" y="90" fill="var(--dim)" font-size="11" class="mono">rank()</text>
+          <text x="276" y="112" fill="var(--dim)" font-size="11" class="mono">fanOut()</text>
+          <text x="276" y="134" fill="var(--dim)" font-size="11" class="mono">read()</text>
+          <text x="266" y="158" fill="var(--muted)" font-size="11" class="mono">}</text>
+          <text x="320" y="206" text-anchor="middle" fill="var(--muted)" font-size="11">classes and methods</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>high-level design</span><span>hld vs lld</span></div>
+  </section>
+
+  <!-- 04 THE BIG IDEA -->
+  <section>
+    <span class="eyebrow">the one idea to carry all day</span>
+    <h2>Every network hop is a <em>port</em>.</h2>
+    <p class="lede fragment">In real Instagram, each boundary between components is a call across the network. In tomorrow's build, each of those boundaries is a Java interface, a <em>port</em>.</p>
+    <div class="diagram fragment" style="margin-top:12px;">
+      <svg viewBox="0 0 940 130" width="100%">
+        <defs><marker id="hbig" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+        <rect x="40" y="40" width="200" height="50" rx="8" fill="#16161a" stroke="var(--line)"/><text x="140" y="70" text-anchor="middle" fill="var(--text)" font-size="14">Service A</text>
+        <rect x="380" y="34" width="180" height="62" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="470" y="60" text-anchor="middle" fill="var(--accent)" font-size="13" class="mono">Port</text><text x="470" y="80" text-anchor="middle" fill="var(--muted)" font-size="10">interface</text>
+        <rect x="700" y="40" width="200" height="50" rx="8" fill="#16161a" stroke="var(--line)"/><text x="800" y="70" text-anchor="middle" fill="var(--text)" font-size="14">Service B</text>
+        <line x1="240" y1="65" x2="378" y2="65" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hbig)"/>
+        <line x1="560" y1="65" x2="698" y2="65" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hbig)"/>
+        <text x="310" y="30" text-anchor="middle" fill="var(--muted)" font-size="11">would be a network call</text>
+        <text x="630" y="30" text-anchor="middle" fill="var(--muted)" font-size="11">is one interface call</text>
+      </svg>
+    </div>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);">So going from one machine to a thousand is a change at one wiring point, not a rewrite. That is what makes a <em>modular monolith</em> microservice-ready, and it is the thread through every slide today.</p>
+    <div class="footer-line"><span>high-level design</span><span>the thesis</span></div>
+  </section>
+
+  <!-- ================= FOUNDATIONS ================= -->
+  <!-- 05 CLIENT-SERVER -->
+  <section class="found">
+    <span class="eyebrow"><span class="dot"></span> foundations</span>
+    <h2>Client asks, server answers.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">A <em>client</em> sends a request. A <em>server</em> holds the data and logic and sends back one response.</li>
+        <li class="fragment">The contract the server exposes is its <em>API</em>. Each call is one request, one response.</li>
+        <li class="fragment">Tomorrow the console is the client; the services are the server. Swap the console for REST controllers and it is a web app.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hcs" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="30" y="80" width="120" height="46" rx="8" fill="#16161a" stroke="var(--line)"/><text x="90" y="108" text-anchor="middle" fill="var(--text)" font-size="13">Client</text>
+          <rect x="270" y="80" width="120" height="46" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="330" y="108" text-anchor="middle" fill="var(--accent)" font-size="13">Server</text>
+          <line x1="150" y1="95" x2="268" y2="95" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hcs)"/><text x="209" y="86" text-anchor="middle" fill="var(--muted)" font-size="11">request</text>
+          <line x1="268" y1="115" x2="150" y2="115" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hcs)"/><text x="209" y="132" text-anchor="middle" fill="var(--muted)" font-size="11">response</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>client-server</span></div>
+  </section>
+
+  <!-- 06 API GATEWAY -->
+  <section class="found">
+    <span class="eyebrow">the front door</span>
+    <h2>One gateway in front of many services.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">An <em>API gateway</em> is the single entry point. It routes each request to the right service.</li>
+        <li class="fragment">It is also the natural home for the cross-cutting jobs: authentication, rate limiting, aggregation.</li>
+        <li class="fragment">Tomorrow the gateway role is one class, the console front end. In production it sits in front of everything.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 220" width="100%">
+          <defs><marker id="hgw" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="92" width="90" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="65" y="117" text-anchor="middle" fill="var(--text)" font-size="12">Clients</text>
+          <rect x="150" y="86" width="110" height="52" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="205" y="110" text-anchor="middle" fill="var(--accent)" font-size="12">Gateway</text><text x="205" y="127" text-anchor="middle" fill="var(--muted)" font-size="9">auth, limits</text>
+          <line x1="110" y1="112" x2="148" y2="112" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hgw)"/>
+          <rect x="310" y="24" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="47" text-anchor="middle" fill="var(--muted)" font-size="11">Users</text>
+          <rect x="310" y="94" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="117" text-anchor="middle" fill="var(--muted)" font-size="11">Posts</text>
+          <rect x="310" y="164" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="187" text-anchor="middle" fill="var(--muted)" font-size="11">Feed</text>
+          <line x1="260" y1="105" x2="308" y2="46" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hgw)"/>
+          <line x1="260" y1="112" x2="308" y2="112" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hgw)"/>
+          <line x1="260" y1="119" x2="308" y2="180" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hgw)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>api gateway</span></div>
+  </section>
+
+  <!-- 07 MONOLITH vs MICROSERVICES -->
+  <section class="found">
+    <span class="eyebrow">two extremes</span>
+    <h2>Monolith or microservices?</h2>
+    <div class="dgrid">
+      <div>
+        <p class="fragment"><em>Monolith</em>: one deployable. Simple to build and run, but every change ships the whole thing, and one team can block another.</p>
+        <p class="fragment" style="margin-top:12px;"><em>Microservices</em>: many small, independently deployable services. Scale and ship each on its own, at the cost of network calls, and real operational complexity everywhere.</p>
+      </div>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 220" width="100%">
+          <defs><marker id="hms" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="30" y="50" width="120" height="120" rx="10" fill="#16161a" stroke="var(--line)"/><text x="90" y="106" text-anchor="middle" fill="var(--text)" font-size="13">Monolith</text><text x="90" y="126" text-anchor="middle" fill="var(--muted)" font-size="10">one box</text>
+          <rect x="250" y="40" width="70" height="46" rx="7" fill="#16161a" stroke="var(--line)"/><text x="285" y="67" text-anchor="middle" fill="var(--muted)" font-size="10">svc</text>
+          <rect x="340" y="40" width="70" height="46" rx="7" fill="#16161a" stroke="var(--line)"/><text x="375" y="67" text-anchor="middle" fill="var(--muted)" font-size="10">svc</text>
+          <rect x="250" y="132" width="70" height="46" rx="7" fill="#16161a" stroke="var(--line)"/><text x="285" y="159" text-anchor="middle" fill="var(--muted)" font-size="10">svc</text>
+          <rect x="340" y="132" width="70" height="46" rx="7" fill="#16161a" stroke="var(--line)"/><text x="375" y="159" text-anchor="middle" fill="var(--muted)" font-size="10">svc</text>
+          <line x1="320" y1="63" x2="340" y2="63" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hms)"/>
+          <line x1="285" y1="86" x2="285" y2="132" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hms)"/>
+          <line x1="375" y1="86" x2="375" y2="132" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hms)"/>
+          <text x="330" y="204" text-anchor="middle" fill="var(--muted)" font-size="10">many boxes, network between</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>monolith vs microservices</span></div>
+  </section>
+
+  <!-- 08 MODULAR MONOLITH -->
+  <section class="found">
+    <span class="eyebrow">the middle path you will build</span>
+    <h2>A modular monolith.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">One process, but split inside into <em>bounded contexts</em>: user, post, feed, and so on.</li>
+        <li class="fragment">They talk only through ports and an event bus, never by reaching into each other's tables.</li>
+        <li class="fragment">Those seams are exactly where you would later cut real services. You get the simplicity of one box, and the option to split.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 220" width="100%">
+          <rect x="20" y="20" width="380" height="180" rx="12" fill="none" stroke="var(--accent)" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+          <text x="210" y="40" text-anchor="middle" fill="var(--accent)" font-size="11">one process</text>
+          <rect x="45" y="56" width="100" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="95" y="82" text-anchor="middle" fill="var(--text)" font-size="12">user</text>
+          <rect x="160" y="56" width="100" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="210" y="82" text-anchor="middle" fill="var(--text)" font-size="12">post</text>
+          <rect x="275" y="56" width="100" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="325" y="82" text-anchor="middle" fill="var(--text)" font-size="12">feed</text>
+          <rect x="70" y="150" width="280" height="34" rx="7" fill="var(--accent)" fill-opacity="0.1" stroke="var(--accent)"/><text x="210" y="172" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">event bus</text>
+          <line x1="95" y1="100" x2="150" y2="150" stroke="var(--dim)" stroke-dasharray="3 3"/><line x1="210" y1="100" x2="210" y2="150" stroke="var(--dim)" stroke-dasharray="3 3"/><line x1="325" y1="100" x2="270" y2="150" stroke="var(--dim)" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>modular monolith</span></div>
+  </section>
+
+  <!-- 09 LOAD BALANCER + STATELESS -->
+  <section class="found">
+    <span class="eyebrow">the first move in scaling</span>
+    <h2>Stateless servers behind a load balancer.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">A <em>load balancer</em> spreads requests across many identical instances of the server.</li>
+        <li class="fragment">This only works if the servers are <em>stateless</em>: they hold no per-user memory, so any instance can handle any request.</li>
+        <li class="fragment">Tomorrow's services keep all state in the repositories, so N copies could run behind one balancer.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 220" width="100%">
+          <defs><marker id="hlb" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="90" width="80" height="40" rx="7" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="60" y="114" text-anchor="middle" fill="var(--accent)" font-size="11">LB</text>
+          <rect x="170" y="24" width="90" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="215" y="47" text-anchor="middle" fill="var(--muted)" font-size="11">app 1</text>
+          <rect x="170" y="92" width="90" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="215" y="115" text-anchor="middle" fill="var(--muted)" font-size="11">app 2</text>
+          <rect x="170" y="160" width="90" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="215" y="183" text-anchor="middle" fill="var(--muted)" font-size="11">app 3</text>
+          <line x1="100" y1="105" x2="168" y2="45" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hlb)"/>
+          <line x1="100" y1="110" x2="168" y2="110" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hlb)"/>
+          <line x1="100" y1="115" x2="168" y2="176" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hlb)"/>
+          <rect x="320" y="92" width="86" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="363" y="115" text-anchor="middle" fill="var(--text)" font-size="11">Database</text>
+          <line x1="260" y1="42" x2="320" y2="100" stroke="var(--dim)" stroke-width="1.1" marker-end="url(#hlb)"/>
+          <line x1="260" y1="110" x2="318" y2="110" stroke="var(--dim)" stroke-width="1.1" marker-end="url(#hlb)"/>
+          <line x1="260" y1="178" x2="320" y2="120" stroke="var(--dim)" stroke-width="1.1" marker-end="url(#hlb)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>load balancer</span></div>
+  </section>
+
+  <!-- ================= DATA ================= -->
+  <!-- 10 SQL vs NOSQL -->
+  <section class="data">
+    <span class="eyebrow"><span class="dot"></span> data</span>
+    <h2>SQL or NoSQL?</h2>
+    <div class="grid g2">
+      <div class="card fragment"><h3>SQL (relational)</h3><p>Tables, joins, constraints, transactions. Strong integrity. Great when data is related and correctness matters. Tomorrow's core: SQLite.</p></div>
+      <div class="card fragment"><h3>NoSQL</h3><p>Key-value, document, wide-column, graph. Trades joins and strict schema for scale and flexibility. Great for huge, simple, or loosely-shaped data.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">The honest answer is usually both, in different places. And because the store sits behind a repository <em>port</em>, moving one context to a different database is an adapter swap.</p>
+    <div class="footer-line"><span>data</span><span>sql vs nosql</span></div>
+  </section>
+
+  <!-- 11 NORMALIZATION -->
+  <section class="data">
+    <span class="eyebrow">store each fact once</span>
+    <h2>Normalization: no duplication.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">Each fact lives in exactly one place, linked by keys. Strong integrity, nothing to keep in sync.</li>
+        <li class="fragment">A user's name lives in <code>users</code>. A post refers to its author by <code>author_id</code>, not by copying the name.</li>
+        <li class="fragment">The cost: answering "show this post with its author" needs a <em>join</em>.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hnorm" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="30" y="50" width="150" height="100" rx="8" fill="#16161a" stroke="var(--line)"/>
+          <text x="46" y="74" fill="var(--accent)" font-size="12" class="mono">users</text>
+          <text x="46" y="98" fill="var(--muted)" font-size="11" class="mono">id (PK)</text>
+          <text x="46" y="118" fill="var(--muted)" font-size="11" class="mono">username</text>
+          <rect x="240" y="50" width="150" height="100" rx="8" fill="#16161a" stroke="var(--line)"/>
+          <text x="256" y="74" fill="var(--accent)" font-size="12" class="mono">posts</text>
+          <text x="256" y="98" fill="var(--muted)" font-size="11" class="mono">id (PK)</text>
+          <text x="256" y="118" fill="var(--muted)" font-size="11" class="mono">author_id (FK)</text>
+          <line x1="180" y1="105" x2="240" y2="112" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#hnorm)"/>
+          <text x="210" y="98" text-anchor="middle" fill="var(--muted)" font-size="10">by id</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>data</span><span>normalization</span></div>
+  </section>
+
+  <!-- 12 DENORMALIZATION -->
+  <section class="data">
+    <span class="eyebrow">the deliberate opposite</span>
+    <h2>Denormalization: duplicate, to read fast.</h2>
+    <div class="dgrid">
+      <div>
+        <p class="fragment">Counting a post's likes with a query every time is slow. So we keep a <code>like_count</code> right on the post, and bump it on each like.</p>
+        <p class="fragment" style="margin-top:12px;">The trade-off, and the whole lesson: the copy can drift. You accept brief staleness, and you pay to keep it in step on every write. Read speed, bought with write work.</p>
+      </div>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <rect x="60" y="40" width="300" height="120" rx="9" fill="#16161a" stroke="var(--line)"/>
+          <text x="80" y="66" fill="var(--accent)" font-size="12" class="mono">posts</text>
+          <text x="80" y="90" fill="var(--muted)" font-size="11" class="mono">id, author_id, caption</text>
+          <rect x="76" y="104" width="268" height="30" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+          <text x="90" y="124" fill="var(--accent)" font-size="11" class="mono">like_count   (denormalized)</text>
+          <text x="210" y="152" text-anchor="middle" fill="var(--muted)" font-size="10">read in one lookup, kept in sync on write</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>data</span><span>denormalization</span></div>
+  </section>
+
+  <!-- 13 CAP -->
+  <section class="data">
+    <span class="eyebrow">the trade-off you cannot escape</span>
+    <h2>CAP: under a partition, pick two.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">When the network splits, you can keep <em>consistency</em> or <em>availability</em>, not both.</li>
+        <li class="fragment">Follows and login want to be correct: choose consistency.</li>
+        <li class="fragment">The feed and the like-counts can be a little stale for a moment: choose availability. That is why they are denormalized and updated asynchronously.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 210" width="100%">
+          <polygon points="210,30 40,180 380,180" fill="none" stroke="var(--accent)" stroke-opacity="0.6" stroke-width="1.5"/>
+          <text x="210" y="24" text-anchor="middle" fill="var(--text)" font-size="13">C</text>
+          <text x="30" y="196" text-anchor="middle" fill="var(--text)" font-size="13">A</text>
+          <text x="390" y="196" text-anchor="middle" fill="var(--text)" font-size="13">P</text>
+          <text x="120" y="120" text-anchor="middle" fill="var(--muted)" font-size="10" transform="rotate(-42 120 120)">follows: CP</text>
+          <text x="300" y="120" text-anchor="middle" fill="var(--muted)" font-size="10" transform="rotate(42 300 120)">feed: AP</text>
+          <text x="210" y="170" text-anchor="middle" fill="var(--muted)" font-size="10">partition is not optional</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>data</span><span>cap theorem</span></div>
+  </section>
+
+  <!-- 14 REPLICATION + SHARDING -->
+  <section class="data">
+    <span class="eyebrow">scaling the data itself</span>
+    <h2>Replication and sharding.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><em>Replication</em>: keep copies on several nodes. One primary takes writes; replicas serve reads. Durability, plus read scaling.</li>
+        <li class="fragment"><em>Sharding</em>: split one dataset across nodes by a key, like <code>user_id % N</code>, so no single node holds everything.</li>
+        <li class="fragment">The hard part of sharding is cross-shard queries, like the social graph. Fan-out on write sidesteps it, which is our next topic.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 210" width="100%">
+          <defs><marker id="hrep" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <text x="105" y="22" text-anchor="middle" fill="var(--accent)" font-size="11">replication</text>
+          <rect x="66" y="34" width="78" height="32" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="105" y="55" text-anchor="middle" fill="var(--accent)" font-size="10">primary</text>
+          <rect x="40" y="96" width="60" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="70" y="116" text-anchor="middle" fill="var(--muted)" font-size="10">replica</text>
+          <rect x="112" y="96" width="60" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="142" y="116" text-anchor="middle" fill="var(--muted)" font-size="10">replica</text>
+          <line x1="95" y1="66" x2="72" y2="96" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hrep)"/>
+          <line x1="115" y1="66" x2="140" y2="96" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hrep)"/>
+          <line x1="210" y1="20" x2="210" y2="180" stroke="var(--line)"/>
+          <text x="315" y="22" text-anchor="middle" fill="var(--accent)" font-size="11">sharding</text>
+          <rect x="250" y="60" width="55" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="277" y="82" text-anchor="middle" fill="var(--muted)" font-size="10">shard 0</text>
+          <rect x="312" y="60" width="55" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="339" y="82" text-anchor="middle" fill="var(--muted)" font-size="10">shard 1</text>
+          <text x="308" y="120" text-anchor="middle" fill="var(--muted)" font-size="10" class="mono">by user_id % N</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>data</span><span>replication + sharding</span></div>
+  </section>
+
+  <!-- ================= SCALE ================= -->
+  <!-- 15 CACHING -->
+  <section class="scale">
+    <span class="eyebrow"><span class="dot"></span> performance and scale</span>
+    <h2>Cache: a fast store in front of a slow one.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><em>Read-through</em>: check the cache first. On a hit, return it. On a miss, read the database, put it in the cache, then return.</li>
+        <li class="fragment">Hot data is served from memory; the database is spared the repeated work.</li>
+        <li class="fragment">Tomorrow, feeds are cached read-through and invalidated when a new post arrives. The cache port is the Redis swap-in point.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hca" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="82" width="80" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="60" y="106" text-anchor="middle" fill="var(--text)" font-size="12">Caller</text>
+          <rect x="165" y="76" width="90" height="52" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="210" y="100" text-anchor="middle" fill="var(--accent)" font-size="12">Cache</text><text x="210" y="117" text-anchor="middle" fill="var(--muted)" font-size="9">hot data</text>
+          <rect x="320" y="82" width="86" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="363" y="106" text-anchor="middle" fill="var(--text)" font-size="12">Database</text>
+          <line x1="100" y1="102" x2="163" y2="102" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hca)"/><text x="131" y="94" text-anchor="middle" fill="var(--muted)" font-size="9">1</text>
+          <line x1="255" y1="102" x2="318" y2="102" stroke="var(--dim)" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#hca)"/><text x="286" y="94" text-anchor="middle" fill="var(--muted)" font-size="9">2 miss</text>
+          <text x="210" y="165" text-anchor="middle" fill="var(--muted)" font-size="10">hit returns now; miss fills the cache and returns</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>scale</span><span>caching</span></div>
+  </section>
+
+  <!-- 16 BLOB + CDN -->
+  <section class="scale">
+    <span class="eyebrow">where the photos actually live</span>
+    <h2>Blob storage and a CDN.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">Never put image bytes in your database. Store the file in <em>blob storage</em>, and keep only a <code>media_url</code> in the row.</li>
+        <li class="fragment">A <em>CDN</em> is a fleet of edge servers that cache those files close to users, so the photo loads from a nearby city, not your one data centre.</li>
+        <li class="fragment">Tomorrow, a post carries a <code>media_url</code>. In production that URL points at the CDN, not the app.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hcdn" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="84" width="80" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="60" y="108" text-anchor="middle" fill="var(--text)" font-size="12">User</text>
+          <rect x="165" y="78" width="90" height="52" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="210" y="102" text-anchor="middle" fill="var(--accent)" font-size="12">CDN edge</text><text x="210" y="119" text-anchor="middle" fill="var(--muted)" font-size="9">nearby</text>
+          <rect x="315" y="78" width="94" height="52" rx="8" fill="#16161a" stroke="var(--line)"/><text x="362" y="100" text-anchor="middle" fill="var(--text)" font-size="11">Blob store</text><text x="362" y="117" text-anchor="middle" fill="var(--muted)" font-size="9">origin</text>
+          <line x1="100" y1="104" x2="163" y2="104" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hcdn)"/><text x="131" y="96" text-anchor="middle" fill="var(--muted)" font-size="9">photo</text>
+          <line x1="255" y1="104" x2="313" y2="104" stroke="var(--dim)" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#hcdn)"/><text x="284" y="96" text-anchor="middle" fill="var(--muted)" font-size="9">only on miss</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>scale</span><span>blob + cdn</span></div>
+  </section>
+
+  <!-- 17 MESSAGE QUEUE -->
+  <section class="scale">
+    <span class="eyebrow">doing work later, and elsewhere</span>
+    <h2>A message queue decouples the work.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">A <em>queue</em> or event bus lets a producer announce that something happened and move on, without waiting.</li>
+        <li class="fragment">Independent consumers react on their own. The producer does not know or care who is listening.</li>
+        <li class="fragment">Tomorrow, one post publishes one event; feed, notifications, and search all react. Swap the in-process bus for Kafka and each becomes its own service.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 210" width="100%">
+          <defs><marker id="hmq" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="88" width="90" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="65" y="112" text-anchor="middle" fill="var(--text)" font-size="12">Producer</text>
+          <rect x="160" y="82" width="90" height="52" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="205" y="112" text-anchor="middle" fill="var(--accent)" font-size="12">Queue</text>
+          <line x1="110" y1="108" x2="158" y2="108" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hmq)"/>
+          <rect x="310" y="26" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="49" text-anchor="middle" fill="var(--muted)" font-size="11">Feed</text>
+          <rect x="310" y="90" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="113" text-anchor="middle" fill="var(--muted)" font-size="11">Notify</text>
+          <rect x="310" y="154" width="96" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="358" y="177" text-anchor="middle" fill="var(--muted)" font-size="11">Search</text>
+          <line x1="250" y1="100" x2="308" y2="46" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hmq)"/>
+          <line x1="250" y1="108" x2="308" y2="108" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hmq)"/>
+          <line x1="250" y1="116" x2="308" y2="170" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hmq)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>scale</span><span>message queue</span></div>
+  </section>
+
+  <!-- 18 SCALE RECAP -->
+  <section class="scale">
+    <span class="eyebrow">the levers, together</span>
+    <h2>Scale up, or scale out.</h2>
+    <div class="grid g3">
+      <div class="card fragment"><h3>Vertical</h3><p>A bigger machine. Simple, but capped, and a single point of failure.</p></div>
+      <div class="card fragment"><h3>Horizontal</h3><p>More machines. Needs statelessness and sharding, but scales far. The whole ports design aims here.</p></div>
+      <div class="card fragment"><h3>Stay up</h3><p>Availability, reliability, fault tolerance: bought with redundancy, replicas, retries, and queues.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">Notice every lever, load balancer, replica, cache, queue, only works because the pieces talk through clean boundaries. Which is the design we build next.</p>
+    <div class="footer-line"><span>scale</span><span>scaling recap</span></div>
+  </section>
+
+  <!-- ================= DESIGN INSTAGRAM ================= -->
+  <!-- 19 REQUIREMENTS -->
+  <section>
+    <span class="eyebrow"><span class="dot"></span> now: design instagram</span>
+    <h2>Start with what it must do.</h2>
+    <div class="grid g2">
+      <div class="card fragment"><h3>Functional</h3><p>Post a photo. Follow people. See a feed of posts from those you follow. Like, comment, search.</p></div>
+      <div class="card fragment"><h3>The shape of the load</h3><p>Massively read-heavy: people scroll far more than they post. So we optimise reads, even at the cost of more work on writes.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">Good design always starts here: what must it do, and what is the traffic actually like. Everything downstream follows from "read-heavy".</p>
+    <div class="footer-line"><span>design instagram</span><span>requirements</span></div>
+  </section>
+
+  <!-- 20 DATA MODEL -->
+  <section>
+    <span class="eyebrow">the data model</span>
+    <h2>Normalized core, a few deliberate copies.</h2>
+    <div class="diagram fragment" style="margin-top:8px;">
+      <svg viewBox="0 0 940 300" width="100%">
+        <defs><marker id="herd" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+        <rect x="380" y="20" width="180" height="86" rx="9" fill="#16161a" stroke="var(--accent)"/>
+        <text x="398" y="44" fill="var(--accent)" font-size="13" class="mono">users</text>
+        <text x="398" y="66" fill="var(--muted)" font-size="11" class="mono">id, username</text>
+        <text x="398" y="88" fill="var(--warn)" font-size="11" class="mono">follower_count *</text>
+        <rect x="60" y="150" width="180" height="66" rx="9" fill="#16161a" stroke="var(--line)"/>
+        <text x="78" y="174" fill="var(--accent)" font-size="13" class="mono">follows</text>
+        <text x="78" y="196" fill="var(--muted)" font-size="11" class="mono">follower, followee</text>
+        <rect x="380" y="150" width="180" height="86" rx="9" fill="#16161a" stroke="var(--line)"/>
+        <text x="398" y="174" fill="var(--accent)" font-size="13" class="mono">posts</text>
+        <text x="398" y="196" fill="var(--muted)" font-size="11" class="mono">id, author_id, media_url</text>
+        <text x="398" y="218" fill="var(--warn)" font-size="11" class="mono">like_count *, comment_count *</text>
+        <rect x="700" y="150" width="180" height="66" rx="9" fill="var(--accent)" fill-opacity="0.1" stroke="var(--accent)"/>
+        <text x="718" y="174" fill="var(--accent)" font-size="13" class="mono">feed *</text>
+        <text x="718" y="196" fill="var(--muted)" font-size="11" class="mono">user_id, post_id</text>
+        <line x1="440" y1="106" x2="200" y2="150" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#herd)"/><text x="290" y="122" fill="var(--muted)" font-size="10">follows</text>
+        <line x1="470" y1="106" x2="470" y2="150" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#herd)"/><text x="486" y="130" fill="var(--muted)" font-size="10">authors</text>
+        <line x1="560" y1="90" x2="700" y2="165" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#herd)"/><text x="640" y="118" fill="var(--muted)" font-size="10">timeline of</text>
+        <text x="790" y="250" text-anchor="middle" fill="var(--warn)" font-size="11">* = denormalized (fast reads, kept in sync)</text>
+      </svg>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>data model</span></div>
+  </section>
+
+  <!-- 21 THE FEED PROBLEM -->
+  <section>
+    <span class="eyebrow">the one hard problem</span>
+    <h2>How do you build a feed?</h2>
+    <div class="dgrid">
+      <div>
+        <p class="fragment">The naive way: at read time, find everyone you follow, gather all their recent posts, sort by time. A big join across <code>follows</code> and <code>posts</code>, run every single scroll.</p>
+        <p class="fragment" style="margin-top:12px;">For a read-heavy app with millions of users, that join is too slow, too often. We need reads to be cheap.</p>
+      </div>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hfp" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--bad)"/></marker></defs>
+          <rect x="30" y="40" width="120" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="90" y="63" text-anchor="middle" fill="var(--muted)" font-size="11" class="mono">follows</text>
+          <rect x="30" y="124" width="120" height="36" rx="7" fill="#16161a" stroke="var(--line)"/><text x="90" y="147" text-anchor="middle" fill="var(--muted)" font-size="11" class="mono">posts</text>
+          <rect x="250" y="82" width="130" height="40" rx="8" fill="#0a0a0c" stroke="var(--bad)"/><text x="315" y="107" text-anchor="middle" fill="var(--bad)" font-size="12">JOIN + sort</text>
+          <line x1="150" y1="58" x2="248" y2="94" stroke="var(--bad)" stroke-width="1.4" marker-end="url(#hfp)"/>
+          <line x1="150" y1="142" x2="248" y2="110" stroke="var(--bad)" stroke-width="1.4" marker-end="url(#hfp)"/>
+          <text x="315" y="150" text-anchor="middle" fill="var(--bad)" font-size="10">on every scroll = too slow</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>the feed problem</span></div>
+  </section>
+
+  <!-- 22 FAN-OUT -->
+  <section>
+    <span class="eyebrow">the signature decision</span>
+    <h2>Fan-out on write, not on read.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">Do the work once, at write time. When you post, copy the post into every follower's own timeline, a materialized <code>feed</code> table.</li>
+        <li class="fragment">Reading a feed is then a single indexed lookup. No join, no sort at read time. Reads are cheap, which is what a read-heavy app needs.</li>
+        <li class="fragment">You moved the cost from the many reads to the one write. That is the trade.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 210" width="100%">
+          <defs><marker id="hfo" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="20" y="86" width="86" height="40" rx="7" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="63" y="110" text-anchor="middle" fill="var(--accent)" font-size="11">new post</text>
+          <rect x="300" y="26" width="100" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="350" y="48" text-anchor="middle" fill="var(--muted)" font-size="10">follower feed</text>
+          <rect x="300" y="90" width="100" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="350" y="112" text-anchor="middle" fill="var(--muted)" font-size="10">follower feed</text>
+          <rect x="300" y="154" width="100" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="350" y="176" text-anchor="middle" fill="var(--muted)" font-size="10">follower feed</text>
+          <line x1="106" y1="100" x2="298" y2="44" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hfo)"/>
+          <line x1="106" y1="106" x2="298" y2="106" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hfo)"/>
+          <line x1="106" y1="112" x2="298" y2="170" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#hfo)"/>
+          <text x="215" y="205" text-anchor="middle" fill="var(--muted)" font-size="10">write once, into every follower's timeline</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>fan-out on write</span></div>
+  </section>
+
+  <!-- 23 CELEBRITY PROBLEM -->
+  <section>
+    <span class="eyebrow">where the simple answer breaks</span>
+    <h2>The celebrity problem.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">A post by someone with a million followers is a million writes. That is <em>write amplification</em>.</li>
+        <li class="fragment">The real fix is a <em>hybrid</em>: fan out on write for normal accounts, but for the few huge accounts, fan out on read.</li>
+        <li class="fragment">At read time, merge your materialized feed with the handful of celebrities you follow, pulled live. Best of both.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 200" width="100%">
+          <defs><marker id="hcel" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--bad)"/></marker></defs>
+          <circle cx="90" cy="100" r="30" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="90" y="96" text-anchor="middle" fill="var(--accent)" font-size="10">celeb</text><text x="90" y="110" text-anchor="middle" fill="var(--muted)" font-size="9">1 post</text>
+          <text x="300" y="60" text-anchor="middle" fill="var(--bad)" font-size="11">1,000,000 writes</text>
+          <line x1="120" y1="88" x2="240" y2="60" stroke="var(--bad)" stroke-width="1.2" marker-end="url(#hcel)"/>
+          <line x1="120" y1="96" x2="240" y2="96" stroke="var(--bad)" stroke-width="1.2" marker-end="url(#hcel)"/>
+          <line x1="120" y1="104" x2="240" y2="132" stroke="var(--bad)" stroke-width="1.2" marker-end="url(#hcel)"/>
+          <line x1="120" y1="112" x2="240" y2="168" stroke="var(--bad)" stroke-width="1.2" marker-end="url(#hcel)"/>
+          <text x="300" y="150" text-anchor="middle" fill="var(--muted)" font-size="10">so celebs: pull at read, merge in</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>celebrity problem</span></div>
+  </section>
+
+  <!-- 24 EVENT-DRIVEN WRITE PATH -->
+  <section>
+    <span class="eyebrow">one write, three reactions</span>
+    <h2>The write path is event-driven.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><code>PostService</code> saves the post and publishes one <code>PostCreated</code> event. It knows nothing about feeds, notifications, or search.</li>
+        <li class="fragment">Three independent consumers react: the feed fans out, notifications go to followers, search indexes the hashtags.</li>
+        <li class="fragment">Adding a fourth reaction is a new subscriber, not an edit. That is open-closed, at the system level.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 420 240" width="100%">
+          <defs><marker id="hwp" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="130" y="16" width="160" height="38" rx="8" fill="#16161a" stroke="var(--line)"/><text x="210" y="40" text-anchor="middle" fill="var(--text)" font-size="12">PostService</text>
+          <rect x="130" y="86" width="160" height="40" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="210" y="106" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">PostCreated</text><text x="210" y="120" text-anchor="middle" fill="var(--muted)" font-size="9">event bus</text>
+          <line x1="210" y1="54" x2="210" y2="84" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#hwp)"/><text x="250" y="74" fill="var(--muted)" font-size="9">publish</text>
+          <rect x="20" y="180" width="112" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="76" y="200" text-anchor="middle" fill="var(--muted)" font-size="11">Feed</text><text x="76" y="214" text-anchor="middle" fill="var(--dim)" font-size="9">fan out</text>
+          <rect x="154" y="180" width="112" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="210" y="200" text-anchor="middle" fill="var(--muted)" font-size="11">Notify</text><text x="210" y="214" text-anchor="middle" fill="var(--dim)" font-size="9">followers</text>
+          <rect x="288" y="180" width="112" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="344" y="200" text-anchor="middle" fill="var(--muted)" font-size="11">Search</text><text x="344" y="214" text-anchor="middle" fill="var(--dim)" font-size="9">index tags</text>
+          <line x1="180" y1="126" x2="90" y2="178" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hwp)"/>
+          <line x1="210" y1="126" x2="210" y2="178" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hwp)"/>
+          <line x1="240" y1="126" x2="330" y2="178" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#hwp)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>the write path</span></div>
+  </section>
+
+  <!-- 25 FULL ARCHITECTURE -->
+  <section>
+    <span class="eyebrow">the whole thing, on one slide</span>
+    <h2>Ports and adapters.</h2>
+    <div class="diagram fragment" style="margin-top:6px;">
+      <svg viewBox="0 0 940 320" width="100%">
+        <defs><marker id="harch" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+        <rect x="340" y="14" width="260" height="40" rx="8" fill="#16161a" stroke="var(--line)"/><text x="470" y="39" text-anchor="middle" fill="var(--text)" font-size="13">Console gateway (client)</text>
+        <rect x="330" y="76" width="280" height="42" rx="8" fill="#16161a" stroke="var(--line)"/><text x="470" y="102" text-anchor="middle" fill="var(--text)" font-size="13">InstagramService (facade + session)</text>
+        <rect x="150" y="140" width="640" height="48" rx="8" fill="#16161a" stroke="var(--accent-2)"/>
+        <text x="470" y="160" text-anchor="middle" fill="var(--text)" font-size="12">stateless services</text>
+        <text x="470" y="178" text-anchor="middle" fill="var(--muted)" font-size="11" class="mono">user  graph  post  feed  story  search  messaging  notification</text>
+        <rect x="230" y="210" width="480" height="44" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/>
+        <text x="470" y="230" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">ports (interfaces)</text>
+        <text x="470" y="247" text-anchor="middle" fill="var(--muted)" font-size="10">Repository  FeedCache  EventBus  NotificationChannel</text>
+        <rect x="200" y="276" width="240" height="34" rx="7" fill="#16161a" stroke="var(--line)"/><text x="320" y="298" text-anchor="middle" fill="var(--muted)" font-size="11">in-memory adapters</text>
+        <rect x="500" y="276" width="240" height="34" rx="7" fill="#16161a" stroke="var(--line)"/><text x="620" y="298" text-anchor="middle" fill="var(--muted)" font-size="11">SQLite adapters</text>
+        <line x1="470" y1="54" x2="470" y2="74" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#harch)"/>
+        <line x1="470" y1="118" x2="470" y2="138" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#harch)"/>
+        <line x1="470" y1="188" x2="470" y2="208" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#harch)"/>
+        <line x1="400" y1="254" x2="330" y2="276" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#harch)"/>
+        <line x1="540" y1="254" x2="610" y2="276" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#harch)"/>
+        <text x="820" y="234" fill="var(--accent)" font-size="10">one wiring</text>
+        <text x="820" y="248" fill="var(--accent)" font-size="10">point chooses</text>
+      </svg>
+    </div>
+    <div class="footer-line"><span>design instagram</span><span>the architecture</span></div>
+  </section>
+
+  <!-- 26 THE PAYOFF -->
+  <section>
+    <span class="eyebrow">why it was worth it</span>
+    <h2>Every port is a future service.</h2>
+    <p class="lede fragment">Because each boundary is an interface chosen at one wiring point, the local build and the distributed build are the same design.</p>
+    <div class="grid g3" style="margin-top:14px;">
+      <div class="card fragment"><h3>Cache</h3><p>in-memory today, Redis behind the same port tomorrow</p></div>
+      <div class="card fragment"><h3>Event bus</h3><p>in-process today, Kafka behind the same port, and consumers become services</p></div>
+      <div class="card fragment"><h3>Repository</h3><p>SQLite today, a sharded cluster behind the same port</p></div>
+    </div>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">That is the whole thesis paying off: you designed for scale without building for scale on day one.</p>
+    <div class="footer-line"><span>design instagram</span><span>the payoff</span></div>
+  </section>
+
+  <!-- ================= HANDS-ON ================= -->
+  <!-- 27 BREAK -->
+  <section class="title-wrap">
+    <span class="eyebrow"><span class="dot"></span> break</span>
+    <h1 class="display" style="font-size:72px;">Ten minutes.</h1>
+    <p class="subtitle">Then you design a system yourself, before we open the code you build tomorrow.</p>
+    <div class="footer-line"><span>high-level design</span><span>break</span></div>
+  </section>
+
+  <!-- 28 CAPSTONE BRIEF -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Design exercise</span></div>
+    <h2>Design it before you build it.</h2>
+    <p class="lede fragment">On paper, sketch the high-level design for Mini Instagram, using today's blocks. No code yet. Just boxes, arrows, and the decisions behind them.</p>
+    <div class="cmd fragment"><span class="c"># the worksheet and the answer key</span><br/>cd hld-capstone   <span class="c"># BRIEF.md, then REFERENCE.md</span></div>
+    <p class="fragment" style="color:var(--muted);">Work in pairs. Twenty minutes. Defend your trade-offs.</p>
+    <div class="footer-line"><span>design exercise</span><span>brief</span></div>
+  </section>
+
+  <!-- 29 CAPSTONE SHAPE -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Design exercise</span></div>
+    <h2>Five decisions to make.</h2>
+    <ul class="clean">
+      <li class="fragment">The <em>data model</em>: which tables, which keys, what you denormalize.</li>
+      <li class="fragment">The <em>feed</em>: fan-out on write, on read, or hybrid, and why.</li>
+      <li class="fragment">Where the <em>cache</em> goes, and when you invalidate it.</li>
+      <li class="fragment">What happens <em>asynchronously</em> off the write path, and over which events.</li>
+      <li class="fragment">Which boundaries are <em>ports</em>, so you could split a service later.</li>
+    </ul>
+    <div class="footer-line"><span>design exercise</span><span>the decisions</span></div>
+  </section>
+
+  <!-- 30 CAPSTONE DEBRIEF -->
+  <section class="handson">
+    <div class="handson-head"><span class="handson-badge">Design exercise</span></div>
+    <h2>Your design is tomorrow's repository.</h2>
+    <ul class="clean">
+      <li class="fragment">Compare your sketch to <code>REFERENCE.md</code>. There is no single right answer, only defended trade-offs.</li>
+      <li class="fragment">Then clone the Mini Instagram repo and run it. Every box you drew is a package; every arrow is a port.</li>
+      <li class="fragment">Tomorrow you implement it, step by step, with the tests as your spec.</li>
+    </ul>
+    <div class="cmd fragment">git clone https://github.com/prasannathapa/mini-insta<br/>cd mini-insta &amp;&amp; ./mvnw test</div>
+    <div class="footer-line"><span>design exercise</span><span>debrief</span></div>
+  </section>
+
+  <!-- 31 RECAP -->
+  <section>
+    <span class="eyebrow">the toolkit, one line each</span>
+    <h2>What to carry out of today.</h2>
+    <div class="grid g2">
+      <ul class="clean">
+        <li class="fragment"><b>Stateless + load balancer</b>: the basis of scaling out.</li>
+        <li class="fragment"><b>Normalize for truth, denormalize for speed</b>, and pay the sync cost knowingly.</li>
+        <li class="fragment"><b>CAP</b>: choose consistency or availability per feature.</li>
+      </ul>
+      <ul class="clean">
+        <li class="fragment"><b>Cache, CDN, queue</b>: serve hot reads, media, and async work.</li>
+        <li class="fragment"><b>Fan-out on write</b>: move cost to writes so reads stay cheap.</li>
+        <li class="fragment"><b>Every boundary a port</b>: design for scale without building it yet.</li>
+      </ul>
+    </div>
+    <div class="footer-line"><span>high-level design</span><span>recap</span></div>
+  </section>
+
+  <!-- 32 CLOSE -->
+  <section class="title-wrap">
+    <span class="eyebrow">closing</span>
+    <h1 class="display" style="font-size:58px;">Design for scale.<br/><em>Build the monolith.</em></h1>
+    <p class="subtitle">You now have the boxes, the arrows, and the trade-offs. Tomorrow, this exact design becomes running Java, one package and one port at a time.</p>
+    <div class="footer-line"><span>high-level design</span><span>now go build</span></div>
+  </section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1600, height: 900, margin: 0.04, minScale: 0.2, maxScale: 1.4,
+    hash: true, slideNumber: 'c/t', controls: true, progress: true,
+    center: false, transition: 'fade', backgroundTransition: 'fade',
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+
+  // Folder-scoped sync channel, so other days' decks (same origin) never collide.
+  var SCOPE = location.pathname.replace(/[^/]*$/, '');
+  var CH = 'byts-deck' + SCOPE, K_GOTO = 'byts-deck-goto' + SCOPE, K_HELLO = 'byts-deck-hello' + SCOPE;
+  var deckChan = ('BroadcastChannel' in window) ? new BroadcastChannel(CH) : null;
+  function pIdx() { return Reveal.getSlides().indexOf(Reveal.getCurrentSlide()); }
+  function goTo(i) {
+    if (isNaN(i) || i === pIdx()) return;
+    Reveal.slide(i, 0);
+    var n = Reveal.getCurrentSlide().querySelectorAll('.fragment').length;
+    if (n > 0) Reveal.slide(i, 0, n - 1);
+  }
+  function hello() {
+    try { localStorage.setItem(K_HELLO, String(Date.now())); } catch (e) {}
+    if (deckChan) deckChan.postMessage({ type: 'hello' });
+  }
+  Reveal.on('ready', hello);
+  if (deckChan) deckChan.onmessage = function (e) {
+    if (e.data && e.data.type === 'goto' && typeof e.data.slide === 'number') goTo(e.data.slide);
+  };
+  window.addEventListener('storage', function (e) {
+    if (e.key === K_GOTO && e.newValue != null) goTo(parseInt(e.newValue, 10));
+  });
+</script>
+</body>
+</html>
