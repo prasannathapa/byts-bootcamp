@@ -120,6 +120,151 @@
     <div class="footer-line"><span>design patterns</span><span>build your technical skills</span></div>
   </section>
 
+  <!-- R1 RECAP BANK: ENCAPSULATION -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the bank (1 of 3)</span>
+    <h2>Account: the balance can never go illegal.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+public final class Account {
+    private long balanceCents;                 // private: only these methods touch it
+
+    public Account(String id, long opening) {
+        if (opening &lt; 0) throw new IllegalArgumentException("negative opening");
+        this.balanceCents = opening;
+    }
+    public void deposit(long c) {
+        if (c &lt;= 0) throw new IllegalArgumentException("must be positive");
+        balanceCents += c;
+    }
+    public void withdraw(long c) {
+        if (c &lt;= 0)            throw new IllegalArgumentException("must be positive");
+        if (c &gt; balanceCents) throw new IllegalArgumentException("insufficient funds");
+        balanceCents -= c;
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>4 tests green:</strong> negative opening throws; deposit adds; zero/negative amounts throw; over-withdraw throws and leaves the balance untouched. <em>Encapsulation</em> &#8212; the rule lives inside.</p>
+    <div class="footer-line"><span>day 1 recap</span><span>encapsulation</span></div>
+  </section>
+
+  <!-- R2 RECAP BANK: POLYMORPHISM -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the bank (2 of 3)</span>
+    <h2>Transactions apply themselves.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+sealed interface Transaction permits Deposit, Withdraw, Transfer {
+    void apply(Ledger ledger);
+}
+record Deposit (String id, long cents) implements Transaction {
+    public void apply(Ledger l) { l.account(id).deposit(cents); }
+}
+record Withdraw(String id, long cents) implements Transaction {
+    public void apply(Ledger l) { l.account(id).withdraw(cents); }
+}
+record Transfer(String from, String to, long cents) implements Transaction {
+    public void apply(Ledger l) {
+        l.account(from).withdraw(cents);   // if this throws, no money has moved
+        l.account(to).deposit(cents);
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>3 tests green:</strong> a Deposit applies through the ledger; a mixed list runs through <em>one</em> loop with no type checks (<em>polymorphism</em>); a Transfer that would overdraw throws and moves nothing (withdraw first).</p>
+    <div class="footer-line"><span>day 1 recap</span><span>abstraction + polymorphism</span></div>
+  </section>
+
+  <!-- R3 RECAP BANK: COMPOSITION -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the bank (3 of 3)</span>
+    <h2>The Ledger owns the accounts.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+public final class Ledger {
+    private final Map&lt;String, Account&gt; accounts = new HashMap&lt;&gt;();
+
+    public void open(Account a) { accounts.put(a.id(), a); }
+    public Account account(String id) {
+        Account a = accounts.get(id);
+        if (a == null) throw new NoSuchElementException("no account: " + id);
+        return a;
+    }
+    public void run(Transaction t) { t.apply(this); }              // polymorphic dispatch
+    public void runAll(List&lt;Transaction&gt; ts) { for (Transaction t : ts) run(t); }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>8th test green:</strong> an unknown account throws <code>NoSuchElementException</code>. <em>Composition</em> &#8212; the ledger holds the accounts; <code>run(t)</code> just says <code>t.apply(this)</code> and lets the transaction decide.</p>
+    <div class="footer-line"><span>day 1 recap</span><span>composition &#183; all 8 green</span></div>
+  </section>
+
+  <!-- R4 RECAP SOLID: THE FORMATS -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the report (1 of 3)</span>
+    <h2>Two formats, one contract.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+final class CsvFormat implements ReportFormat {
+    public String format(Report r) {
+        if (r.rows().isEmpty()) return r.title();
+        return r.title() + "\n" + String.join("\n", r.rows());
+    }
+}
+final class JsonFormat implements ReportFormat {
+    public String format(Report r) {
+        StringJoiner rows = new StringJoiner(",", "[", "]");
+        for (String row : r.rows()) rows.add("\"" + row + "\"");
+        return "{\"title\":\"" + r.title() + "\",\"rows\":" + rows + "}";
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>4 tests green:</strong> CSV is the title then each row (empty = just the title); JSON is a title and a rows array (empty = an empty array). Two small classes, the same <code>ReportFormat</code> contract.</p>
+    <div class="footer-line"><span>day 1 recap</span><span>the two formats</span></div>
+  </section>
+
+  <!-- R5 RECAP SOLID: THE SERVICE -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the report (2 of 3)</span>
+    <h2>The service holds a format, and validates.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+class ReportService {
+    private final ReportFormat format;              // depend on the interface (DIP)
+    ReportService(ReportFormat format) { this.format = format; }
+
+    String export(Report r) {
+        if (r.title() == null || r.title().isBlank())    // one home for the rule (SRP)
+            throw new IllegalArgumentException("title must not be blank");
+        return format.format(r);                    // then just delegate
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>2 tests green:</strong> it delegates to whatever format it was injected with (<em>DIP</em>); it rejects a blank title &#8212; validation lives in the service, not copied into every formatter (<em>SRP</em>).</p>
+    <div class="footer-line"><span>day 1 recap</span><span>DIP + SRP</span></div>
+  </section>
+
+  <!-- R6 RECAP SOLID: OPEN-CLOSED -->
+  <section>
+    <span class="eyebrow">day 1 recap &#183; the report (3 of 3)</span>
+    <h2>A new format &#8212; and the service never changes.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+// a whole new format, defined in one line:
+ReportFormat plain = report -&gt; "plain:" + report.title();
+new ReportService(plain).export(r);        // "plain:Sales" - service UNCHANGED
+
+// every format is substitutable behind the one interface:
+for (ReportFormat f : List.of(new CsvFormat(), new JsonFormat(), plain))
+    new ReportService(f).export(r);        // each one just works
+    </code></pre>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);"><strong>last 2 tests green:</strong> a brand-new format works with the unchanged service (<em>OCP + DIP</em>); all formats are interchangeable (<em>LSP + ISP</em>).</p>
+    <p class="fragment" style="margin-top:8px;">A family of interchangeable algorithms behind one interface. Keep that picture &#8212; it is today's first pattern.</p>
+    <div class="footer-line"><span>day 1 recap</span><span>OCP &#183; the shape to keep</span></div>
+  </section>
+
+  <!-- 01d BRIDGE: THAT WAS STRATEGY -->
+  <section>
+    <span class="eyebrow">the bridge from yesterday</span>
+    <h2>That was <em>Strategy</em>.</h2>
+    <p class="lede fragment">A family of interchangeable algorithms behind one interface, chosen from outside and delegated to. That shape has a name &#8212; and you reached for it on your own.</p>
+    <p class="fragment" style="margin-top:16px;">Today: that shape, plus eight more. Every one is a principle from yesterday, given a name so a team can point at it in a single word.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);"><em>Patterns are SOLID, wearing shapes.</em></p>
+    <div class="footer-line"><span>design patterns</span><span>SOLID &#8594; patterns</span></div>
+  </section>
+
   <!-- 02 HOW THIS RUNS -->
   <section>
     <span class="eyebrow">how today works</span>
@@ -127,7 +272,7 @@
     <ul class="clean">
       <li class="fragment">We walk the three families of patterns: creational, structural, behavioral. A handful from each, the ones you will actually reach for.</li>
       <li class="fragment">Each starts with the problem, not the diagram. First the pain, then the pattern that relieves it.</li>
-      <li class="fragment">At the end, a capstone: a tiny coffee shop that needs three patterns at once, with tests as your spec.</li>
+      <li class="fragment">At the end, a capstone: a tiny coffee shop that needs four patterns at once, built checkpoint by checkpoint, with tests as your spec.</li>
     </ul>
     <div class="footer-line"><span>design patterns</span><span>overview</span></div>
   </section>
@@ -477,6 +622,14 @@
     <div class="footer-line"><span>behavioral</span><span>template method</span></div>
   </section>
 
+  <!-- LUNCH -->
+  <section class="title-wrap">
+    <span class="eyebrow"><span class="dot"></span> lunch</span>
+    <h1 class="display" style="font-size:72px;">Lunch.</h1>
+    <p class="subtitle">Back at 1:30 - we tie the patterns together, then you build the coffee shop: four patterns, four checkpoints.</p>
+    <div class="footer-line"><span>design patterns</span><span>lunch</span></div>
+  </section>
+
   <!-- ================= SYNTHESIS ================= -->
   <!-- 18 YOU ALREADY USE THESE -->
   <section>
@@ -533,19 +686,11 @@
     <div class="footer-line"><span>design patterns</span><span>patternitis</span></div>
   </section>
 
-  <!-- 21 BREAK -->
-  <section class="title-wrap">
-    <span class="eyebrow"><span class="dot"></span> break</span>
-    <h1 class="display" style="font-size:72px;">Ten minutes.</h1>
-    <p class="subtitle">Then you build a tiny coffee shop that needs three patterns at once.</p>
-    <div class="footer-line"><span>design patterns</span><span>break</span></div>
-  </section>
-
   <!-- 22 CAPSTONE BRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Capstone</span></div>
     <h2>A tiny coffee shop.</h2>
-    <p class="lede fragment">You price drinks with add-ons, build them by name, and apply a discount. Three patterns, one small program.</p>
+    <p class="lede fragment">You price drinks with add-ons, build them by name, apply a discount, and let every order fan out to subscribers. Four patterns, one small program - in four checkpoints.</p>
     <div class="cmd fragment"><span class="c"># open the capstone and read the tests first</span><br/>cd patterns-capstone</div>
     <p class="fragment" style="color:var(--muted);">As always, the tests are the spec. Make them green.</p>
     <div class="footer-line"><span>capstone</span><span>brief</span></div>
@@ -554,16 +699,17 @@
   <!-- 23 CAPSTONE SHAPE -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Capstone</span></div>
-    <h2>Four moves, three patterns.</h2>
+    <h2>Five moves, four patterns.</h2>
     <div class="dgrid">
       <ul class="clean">
         <li class="fragment">A <code>Beverage</code> has a description and a cost. <code>Espresso</code> and <code>Tea</code> are given.</li>
         <li class="fragment"><code>Milk</code> and <code>Syrup</code> are <em>decorators</em>: each wraps a Beverage and adds to both.</li>
         <li class="fragment">A <code>BeverageFactory</code> builds a base drink by name. <span style="color:var(--muted)">(Factory)</span></li>
         <li class="fragment">A <code>Discount</code> is a <em>strategy</em>: no-discount or percent-off, swapped in.</li>
+        <li class="fragment">A <code>Counter</code> places the order and notifies subscribers - a <code>SalesTotal</code> and a <code>ReceiptPrinter</code>. <span style="color:var(--muted)">(Observer)</span></li>
       </ul>
       <div class="diagram fragment">
-        <svg viewBox="0 0 420 250" width="100%">
+        <svg viewBox="0 0 420 300" width="100%">
           <rect x="30" y="30" width="150" height="36" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.6"/><text x="105" y="53" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Syrup wraps</text>
           <rect x="50" y="74" width="130" height="34" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.8"/><text x="115" y="96" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Milk wraps</text>
           <rect x="70" y="116" width="110" height="34" rx="7" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/><text x="125" y="138" text-anchor="middle" fill="var(--text)" font-size="12">Espresso</text>
@@ -572,6 +718,8 @@
           <rect x="250" y="150" width="150" height="40" rx="8" fill="#16161a" stroke="var(--line)"/><text x="325" y="175" text-anchor="middle" fill="var(--text)" font-size="12">Discount</text>
           <text x="325" y="102" text-anchor="middle" fill="var(--muted)" font-size="11">Factory</text>
           <text x="325" y="212" text-anchor="middle" fill="var(--muted)" font-size="11">Strategy</text>
+          <rect x="30" y="230" width="370" height="40" rx="8" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.7"/><text x="215" y="255" text-anchor="middle" fill="var(--text)" font-size="12">Counter.placeOrder &#8594; notifies subscribers</text>
+          <text x="215" y="288" text-anchor="middle" fill="var(--muted)" font-size="11">Observer</text>
         </svg>
       </div>
     </div>
@@ -586,6 +734,8 @@
       <li class="fragment">Stacking milk and syrup, and the cost adding up: <em>Decorator</em>.</li>
       <li class="fragment">Building a drink from the string "espresso": <em>Factory</em>.</li>
       <li class="fragment">Swapping no-discount for twenty-percent-off without touching the order: <em>Strategy</em>, and open-closed.</li>
+      <li class="fragment">Placing an order and watching a running total and a receipt update themselves: <em>Observer</em> - the Counter never knows who is listening.</li>
+      <li class="fragment">And <code>Counter.placeOrder</code> uses three of them in one line: price (Decorator), discount (Strategy), notify (Observer).</li>
       <li class="fragment">Every add-on and every drink honouring the one <code>Beverage</code> interface: the whole thing composes.</li>
     </ul>
     <div class="footer-line"><span>capstone</span><span>debrief</span></div>
@@ -624,7 +774,7 @@
     plugins: [ RevealHighlight, RevealNotes ]
   });
 
-  // Folder-scoped sync channel, so other days' decks (same origin) never collide.
+  // Driven by teacher.html in this same folder. Folder-scoped so it never collides with other days.
   var SCOPE = location.pathname.replace(/[^/]*$/, '');
   var CH = 'byts-deck' + SCOPE, K_GOTO = 'byts-deck-goto' + SCOPE, K_HELLO = 'byts-deck-hello' + SCOPE;
   var deckChan = ('BroadcastChannel' in window) ? new BroadcastChannel(CH) : null;
