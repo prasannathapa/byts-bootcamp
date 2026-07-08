@@ -40,8 +40,7 @@ WHAT TO DO
 
 IN INTELLIJ
 -----------
-Open this patterns-capstone folder. The exercise lives in the `cafe` package and
-the reference lives in a separate `solution` package, so the two never clash.
+Open this patterns-capstone folder. The exercise lives in the `cafe` package.
 Run the class cafe.RunTests (right-click it, Run). Make every test green.
 
 WHICH PATTERN EACH TEST PROVES
@@ -58,7 +57,7 @@ WHICH PATTERN EACH TEST PROVES
 Notice Counter.placeOrder uses three patterns in one line: it prices the drink
 (DECORATOR), applies the discount (STRATEGY), and notifies subscribers (OBSERVER).
 
-The full reference solution is in the solution/ package. Try it yourself first.
+Try it yourself first - there is no answer key in this repo.
 
 
 BONUS CAPSTONE (for fast finishers) - a smart home theater
@@ -84,3 +83,29 @@ Run it:
 Notice CP4's watch() ties three patterns together in one call: it applies the
 Builder's Scene, drives the Adapter'd sound, and records on the Singleton Hub -
 all hidden behind the Facade.
+
+
+EXPERT CAPSTONE (for the truly advanced) - a tiny text editor
+=============================================================
+
+Nailed both? A third, self-contained capstone in the editor/ package covers SEVEN
+more patterns - the ones the coffee shop and the theater never touched. Same rules:
+read editor/RunTests.java first, then fill the TODOs until all nineteen tests pass.
+
+  CP1  Command                 editor/Command.java     InsertText + Editor.run/undo/redo (real undo AND redo)
+  CP2  Memento                 editor/Editor.java      snapshot() / restore() the whole buffer
+  CP3  State                   editor/Mode.java        INSERT vs READONLY - the mode decides what a keystroke does
+  CP4  Composite               editor/Node.java        a document tree: Paragraph (leaf) + Section (holds Nodes)
+  CP5  Iterator                editor/Node.java        walk every Paragraph, depth-first, in document order
+  CP6  Visitor                 editor/NodeVisitor.java a WordCountVisitor over the tree (double dispatch)
+  CP7  Chain of Responsibility editor/TextFilter.java  a trim -> collapse-spaces -> censor pipeline
+
+Run it:
+  Windows:        run-editor.cmd
+  macOS / Linux:  ./run-editor.sh
+  By hand:        javac editor/*.java  &&  java editor.RunTests
+
+Across all three capstones you will have written sixteen of the classic Gang-of-Four
+patterns. The seven left over - Abstract Factory, Prototype, Bridge, Flyweight, Proxy,
+Mediator, Interpreter - turn up less often in everyday backend work; look them up if
+you are curious, but never go hunting for a place to force one in.
