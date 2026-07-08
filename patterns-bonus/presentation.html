@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bonus Patterns / Build Your Technical Skills</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@400;600&display=swap">
+
+<style>
+  :root{
+    --bg:#0e0e10; --bg-soft:#16161a; --line:#26262c; --text:#e8e8ea;
+    --muted:#8a8a93; --dim:#5a5a63; --accent:#d4ff3a; --accent-2:#6ea8ff;
+    --good:#7ddc9a; --bad:#ff7a7a; --warn:#f5b840;
+  }
+  html, body { background: var(--bg); }
+  .reveal-viewport { background: var(--bg) !important; }
+
+  .reveal { font-family:'Inter',system-ui,sans-serif; font-weight:400; color:var(--text);
+            font-size:22px; letter-spacing:-0.005em; }
+  .reveal .slides { text-align:left; }
+  .reveal .slides > section { padding:56px 80px; height:100%; box-sizing:border-box; }
+
+  /* per-family accent tint */
+  .reveal section.crea { --accent:#f5a524; }  /* creational  - amber */
+  .reveal section.stru { --accent:#34d399; }  /* structural  - emerald */
+  .reveal section.beha { --accent:#a78bfa; }  /* behavioral  - violet */
+
+  .reveal h1,.reveal h2,.reveal h3,.reveal h4 { font-family:'Inter',sans-serif; font-weight:600;
+    color:var(--text); text-transform:none; letter-spacing:-0.02em; margin:0 0 0.4em 0; line-height:1.12; }
+  .reveal h1 { font-size:60px; font-weight:700; letter-spacing:-0.04em; }
+  .reveal h2 { font-size:38px; font-weight:600; }
+  .reveal h3 { font-size:22px; font-weight:600; }
+  .reveal p,.reveal li { font-size:21px; line-height:1.55; color:#d4d4d8; }
+  .reveal ul,.reveal ol { margin:0.4em 0 0 1.2em; }
+  .reveal li { margin:0.4em 0; }
+  .reveal strong { color:var(--text); font-weight:600; }
+  .reveal em { font-style:italic; color:var(--accent); }
+
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:1.1em; display:block; }
+  .eyebrow .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
+    background:var(--accent); vertical-align:middle; margin-right:6px; }
+
+  .title-wrap { display:flex; flex-direction:column; justify-content:center; height:100%; }
+  .display { font-family:'Fraunces',serif; font-weight:400; font-size:104px; line-height:0.96;
+    letter-spacing:-0.04em; margin:0; }
+  .display em { font-style:italic; color:var(--accent); }
+  .subtitle { font-size:23px; color:var(--muted); margin-top:1.2em; max-width:60ch; }
+
+  .lede { font-size:27px; line-height:1.4; color:#e8e8ea; max-width:66ch; font-weight:400; }
+  .quote { font-family:'Fraunces',serif; font-style:italic; font-size:30px; line-height:1.35;
+    color:#e0e0e4; border-left:2px solid var(--accent); padding-left:22px; max-width:64ch; }
+  .quote-attr { font-family:'Inter',sans-serif; font-style:normal; font-size:14px; color:var(--muted);
+    margin-top:0.6em; letter-spacing:0.1em; text-transform:uppercase; }
+
+  .grid { display:grid; gap:24px; margin-top:20px; }
+  .g2 { grid-template-columns:1fr 1fr; } .g3 { grid-template-columns:1fr 1fr 1fr; }
+  .card { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+  .card h3 { margin-bottom:8px; font-size:18px; color:var(--accent); }
+  .card p { font-size:16px; color:var(--muted); margin:0; line-height:1.5; }
+
+  .tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; padding:4px 10px; border-radius:4px; background:rgba(212,255,58,0.08);
+    color:var(--accent); border:1px solid rgba(212,255,58,0.2); margin-bottom:12px; }
+  .tag.bad { background:rgba(255,122,122,0.06); color:var(--bad); border-color:rgba(255,122,122,0.25); }
+  .tag.good { background:rgba(125,220,154,0.06); color:var(--good); border-color:rgba(125,220,154,0.25); }
+  .tag.warn { background:rgba(245,184,64,0.07); color:var(--warn); border-color:rgba(245,184,64,0.28); }
+
+  .reveal pre { background:#0a0a0c; border:1px solid var(--line); border-radius:10px; box-shadow:none;
+    margin:12px 0; width:100%; }
+  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.5;
+    padding:18px 20px; border-radius:10px; background:transparent; }
+  .reveal code:not(pre code) { font-family:'JetBrains Mono',monospace; font-size:0.86em;
+    background:var(--bg-soft); border:1px solid var(--line); padding:1px 6px; border-radius:4px; color:var(--accent); }
+
+  .diagram { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .dgrid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; margin-top:8px; }
+  .reveal svg text { font-family:'Inter',sans-serif; }
+  .reveal svg .mono { font-family:'JetBrains Mono',monospace; }
+
+  .footer-line { position:absolute; bottom:26px; left:80px; right:80px; display:flex; justify-content:space-between;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; }
+
+  .reveal ul.clean { list-style:none; margin-left:0; }
+  .reveal ul.clean li { padding-left:22px; position:relative; }
+  .reveal ul.clean li::before { content:''; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--accent); }
+
+  .reveal .slide-number { background:transparent; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:12px; }
+  .reveal .progress { color:var(--accent); height:2px; }
+  .reveal .controls { color:var(--dim); }
+
+  .brand { position:fixed; top:20px; right:26px; z-index:40; display:flex; align-items:center; gap:8px; opacity:0.9; }
+  .brand img { height:26px; width:auto; display:block; }
+
+  .reveal section.handson { background:
+      radial-gradient(1200px 500px at 90% -10%, rgba(212,255,58,0.06), transparent 60%); }
+  .handson-head { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+  .handson-badge { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em;
+    text-transform:uppercase; color:#0a0a0c; background:var(--accent); padding:5px 12px; border-radius:5px; font-weight:600; }
+  .cmd { background:#0a0a0c; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px;
+    font-family:'JetBrains Mono',monospace; font-size:16px; color:#e0e0e4; padding:14px 18px; margin:12px 0; line-height:1.7; }
+  .cmd .c { color:var(--dim); }
+</style>
+</head>
+<body>
+
+<div class="brand"><img src="https://byts.co.in/imgs/bytsLogo.png" alt="Byts" /></div>
+
+<div class="reveal"><div class="slides">
+  <!-- 01 TITLE -->
+  <section class="title-wrap">
+    <span class="eyebrow"><span class="dot"></span> bonus &middot; for the brave</span>
+    <h1 class="display">Beyond<br/>the <em>nine</em>.</h1>
+    <p class="subtitle">Seven more Gang-of-Four patterns - the ones the coffee shop and the theater never touched, and the reference for the expert editor capstone. Optional, and worth it.</p>
+    <div class="footer-line"><span>bonus patterns</span><span>build your technical skills</span></div>
+  </section>
+
+  <!-- 02 MAP -->
+  <section>
+    <span class="eyebrow"><span class="dot"></span> where these fit</span>
+    <h2>Sixteen down, seven here, seven to name.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">The lectures taught the <strong>nine</strong> you reach for most. Across the three capstones - cafe, theater, editor - you build <strong>sixteen</strong> of the classic twenty-three.</li>
+        <li class="fragment">This deck is the reference for the <strong>seven</strong> the <em>editor</em> capstone adds: Command, Memento, State, Composite, Iterator, Visitor, Chain of Responsibility.</li>
+        <li class="fragment">The last <strong>seven</strong> we only name at the end - rarer in everyday backend work, but worth recognising.</li>
+      </ul>
+      <div class="card fragment"><h3>The expert capstone</h3><p>A tiny text editor. Read <code>editor/RunTests.java</code>, then fill the TODOs until all nineteen tests pass.</p><div class="cmd" style="margin-top:12px;"><span class="c"># from patterns-capstone/</span><br/>run-editor.cmd &nbsp;<span class="c">or</span>&nbsp; ./run-editor.sh</div></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>the map</span></div>
+  </section>
+
+  <!-- 03 COMMAND -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; command</span>
+    <h2>Wrap an action as an object.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> you want to trigger, queue, log - and above all <em>undo and redo</em> - actions, without the caller knowing their details.</li>
+        <li class="fragment"><strong>The shape:</strong> an interface with <code>run()</code> and <code>undo()</code>. Each command captures what it needs to do its work <em>and</em> to reverse it. Keep an undo stack and a redo stack.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP1</h3><p><code>InsertText</code> is a Command. <code>Editor.run</code> executes and records it; <code>undo</code> pops and reverses; <code>redo</code> replays. Real undo <em>and</em> redo.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>command</span></div>
+  </section>
+
+  <!-- 04 MEMENTO -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; memento</span>
+    <h2>Snapshot state, restore it later.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> undo needs the <em>previous</em> state back - but you don't want to leak the object's internals to get it.</li>
+        <li class="fragment"><strong>The shape:</strong> the object hands out an opaque <em>snapshot</em>, and later restores itself from one. Only it knows what is inside; everyone else just holds the token.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP2</h3><p><code>Editor.snapshot()</code> captures the whole buffer; <code>restore(snapshot)</code> puts it back. Pairs naturally with Command to power undo.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>memento</span></div>
+  </section>
+
+  <!-- 05 STATE -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; state</span>
+    <h2>Behaviour that changes with mode.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> what an action <em>does</em> depends on a mode, and the code is drowning in <code>if (mode == ...)</code> branches everywhere.</li>
+        <li class="fragment"><strong>The shape:</strong> make each mode an object behind one interface. The context delegates to its current state; a state can hand the context its successor.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP3</h3><p><code>Mode</code> is <code>INSERT</code> vs <code>READONLY</code>. The <em>same</em> keystroke inserts in one mode and is ignored in the other - the mode decides, not an if-ladder.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>state</span></div>
+  </section>
+
+  <!-- 06 COMPOSITE -->
+  <section class="stru">
+    <span class="eyebrow"><span class="dot"></span> structural &middot; composite</span>
+    <h2>Treat a tree like a single thing.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> you have a part-whole hierarchy - a document is sections of paragraphs - and want to treat a leaf and a whole branch the same way.</li>
+        <li class="fragment"><strong>The shape:</strong> one <code>Node</code> interface. Leaves and containers both implement it; a container holds child Nodes, and an operation just recurses.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP4</h3><p><code>Paragraph</code> is a leaf; <code>Section</code> holds Nodes. A whole document is just a <code>Node</code> - so any code that takes a Node takes the entire tree.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>composite</span></div>
+  </section>
+
+  <!-- 07 ITERATOR -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; iterator</span>
+    <h2>Walk it without knowing its shape.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> you want to visit everything in a structure, in order, without the caller learning that it is really a tree.</li>
+        <li class="fragment"><strong>The shape:</strong> expose a sequence - Java's <code>Iterable</code> / <code>Iterator</code>, or <code>hasNext()</code> / <code>next()</code>. The caller loops; the traversal stays hidden.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP5</h3><p>Walk every <code>Paragraph</code> depth-first, in document order. To the reader the tree looks like a flat list - exactly what a <code>for-each</code> wants.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>iterator</span></div>
+  </section>
+
+  <!-- 08 VISITOR -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; visitor</span>
+    <h2>New operations, without touching the classes.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> you keep needing new operations over a node tree - word count, spell-check, export - and editing every Node class each time is miserable.</li>
+        <li class="fragment"><strong>The shape:</strong> nodes <code>accept(visitor)</code> and call <code>visitor.visitX(this)</code> - <em>double dispatch</em>. A new operation is a new visitor; the nodes never change.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP6</h3><p>A <code>WordCountVisitor</code> tallies words across the tree. Worth knowing: Visitor makes new <em>operations</em> easy and new <em>node types</em> hard.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>visitor</span></div>
+  </section>
+
+  <!-- 09 CHAIN OF RESPONSIBILITY -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> behavioral &middot; chain of responsibility</span>
+    <h2>A pipeline of handlers.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><strong>The pain:</strong> a request should pass through a series of independent steps, each doing its bit or handing it on - and you want to add, drop, or reorder steps freely.</li>
+        <li class="fragment"><strong>The shape:</strong> each handler holds the <em>next</em> one; it does its work, then delegates down the chain. Order is just wiring.</li>
+      </ul>
+      <div class="card fragment"><h3>In the editor &middot; CP7</h3><p>A text-filter pipeline: trim, then collapse spaces, then censor. Each <code>TextFilter</code> transforms the text and passes it on.</p></div>
+    </div>
+    <div class="footer-line"><span>bonus patterns</span><span>chain of responsibility</span></div>
+  </section>
+
+  <!-- 10 THE FINAL SEVEN -->
+  <section>
+    <span class="eyebrow"><span class="dot"></span> the seven we only name</span>
+    <h2>Rarer in backend work - recognise them, don't force them.</h2>
+    <div class="grid g3">
+      <div class="card fragment"><h3>Abstract Factory</h3><p>Make whole <em>families</em> of related objects together (a matching theme).</p></div>
+      <div class="card fragment"><h3>Prototype</h3><p>Clone a configured object instead of building a new one from scratch.</p></div>
+      <div class="card fragment"><h3>Bridge</h3><p>Split an abstraction from its implementation so both can vary.</p></div>
+      <div class="card fragment"><h3>Flyweight</h3><p>Share one immutable copy of repeated data (glyphs) to save memory.</p></div>
+      <div class="card fragment"><h3>Proxy</h3><p>A stand-in that controls access - lazy, remote, or a guard.</p></div>
+      <div class="card fragment"><h3>Mediator</h3><p>Objects talk through a central hub, not directly to each other.</p></div>
+    </div>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);"><strong>Interpreter</strong> - represent a little language as a tree and evaluate it - rounds out the twenty-three. Look any of these up when you meet the problem; never go hunting for a place to use one.</p>
+    <div class="footer-line"><span>bonus patterns</span><span>the final seven</span></div>
+  </section>
+
+  <!-- 11 CLOSER -->
+  <section class="title-wrap">
+    <span class="eyebrow"><span class="dot"></span> twenty-three, one lesson</span>
+    <h1 class="display">All <em>shapes</em>.<br/>Same rule.</h1>
+    <p class="subtitle">Nine in the lectures, sixteen in the capstones, twenty-three named in all. The rule never changed: a pattern is a word for a shape you already needed. Reach for it when the pain is real - and not one moment before.</p>
+    <div class="footer-line"><span>bonus patterns</span><span>now go build</span></div>
+  </section>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1600, height: 900, margin: 0.04, minScale: 0.2, maxScale: 1.4,
+    hash: true, slideNumber: 'c/t', controls: true, progress: true,
+    center: false, transition: 'fade', backgroundTransition: 'fade',
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+</script>
+</body>
+</html>
