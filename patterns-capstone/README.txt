@@ -59,3 +59,28 @@ Notice Counter.placeOrder uses three patterns in one line: it prices the drink
 (DECORATOR), applies the discount (STRATEGY), and notifies subscribers (OBSERVER).
 
 The full reference solution is in the solution/ package. Try it yourself first.
+
+
+BONUS CAPSTONE (for fast finishers) - a smart home theater
+==========================================================
+
+Done early? A second, self-contained capstone in the theater/ package covers the
+FIVE patterns the coffee shop did not: Builder, Singleton, Adapter, Facade, and
+Template Method. Same rules - read theater/RunTests.java first, then fill the TODOs
+until all fourteen tests pass.
+
+  CP1  Builder          theater/Scene.java        build a room scene fluently, with defaults
+  CP2  Singleton        theater/Hub.java          one shared control hub, reached via Hub.get()
+  CP3  Adapter          theater/AmpAdapter.java    make a 0..11 VintageAmp speak the 0..100 SoundSystem
+  CP4  Facade           theater/Theater.java       one watch(scene) call drives lights + sound + screen + hub
+  CP5  Template Method  theater/Projector.java, theater/SoundBar.java
+                                                   fill the warm-up hook in a locked startUp() skeleton
+
+Run it:
+  Windows:        run-theater.cmd
+  macOS / Linux:  ./run-theater.sh
+  By hand:        javac theater/*.java  &&  java theater.RunTests
+
+Notice CP4's watch() ties three patterns together in one call: it applies the
+Builder's Scene, drives the Adapter'd sound, and records on the Singleton Hub -
+all hidden behind the Facade.
