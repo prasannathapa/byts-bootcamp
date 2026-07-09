@@ -474,6 +474,34 @@
     <div class="footer-line"><span>foundations</span><span>api gateway</span></div>
   </section>
 
+  <!-- 15b AUTHN vs AUTHZ -->
+  <section class="found">
+    <span class="eyebrow"><span class="dot"></span> who you are, and what you may do</span>
+    <h2>Authentication vs authorization.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment"><em>Authentication</em> (authn) - <em>who are you?</em> Prove it once (a password, or SSO); the server hands back a signed <em>token</em> (a JWT) or a session id.</li>
+        <li class="fragment">Because the servers are stateless, identity can't live in memory - it rides on <em>every request</em> as a bearer token, verified once at the gateway.</li>
+        <li class="fragment"><em>Authorization</em> (authz) - <em>what may you do?</em> A valid identity still needs permission. <em>RBAC</em>: roles carry permissions (user vs admin), checked per action, inside each service.</li>
+        <li class="fragment">Passport vs visa: authentication proves who you are; authorization is the stamp for which doors you may enter.</li>
+      </ul>
+      <div class="diagram fragment">
+        <svg viewBox="0 0 440 220" width="100%">
+          <defs><marker id="hau" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+          <rect x="16" y="84" width="94" height="52" rx="7" fill="#16161a" stroke="var(--line)"/><text x="63" y="106" text-anchor="middle" fill="var(--text)" font-size="12">Client</text><text x="63" y="123" text-anchor="middle" fill="var(--muted)" font-size="9">holds token</text>
+          <rect x="168" y="78" width="112" height="64" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="224" y="103" text-anchor="middle" fill="var(--accent)" font-size="12">Gateway</text><text x="224" y="121" text-anchor="middle" fill="var(--muted)" font-size="9">authn: who?</text>
+          <rect x="332" y="78" width="96" height="64" rx="8" fill="#16161a" stroke="var(--line)"/><text x="380" y="103" text-anchor="middle" fill="var(--text)" font-size="12">Service</text><text x="380" y="121" text-anchor="middle" fill="var(--muted)" font-size="9">authz: what?</text>
+          <line x1="110" y1="110" x2="166" y2="110" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hau)"/>
+          <line x1="280" y1="110" x2="330" y2="110" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#hau)"/>
+          <text x="138" y="101" text-anchor="middle" fill="var(--muted)" font-size="9">token</text>
+          <text x="305" y="101" text-anchor="middle" fill="var(--muted)" font-size="9">identity</text>
+          <text x="63" y="66" text-anchor="middle" fill="var(--dim)" font-size="9">login once</text>
+        </svg>
+      </div>
+    </div>
+    <div class="footer-line"><span>foundations</span><span>authn vs authz</span></div>
+  </section>
+
   <!-- ============================== ACT 1B · DATA & STORAGE ============================== -->
   <!-- 16 SQL vs NOSQL -->
   <section class="data">
