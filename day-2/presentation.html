@@ -22,81 +22,81 @@
   .reveal { font-family:'Inter',system-ui,sans-serif; font-weight:400; color:var(--text);
             font-size:22px; letter-spacing:-0.005em; }
   .reveal .slides { text-align:left; }
-  .reveal .slides > section { padding:56px 80px; height:100%; box-sizing:border-box; }
+  .reveal .slides > section { padding:52px 78px; height:100%; box-sizing:border-box; }
 
   /* per-family accent tint */
   .reveal section.crea { --accent:#f5a524; }  /* creational  - amber */
   .reveal section.stru { --accent:#34d399; }  /* structural  - emerald */
   .reveal section.beha { --accent:#a78bfa; }  /* behavioral  - violet */
+  .reveal section.recap { --accent:#6ea8ff; } /* day-1 review - blue */
 
   .reveal h1,.reveal h2,.reveal h3,.reveal h4 { font-family:'Inter',sans-serif; font-weight:600;
     color:var(--text); text-transform:none; letter-spacing:-0.02em; margin:0 0 0.4em 0; line-height:1.12; }
   .reveal h1 { font-size:60px; font-weight:700; letter-spacing:-0.04em; }
-  .reveal h2 { font-size:38px; font-weight:600; }
+  .reveal h2 { font-size:36px; font-weight:600; }
   .reveal h3 { font-size:22px; font-weight:600; }
-  .reveal p,.reveal li { font-size:21px; line-height:1.55; color:#d4d4d8; }
+  .reveal p,.reveal li { font-size:21px; line-height:1.5; color:#d4d4d8; }
   .reveal ul,.reveal ol { margin:0.4em 0 0 1.2em; }
-  .reveal li { margin:0.4em 0; }
+  .reveal li { margin:0.35em 0; }
   .reveal strong { color:var(--text); font-weight:600; }
   .reveal em { font-style:italic; color:var(--accent); }
 
   .eyebrow { font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.18em;
-    text-transform:uppercase; color:var(--muted); margin-bottom:1.1em; display:block; }
+    text-transform:uppercase; color:var(--muted); margin-bottom:1em; display:block; }
   .eyebrow .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
     background:var(--accent); vertical-align:middle; margin-right:6px; }
 
   .title-wrap { display:flex; flex-direction:column; justify-content:center; height:100%; }
-  .display { font-family:'Fraunces',serif; font-weight:400; font-size:104px; line-height:0.96;
+  .display { font-family:'Fraunces',serif; font-weight:400; font-size:100px; line-height:0.96;
     letter-spacing:-0.04em; margin:0; }
   .display em { font-style:italic; color:var(--accent); }
   .subtitle { font-size:23px; color:var(--muted); margin-top:1.2em; max-width:62ch; }
 
-  .lede { font-size:27px; line-height:1.4; color:#e8e8ea; max-width:66ch; font-weight:400; }
-  .quote { font-family:'Fraunces',serif; font-style:italic; font-size:30px; line-height:1.35;
+  .lede { font-size:26px; line-height:1.4; color:#e8e8ea; max-width:66ch; font-weight:400; }
+  .quote { font-family:'Fraunces',serif; font-style:italic; font-size:28px; line-height:1.35;
     color:#e0e0e4; border-left:2px solid var(--accent); padding-left:22px; max-width:64ch; }
   .quote-attr { font-family:'Inter',sans-serif; font-style:normal; font-size:14px; color:var(--muted);
     margin-top:0.6em; letter-spacing:0.1em; text-transform:uppercase; }
 
-  .grid { display:grid; gap:24px; margin-top:20px; }
+  .grid { display:grid; gap:20px; margin-top:18px; }
   .g2 { grid-template-columns:1fr 1fr; } .g3 { grid-template-columns:1fr 1fr 1fr; }
-  .card { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
-  .card h3 { margin-bottom:8px; font-size:18px; color:var(--accent); }
-  .card p { font-size:16px; color:var(--muted); margin:0; line-height:1.5; }
+  .card { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .card h3 { margin-bottom:6px; font-size:18px; color:var(--accent); }
+  .card p { font-size:16px; color:var(--muted); margin:0; line-height:1.45; }
 
   .tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
     text-transform:uppercase; padding:4px 10px; border-radius:4px; background:rgba(212,255,58,0.08);
-    color:var(--accent); border:1px solid rgba(212,255,58,0.2); margin-bottom:12px; }
+    color:var(--accent); border:1px solid rgba(212,255,58,0.2); margin-bottom:10px; }
   .tag.bad { background:rgba(255,122,122,0.06); color:var(--bad); border-color:rgba(255,122,122,0.25); }
   .tag.good { background:rgba(125,220,154,0.06); color:var(--good); border-color:rgba(125,220,154,0.25); }
   .tag.warn { background:rgba(245,184,64,0.07); color:var(--warn); border-color:rgba(245,184,64,0.28); }
-  .tag.rw { background:rgba(110,168,255,0.08); color:var(--accent-2); border-color:rgba(110,168,255,0.28); }
 
   .reveal pre { background:#0a0a0c; border:1px solid var(--line); border-radius:10px; box-shadow:none;
-    margin:12px 0; width:100%; }
-  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.5;
-    padding:18px 20px; border-radius:10px; background:transparent; }
-  .reveal pre.sm code { font-size:13px; line-height:1.45; padding:14px 16px; }
+    margin:10px 0; width:100%; }
+  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.48;
+    padding:16px 18px; border-radius:10px; background:transparent; }
+  .reveal pre.sm code { font-size:13px; line-height:1.42; padding:13px 15px; }
   .reveal code:not(pre code) { font-family:'JetBrains Mono',monospace; font-size:0.86em;
     background:var(--bg-soft); border:1px solid var(--line); padding:1px 6px; border-radius:4px; color:var(--accent); }
 
-  .diagram { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
-  .dgrid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; margin-top:8px; }
-  .codeflex { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+  .diagram { background:var(--bg-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .dgrid { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center; margin-top:6px; }
+  .codeflex { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
   .reveal svg text { font-family:'Inter',sans-serif; }
   .reveal svg .mono { font-family:'JetBrains Mono',monospace; }
 
-  /* real-world callout */
   .rwbox { background:rgba(110,168,255,0.06); border:1px solid rgba(110,168,255,0.28);
-    border-left:3px solid var(--accent-2); border-radius:8px; padding:12px 16px; margin-top:14px; }
+    border-left:3px solid var(--accent-2); border-radius:8px; padding:11px 15px; margin-top:12px; }
   .rwbox b { color:var(--accent-2); }
-  .rwbox p { margin:0; font-size:18px; color:#cfcfd6; }
+  .rwbox p { margin:0; font-size:17px; color:#cfcfd6; line-height:1.45; }
+  .rwbox p + p { margin-top:6px; }
 
-  .footer-line { position:absolute; bottom:26px; left:80px; right:80px; display:flex; justify-content:space-between;
+  .footer-line { position:absolute; bottom:24px; left:78px; right:78px; display:flex; justify-content:space-between;
     font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; }
 
   .reveal ul.clean { list-style:none; margin-left:0; }
   .reveal ul.clean li { padding-left:22px; position:relative; }
-  .reveal ul.clean li::before { content:''; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--accent); }
+  .reveal ul.clean li::before { content:''; position:absolute; left:0; top:12px; width:9px; height:1px; background:var(--accent); }
 
   .reveal .slide-number { background:transparent; color:var(--dim); font-family:'JetBrains Mono',monospace; font-size:12px; }
   .reveal .progress { color:var(--accent); height:2px; }
@@ -114,16 +114,12 @@
   .handson-head { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
   .handson-badge { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em;
     text-transform:uppercase; color:#0a0a0c; background:var(--accent); padding:5px 12px; border-radius:5px; font-weight:600; }
-  .handson-badge.good { background:var(--good); }
   .cmd { background:#0a0a0c; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px;
-    font-family:'JetBrains Mono',monospace; font-size:16px; color:#e0e0e4; padding:14px 18px; margin:12px 0; line-height:1.7; }
+    font-family:'JetBrains Mono',monospace; font-size:16px; color:#e0e0e4; padding:14px 18px; margin:10px 0; line-height:1.7; }
   .cmd .c { color:var(--dim); }
-  .cmd.lg { font-size:24px; padding:16px 20px; margin:6px 0; line-height:1.5; word-break:break-all; }
+  .cmd.lg { font-size:23px; padding:16px 20px; line-height:1.5; }
   .oslabel { font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.12em; text-transform:uppercase;
     color:var(--accent); margin:8px 0 2px; display:block; }
-  .setup-steps { display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; margin-top:10px; }
-  .setup-note { font-size:19px; color:var(--muted); margin-top:12px; max-width:70ch; }
-  .setup-link { font-family:'JetBrains Mono',monospace; font-size:22px; color:var(--accent-2); word-break:break-all; }
 </style>
 </head>
 <body>
@@ -136,494 +132,549 @@
   <section class="title-wrap">
     <span class="eyebrow"><span class="dot"></span> day 2</span>
     <h1 class="display">Design<br/><em>Patterns</em></h1>
-    <p class="subtitle">Named, reusable solutions to problems that keep coming up. Yesterday you learned the principles; today you learn the shapes those principles take — and the words to point at them.</p>
+    <p class="subtitle">First we finish yesterday — the full solutions to all three Day-1 modules. Then the shapes those principles take, and the names to point at them.</p>
     <div class="footer-line"><span>day 2 · design patterns</span><span>build your technical skills</span></div>
   </section>
 
-  <!-- 02 DAY 1 RECAP (concise) -->
-  <section>
-    <span class="eyebrow">where we left off</span>
-    <h2>Yesterday you already built a pattern.</h2>
-    <p class="lede fragment">In the SOLID capstone, your <code>ReportService</code> held a <code>ReportFormat</code> interface and delegated to whatever was injected — CSV, JSON, or a format it had never seen.</p>
-    <pre class="fragment sm"><code class="language-java" data-trim>
-ReportFormat plain = report -&gt; "plain:" + report.title();
-new ReportService(plain).export(r);   // service UNCHANGED, new behaviour
-</code></pre>
-    <p class="fragment" style="margin-top:10px; color:var(--muted);">A family of interchangeable algorithms behind one interface, chosen from outside. That shape has a name.</p>
-    <div class="footer-line"><span>day 1 recap</span><span>the shape to keep</span></div>
-  </section>
-
-  <!-- 03 BRIDGE -->
-  <section>
-    <span class="eyebrow">the bridge from yesterday</span>
-    <h2>That was <em>Strategy</em>.</h2>
-    <p class="lede fragment">You reached for it on your own, without the name. Today: that shape, plus fifteen more — every one a principle from yesterday, given a name so a team can point at it in a single word.</p>
-    <p class="fragment" style="margin-top:16px; color:var(--muted);"><em>Patterns are SOLID, wearing shapes.</em></p>
-    <div class="footer-line"><span>design patterns</span><span>SOLID &#8594; patterns</span></div>
-  </section>
-
-  <!-- 04 HOW TODAY WORKS -->
+  <!-- 02 HOW TODAY RUNS -->
   <section>
     <span class="eyebrow">how today works</span>
-    <h2>Three families, then you build.</h2>
+    <h2>Yesterday's answers, then patterns, then build.</h2>
     <ul class="clean">
-      <li class="fragment">We walk the three families: creational, structural, behavioral — the nine you reach for most, each with a real-world example you already know.</li>
-      <li class="fragment">Then seven more, briefly, so you recognise them when they appear.</li>
-      <li class="fragment">Each starts with the problem, not the diagram. First the pain, then the pattern that relieves it.</li>
-      <li class="fragment">At the end, a capstone in three parts — a coffee shop, a home theater, a text editor — and we walk the full solution to each.</li>
+      <li class="fragment"><b>First:</b> we walk the full Day-1 capstone solution — the bank, the report, and the finale — in detail. If you didn't finish, you see exactly how it's done.</li>
+      <li class="fragment"><b>Then:</b> design patterns — three families, sixteen patterns, each with a real example from code you already use, explained properly.</li>
+      <li class="fragment"><b>Then you build:</b> a coffee shop, a home theater, a text editor. We debrief them today and walk the full solutions tomorrow morning.</li>
     </ul>
     <div class="footer-line"><span>design patterns</span><span>overview</span></div>
   </section>
 
-  <!-- 05 WHAT IS A PATTERN -->
+  <!-- ============ DAY-1 SOLUTIONS (detailed) ============ -->
+  <!-- 03 BANK 1 -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (1 of 3)</span>
+    <h2>Account: the balance can never go illegal.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+public final class Account {
+    private long balanceCents;                 // private: only these methods touch it
+
+    public Account(String id, long opening) {
+        if (opening &lt; 0) throw new IllegalArgumentException("negative opening");
+        this.balanceCents = opening;
+    }
+    public void deposit(long c) {
+        if (c &lt;= 0) throw new IllegalArgumentException("must be positive");
+        balanceCents += c;
+    }
+    public void withdraw(long c) {
+        if (c &lt;= 0)           throw new IllegalArgumentException("must be positive");
+        if (c &gt; balanceCents) throw new IllegalArgumentException("insufficient funds");
+        balanceCents -= c;
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);"><b>Encapsulation.</b> The field is private, so the "never negative" rule lives in one place and no caller can route around it. Four tests: negative opening throws; deposit adds; non-positive throws; over-withdraw throws and leaves the balance untouched.</p>
+    <div class="footer-line"><span>day 1 solved</span><span>encapsulation</span></div>
+  </section>
+
+  <!-- 04 BANK 2 -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (2 of 3)</span>
+    <h2>Transactions apply themselves.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+sealed interface Transaction permits Deposit, Withdraw, Transfer {
+    void apply(Ledger ledger);
+}
+record Deposit (String id, long cents) implements Transaction {
+    public void apply(Ledger l) { l.account(id).deposit(cents); }
+}
+record Withdraw(String id, long cents) implements Transaction {
+    public void apply(Ledger l) { l.account(id).withdraw(cents); }
+}
+record Transfer(String from, String to, long cents) implements Transaction {
+    public void apply(Ledger l) {
+        l.account(from).withdraw(cents);   // if this throws, no money has moved
+        l.account(to).deposit(cents);
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);"><b>Abstraction + polymorphism.</b> A sealed family — the only three kinds — each implementing <code>apply</code> its own way. Transfer withdraws first, so a failure moves nothing.</p>
+    <div class="footer-line"><span>day 1 solved</span><span>abstraction + polymorphism</span></div>
+  </section>
+
+  <!-- 05 BANK 3 -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (3 of 3)</span>
+    <h2>The Ledger owns the accounts.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+public final class Ledger {
+    private final Map&lt;String, Account&gt; accounts = new HashMap&lt;&gt;();
+
+    public void open(Account a) { accounts.put(a.id(), a); }
+    public Account account(String id) {
+        Account a = accounts.get(id);
+        if (a == null) throw new NoSuchElementException("no account: " + id);
+        return a;
+    }
+    public void run(Transaction t)           { t.apply(this); }          // polymorphic dispatch
+    public void runAll(List&lt;Transaction&gt; ts) { for (var t : ts) run(t); }  // one loop, no type checks
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);"><b>Composition.</b> The ledger <em>holds</em> a Map — it does not extend one — so no map methods leak. <code>run</code> just says <code>t.apply(this)</code> and lets the transaction decide. That one loop over a mixed list is the polymorphism test going green.</p>
+    <div class="footer-line"><span>day 1 solved</span><span>composition · all 8 green</span></div>
+  </section>
+
+  <!-- 06 REPORT 1 -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the report (1 of 2)</span>
+    <h2>Two formats, one contract.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+final class CsvFormat implements ReportFormat {
+    public String format(Report r) {
+        if (r.rows().isEmpty()) return r.title();
+        return r.title() + "\n" + String.join("\n", r.rows());
+    }
+}
+final class JsonFormat implements ReportFormat {
+    public String format(Report r) {
+        StringJoiner rows = new StringJoiner(",", "[", "]");
+        for (String row : r.rows()) rows.add("\"" + row + "\"");
+        return "{\"title\":\"" + r.title() + "\",\"rows\":" + rows + "}";
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);"><b>Liskov + interface segregation.</b> Both implement the same one-method <code>ReportFormat</code>, so either is usable anywhere the interface is expected — and the interface is tiny, exactly one method.</p>
+    <div class="footer-line"><span>day 1 solved</span><span>the two formats</span></div>
+  </section>
+
+  <!-- 07 REPORT 2 -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the report (2 of 2)</span>
+    <h2>The service injects a format, and validates.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+class ReportService {
+    private final ReportFormat format;              // depend on the interface (DIP)
+    ReportService(ReportFormat format) { this.format = format; }
+
+    String export(Report r) {
+        if (r.title() == null || r.title().isBlank())   // one home for the rule (SRP)
+            throw new IllegalArgumentException("title must not be blank");
+        return format.format(r);                    // then just delegate
+    }
+}
+
+ReportFormat plain = report -&gt; "plain:" + report.title();   // a whole new format, one line
+new ReportService(plain).export(r);                          // service UNCHANGED  (OCP)
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);"><b>DIP + SRP + OCP.</b> It depends on the interface, validates in one place, and a brand-new format works with the service untouched.</p>
+    <div class="footer-line"><span>day 1 solved</span><span>DIP + SRP + OCP</span></div>
+  </section>
+
+  <!-- 08 FINALE -->
+  <section class="recap">
+    <span class="eyebrow"><span class="dot"></span> day 1 solved · the finale</span>
+    <h2>The exporter injects a format and delegates.</h2>
+    <pre class="fragment"><code class="language-java" data-trim>
+final class StatementExporter {
+    private final StatementFormat format;                 // injected from outside (DIP)
+    StatementExporter(StatementFormat format) { this.format = format; }
+    public String export(List&lt;Account&gt; accounts) {
+        return format.format(accounts);                   // just delegate (OCP)
+    }
+}
+final class CsvFormat implements StatementFormat {        // a new format = a new class
+    public String format(List&lt;Account&gt; accounts) {
+        StringJoiner out = new StringJoiner("\n"); out.add("id,balance");
+        for (Account a : accounts) out.add(a.id() + "," + a.balanceCents());
+        return out.toString();
+    }
+}
+    </code></pre>
+    <p class="fragment" style="margin-top:8px; color:var(--muted);">Encapsulated balances, a polymorphic format, composition over the account list, and the inject-an-interface seam. <b>Every idea from Day 1, in one small file.</b></p>
+    <div class="footer-line"><span>day 1 solved</span><span>finale</span></div>
+  </section>
+
+  <!-- 09 BRIDGE -->
+  <section>
+    <span class="eyebrow">the bridge to today</span>
+    <h2>That report service? It was a <em>pattern</em>.</h2>
+    <p class="lede fragment">A family of interchangeable algorithms behind one interface, chosen from outside and delegated to. That shape has a name: <em>Strategy</em>. You built it yesterday without the word.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">Today: that shape, plus fifteen more. Every one is a principle from yesterday wearing a specific shape — so a team can point at it in one word. <em>Patterns are SOLID, wearing shapes.</em></p>
+    <div class="footer-line"><span>design patterns</span><span>SOLID &#8594; patterns</span></div>
+  </section>
+
+  <!-- ============ PATTERNS: FRAMING ============ -->
+  <!-- 10 WHAT IS A PATTERN -->
   <section>
     <span class="eyebrow">what a pattern actually is</span>
     <h2>A named solution to a recurring problem.</h2>
-    <p class="lede fragment">A pattern is not code you copy. It is a <em>shape</em> you recognize: a proven arrangement of a few classes, plus a name so a whole team can point at it in one word.</p>
-    <p class="fragment" style="margin-top:16px; color:var(--muted);">The 1994 book <em>Design Patterns</em>, by the four authors everyone calls the Gang of Four, catalogued twenty-three. We take the handful that earn their keep in everyday backend code, then name the rest.</p>
+    <p class="lede fragment">Not code you copy. A <em>shape</em> you recognize: a proven arrangement of a few classes, plus a name so a whole team can point at it in one word.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">The 1994 book <em>Design Patterns</em>, by the four authors everyone calls the Gang of Four, catalogued twenty-three. We take sixteen you actually build today, grouped into three families, and name the rest.</p>
     <div class="footer-line"><span>design patterns</span><span>definition</span></div>
   </section>
 
-  <!-- 06 THE THREE FAMILIES -->
+  <!-- 11 THE THREE FAMILIES -->
   <section>
     <span class="eyebrow">the whole map, on one slide</span>
-    <h2>Three families.</h2>
-    <div class="diagram fragment" style="margin-top:10px;">
-      <svg viewBox="0 0 940 300" width="100%">
-        <rect x="24" y="20" width="286" height="264" rx="12" fill="#f5a524" fill-opacity="0.07" stroke="#f5a524" stroke-width="1.5"/>
-        <text x="167" y="52" text-anchor="middle" fill="#f5a524" font-size="19" font-weight="600">Creational</text>
-        <text x="167" y="74" text-anchor="middle" fill="var(--muted)" font-size="13">how objects are made</text>
-        <rect x="52" y="98" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="167" y="125" text-anchor="middle" fill="var(--text)" font-size="15">Factory</text>
-        <rect x="52" y="152" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="167" y="179" text-anchor="middle" fill="var(--text)" font-size="15">Builder</text>
-        <rect x="52" y="206" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="167" y="233" text-anchor="middle" fill="var(--text)" font-size="15">Singleton</text>
-        <rect x="327" y="20" width="286" height="264" rx="12" fill="#34d399" fill-opacity="0.07" stroke="#34d399" stroke-width="1.5"/>
-        <text x="470" y="52" text-anchor="middle" fill="#34d399" font-size="19" font-weight="600">Structural</text>
-        <text x="470" y="74" text-anchor="middle" fill="var(--muted)" font-size="13">how objects compose</text>
-        <rect x="355" y="98" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="470" y="125" text-anchor="middle" fill="var(--text)" font-size="15">Adapter</text>
-        <rect x="355" y="152" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="470" y="179" text-anchor="middle" fill="var(--text)" font-size="15">Decorator</text>
-        <rect x="355" y="206" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="470" y="233" text-anchor="middle" fill="var(--text)" font-size="15">Facade</text>
-        <rect x="630" y="20" width="286" height="264" rx="12" fill="#a78bfa" fill-opacity="0.07" stroke="#a78bfa" stroke-width="1.5"/>
-        <text x="773" y="52" text-anchor="middle" fill="#a78bfa" font-size="19" font-weight="600">Behavioral</text>
-        <text x="773" y="74" text-anchor="middle" fill="var(--muted)" font-size="13">how objects interact</text>
-        <rect x="658" y="98" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="773" y="125" text-anchor="middle" fill="var(--text)" font-size="15">Strategy</text>
-        <rect x="658" y="152" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="773" y="179" text-anchor="middle" fill="var(--text)" font-size="15">Observer</text>
-        <rect x="658" y="206" width="230" height="44" rx="7" fill="#16161a" stroke="var(--line)"/><text x="773" y="233" text-anchor="middle" fill="var(--text)" font-size="15">Template Method</text>
+    <h2>Three families, sixteen patterns.</h2>
+    <div class="diagram fragment" style="margin-top:8px;">
+      <svg viewBox="0 0 940 320" width="100%">
+        <rect x="24" y="16" width="286" height="292" rx="12" fill="#f5a524" fill-opacity="0.07" stroke="#f5a524" stroke-width="1.5"/>
+        <text x="167" y="46" text-anchor="middle" fill="#f5a524" font-size="19" font-weight="600">Creational</text>
+        <text x="167" y="66" text-anchor="middle" fill="var(--muted)" font-size="12">how objects are made</text>
+        <rect x="50" y="86" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="167" y="108" text-anchor="middle" fill="var(--text)" font-size="14">Factory</text>
+        <rect x="50" y="128" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="167" y="150" text-anchor="middle" fill="var(--text)" font-size="14">Builder</text>
+        <rect x="50" y="170" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="167" y="192" text-anchor="middle" fill="var(--text)" font-size="14">Singleton</text>
+        <rect x="327" y="16" width="286" height="292" rx="12" fill="#34d399" fill-opacity="0.07" stroke="#34d399" stroke-width="1.5"/>
+        <text x="470" y="46" text-anchor="middle" fill="#34d399" font-size="19" font-weight="600">Structural</text>
+        <text x="470" y="66" text-anchor="middle" fill="var(--muted)" font-size="12">how objects compose</text>
+        <rect x="353" y="86" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="470" y="108" text-anchor="middle" fill="var(--text)" font-size="14">Adapter</text>
+        <rect x="353" y="128" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="470" y="150" text-anchor="middle" fill="var(--text)" font-size="14">Decorator</text>
+        <rect x="353" y="170" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="470" y="192" text-anchor="middle" fill="var(--text)" font-size="14">Facade</text>
+        <rect x="353" y="212" width="234" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="470" y="234" text-anchor="middle" fill="var(--text)" font-size="14">Composite</text>
+        <rect x="630" y="16" width="286" height="292" rx="12" fill="#a78bfa" fill-opacity="0.07" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="773" y="46" text-anchor="middle" fill="#a78bfa" font-size="19" font-weight="600">Behavioral</text>
+        <text x="773" y="66" text-anchor="middle" fill="var(--muted)" font-size="12">how objects interact</text>
+        <rect x="650" y="82" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="710" y="102" text-anchor="middle" fill="var(--text)" font-size="12.5">Strategy</text>
+        <rect x="776" y="82" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="836" y="102" text-anchor="middle" fill="var(--text)" font-size="12.5">Observer</text>
+        <rect x="650" y="118" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="710" y="138" text-anchor="middle" fill="var(--text)" font-size="11">Template</text>
+        <rect x="776" y="118" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="836" y="138" text-anchor="middle" fill="var(--text)" font-size="12.5">Command</text>
+        <rect x="650" y="154" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="710" y="174" text-anchor="middle" fill="var(--text)" font-size="12.5">Memento</text>
+        <rect x="776" y="154" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="836" y="174" text-anchor="middle" fill="var(--text)" font-size="12.5">State</text>
+        <rect x="650" y="190" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="710" y="210" text-anchor="middle" fill="var(--text)" font-size="12.5">Iterator</text>
+        <rect x="776" y="190" width="120" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="836" y="210" text-anchor="middle" fill="var(--text)" font-size="12.5">Visitor</text>
+        <rect x="650" y="226" width="246" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="773" y="246" text-anchor="middle" fill="var(--text)" font-size="12.5">Chain of Responsibility</text>
       </svg>
     </div>
     <div class="footer-line"><span>design patterns</span><span>the map</span></div>
   </section>
 
-  <!-- 07 DISCOVERED NOT FORCED -->
+  <!-- 12 DISCOVERED NOT FORCED -->
   <section>
     <span class="eyebrow">one warning, up front</span>
     <h2>Patterns are discovered, not forced.</h2>
     <p class="lede fragment">You do not wake up and decide "today I will use a Factory." You feel a specific pain, and the pattern is the relief.</p>
-    <p class="fragment" style="margin-top:16px; color:var(--muted);">So reach for a pattern only when the problem it solves is the problem you actually have. Keep this in your pocket: every pattern today is just yesterday's SOLID, wearing a specific shape.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">So reach for one only when the problem it solves is the problem you actually have. And keep this in your pocket: every pattern today is just yesterday's SOLID, wearing a specific shape.</p>
     <div class="footer-line"><span>design patterns</span><span>the caveat</span></div>
   </section>
 
-  <!-- ================= CREATIONAL ================= -->
-  <!-- 08 CREATIONAL Q -->
+  <!-- ============ CREATIONAL ============ -->
+  <!-- 13 CREATIONAL Q -->
   <section class="crea">
-    <span class="eyebrow"><span class="dot"></span> family 1 / creational</span>
+    <span class="eyebrow"><span class="dot"></span> family 1 / creational · how objects are made</span>
     <h2>Who decides which class gets built, and where?</h2>
-    <p class="fragment lede" style="margin-top:14px;">Scatter <code>new</code> across the code, and every change means hunting it down.</p>
-    <div class="diagram" style="margin-top:18px;">
-      <svg viewBox="0 0 940 150" width="100%">
-        <line x1="15" y1="120" x2="925" y2="120" stroke="var(--line)" stroke-width="1.5"/>
-        <rect x="30" y="34" width="270" height="86" rx="9" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2.5"/>
-        <circle cx="165" cy="24" r="5" fill="var(--accent)"/><text x="165" y="78" text-anchor="middle" fill="var(--accent)" font-size="19" font-weight="600">Creational</text>
-        <text x="165" y="102" text-anchor="middle" fill="var(--muted)" font-size="13">how objects are made</text>
-        <rect x="335" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="470" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Structural</text>
-        <rect x="640" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="775" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Behavioral</text>
-      </svg>
-    </div>
+    <p class="fragment lede" style="margin-top:14px;">Scatter <code>new SomethingConcrete()</code> across the code, and every change to <em>how</em> it's built means hunting down every place that built it.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">Creational patterns move that decision into one place — Factory, Builder, Singleton.</p>
     <div class="footer-line"><span>creational</span><span>question</span></div>
   </section>
 
-  <!-- 09 FACTORY -->
+  <!-- 14 FACTORY concept -->
   <section class="crea">
     <span class="eyebrow">factory</span>
     <h2>Ask for what you need. Don't build it yourself.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">Instead of <code>new</code> scattered everywhere, callers ask a factory by name or type.</li>
-        <li class="fragment">It hands back the object typed as an <em>interface</em>. The caller never names the concrete class.</li>
-        <li class="fragment">Add a new product, change one factory. Every caller just works — dependency inversion, made concrete.</li>
+        <li class="fragment">Callers ask a factory — by name, type, or config — instead of writing <code>new</code>.</li>
+        <li class="fragment">It hands back the object typed as an <em>interface</em>. The caller never names the concrete class, so it never depends on it.</li>
+        <li class="fragment">The choice of implementation lives in one place. Change it, add to it, and every caller just works — that is dependency inversion made concrete.</li>
       </ul>
       <div class="diagram fragment">
-        <svg viewBox="0 0 420 250" width="100%">
+        <svg viewBox="0 0 420 240" width="100%">
           <defs><marker id="afac" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
-          <rect x="20" y="100" width="110" height="46" rx="8" fill="#16161a" stroke="var(--line)"/><text x="75" y="128" text-anchor="middle" fill="var(--text)" font-size="13">Caller</text>
-          <rect x="170" y="100" width="120" height="46" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="230" y="122" text-anchor="middle" fill="var(--accent)" font-size="13" class="mono">Factory</text><text x="230" y="139" text-anchor="middle" fill="var(--muted)" font-size="10">create(name)</text>
-          <line x1="130" y1="123" x2="168" y2="123" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#afac)"/>
-          <rect x="330" y="30" width="80" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="370" y="55" text-anchor="middle" fill="var(--text)" font-size="12">Espresso</text>
-          <rect x="330" y="105" width="80" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="370" y="130" text-anchor="middle" fill="var(--text)" font-size="12">Tea</text>
-          <rect x="330" y="180" width="80" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="370" y="205" text-anchor="middle" fill="var(--text)" font-size="12">Mocha</text>
-          <line x1="290" y1="118" x2="328" y2="55" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
-          <line x1="290" y1="123" x2="328" y2="125" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
-          <line x1="290" y1="128" x2="328" y2="198" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
+          <rect x="20" y="98" width="110" height="46" rx="8" fill="#16161a" stroke="var(--line)"/><text x="75" y="126" text-anchor="middle" fill="var(--text)" font-size="13">Caller</text>
+          <rect x="170" y="96" width="120" height="50" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="230" y="118" text-anchor="middle" fill="var(--accent)" font-size="13" class="mono">Factory</text><text x="230" y="135" text-anchor="middle" fill="var(--muted)" font-size="10">returns an interface</text>
+          <line x1="130" y1="121" x2="168" y2="121" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#afac)"/>
+          <rect x="330" y="34" width="82" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="371" y="58" text-anchor="middle" fill="var(--text)" font-size="12">Impl A</text>
+          <rect x="330" y="102" width="82" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="371" y="126" text-anchor="middle" fill="var(--text)" font-size="12">Impl B</text>
+          <rect x="330" y="170" width="82" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="371" y="194" text-anchor="middle" fill="var(--text)" font-size="12">Impl C</text>
+          <line x1="290" y1="116" x2="328" y2="55" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
+          <line x1="290" y1="121" x2="328" y2="121" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
+          <line x1="290" y1="126" x2="328" y2="188" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afac)"/>
+          <text x="215" y="228" text-anchor="middle" fill="var(--muted)" font-size="11">one input in, the right concrete object out</text>
         </svg>
       </div>
     </div>
+    <p class="fragment" style="margin-top:6px; color:var(--muted);">You build one in the capstone — so instead of the answer, look at three you call constantly.</p>
     <div class="footer-line"><span>creational</span><span>factory</span></div>
   </section>
 
-  <!-- 10 FACTORY CODE + REAL WORLD -->
+  <!-- 15 FACTORY internals (deep) -->
   <section class="crea">
-    <span class="eyebrow">factory · in code, and in the wild</span>
-    <h2>You call one every time you open a database.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-Beverage create(String name) {
-    return switch (name.toLowerCase()) {
-        case "espresso" -&gt; new Espresso();
-        case "tea"      -&gt; new Tea();
-        default -&gt; throw new IllegalArgumentException(name);
-    };
-}
-</code></pre>
-      </div>
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// JDBC: the classic factory
-Connection c =
-    DriverManager.getConnection(url);
-// you get a Connection (interface).
-// Postgres? MySQL? You never name the
-// concrete driver class - the factory
-// picks it from the url.
-</code></pre>
-      </div>
+    <span class="eyebrow">factory · what actually happens inside</span>
+    <h2>One call, a different concrete class each time.</h2>
+    <div class="grid g3">
+      <div class="card fragment"><h3 class="mono" style="font-size:15px;">DriverManager<br/>.getConnection(url)</h3><p>Drivers register themselves on load. DriverManager walks its registered list, asks each "do you accept this URL?", and the first that says yes returns <em>its</em> Connection — a <code>PgConnection</code> for a postgres URL, a MySQL one for a mysql URL. You only ever see the <code>Connection</code> interface.</p></div>
+      <div class="card fragment"><h3 class="mono" style="font-size:15px;">Calendar<br/>.getInstance()</h3><p>Reads your <em>locale</em> and returns a matching subclass: usually <code>GregorianCalendar</code>, but a Thai locale gets <code>BuddhistCalendar</code>, a Japanese-imperial locale gets <code>JapaneseImperialCalendar</code>. Same call — the concrete class depends on the environment, not on you.</p></div>
+      <div class="card fragment"><h3 class="mono" style="font-size:15px;">List.of(...)</h3><p>Picks an implementation by <em>size</em>: <code>List.of()</code> returns a shared empty list, one or two elements get a compact <code>List12</code>, more get a <code>ListN</code> — all hidden behind <code>List</code>. It optimises the object for the input, and you never know or care.</p></div>
     </div>
-    <div class="rwbox fragment"><p><b>You already use it:</b> <code>DriverManager.getConnection</code>, <code>Calendar.getInstance()</code>, <code>List.of(...)</code>. Each hands back an interface and hides which concrete class it built.</p></div>
-    <div class="footer-line"><span>creational</span><span>factory · jdbc</span></div>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">That's the whole point: <b>same call site, different concrete object</b>, decided by input or environment. The caller depends only on the interface — swap the guts and nothing upstream notices.</p>
+    <div class="footer-line"><span>creational</span><span>factory · internals</span></div>
   </section>
 
-  <!-- 11 BUILDER -->
+  <!-- 16 BUILDER -->
   <section class="crea">
     <span class="eyebrow">builder</span>
     <h2>When a constructor grows ten arguments.</h2>
     <div class="dgrid">
       <div>
-        <p class="fragment"><code>new Pizza(true, false, true, 12, false)</code>. Which <code>true</code> is the cheese? Nobody can read it, and it is easy to swap two by accident.</p>
-        <p class="fragment" style="margin-top:14px;">A builder lets you name each part and read like a sentence: <code>.size(12).cheese().build()</code>. Order-free, and it can validate before handing you a finished, valid object.</p>
+        <p class="fragment"><code>new Pizza(true, false, true, 12, false)</code>. Which <code>true</code> is the cheese? Nobody can read it, and swapping two flags compiles fine and ships a bug.</p>
+        <p class="fragment" style="margin-top:12px;">A builder names each part and reads like a sentence — <code>.size(12).cheese().build()</code>. Order-free, skips the parts you don't set, and can validate <em>before</em> it hands you a finished, always-valid object.</p>
+        <div class="rwbox fragment"><p><b>You use it constantly:</b> <code>StringBuilder</code> — <code>append().append().toString()</code>. Also <code>Stream.collect</code>, <code>HttpRequest.newBuilder()</code>, <code>Stream.of(...).toList()</code>.</p></div>
       </div>
       <div class="diagram fragment">
-        <svg viewBox="0 0 420 250" width="100%">
-          <rect x="20" y="24" width="380" height="86" rx="10" fill="#0a0a0c" stroke="var(--bad)"/>
-          <text x="36" y="50" fill="var(--bad)" font-size="12" class="mono">new Pizza(true,false,</text>
-          <text x="36" y="72" fill="var(--muted)" font-size="12" class="mono">          true,12,false)</text>
-          <text x="36" y="96" fill="var(--bad)" font-size="11">five flags, zero meaning</text>
-          <rect x="20" y="134" width="380" height="100" rx="10" fill="#16161a" stroke="var(--accent)"/>
-          <text x="36" y="160" fill="var(--accent)" font-size="12" class="mono">Pizza.builder()</text>
-          <text x="52" y="182" fill="var(--muted)" font-size="12" class="mono">.size(12)</text>
-          <text x="52" y="202" fill="var(--muted)" font-size="12" class="mono">.cheese()</text>
-          <text x="52" y="222" fill="var(--text)" font-size="12" class="mono">.build()   reads like a sentence</text>
+        <svg viewBox="0 0 420 240" width="100%">
+          <rect x="20" y="20" width="380" height="86" rx="10" fill="#0a0a0c" stroke="var(--bad)"/>
+          <text x="36" y="46" fill="var(--bad)" font-size="12" class="mono">new Pizza(true,false,</text>
+          <text x="36" y="68" fill="var(--muted)" font-size="12" class="mono">          true,12,false)</text>
+          <text x="36" y="92" fill="var(--bad)" font-size="11">five flags, zero meaning</text>
+          <rect x="20" y="126" width="380" height="98" rx="10" fill="#16161a" stroke="var(--accent)"/>
+          <text x="36" y="152" fill="var(--accent)" font-size="12" class="mono">Pizza.builder()</text>
+          <text x="52" y="174" fill="var(--muted)" font-size="12" class="mono">.size(12)</text>
+          <text x="52" y="194" fill="var(--muted)" font-size="12" class="mono">.cheese()</text>
+          <text x="52" y="214" fill="var(--text)" font-size="12" class="mono">.build()   reads like a sentence</text>
         </svg>
       </div>
     </div>
-    <div class="rwbox fragment"><p><b>You already use it:</b> <code>StringBuilder</code> — <code>new StringBuilder().append("a").append(1).toString()</code>. Also <code>Stream.collect</code>, and <code>HttpRequest.newBuilder()</code>.</p></div>
     <div class="footer-line"><span>creational</span><span>builder</span></div>
   </section>
 
-  <!-- 12 THREAD-SAFETY ASIDE: BUILDER VS BUFFER -->
+  <!-- 17 THREAD SAFETY ASIDE -->
   <section class="crea">
-    <span class="eyebrow">a two-minute aside you'll be asked in interviews</span>
+    <span class="eyebrow">a two-minute aside interviewers love</span>
     <h2>StringBuilder vs StringBuffer.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">Same API. <code>StringBuffer</code> came first, and every method is <code>synchronized</code> — <em>thread-safe</em>, but it pays a lock on every call.</li>
-        <li class="fragment"><code>StringBuilder</code> dropped the locks — <em>not</em> thread-safe, and faster. It is the right default.</li>
-        <li class="fragment">Why is a default even safe? Because a builder used inside one method is a <b>local variable</b>.</li>
+        <li class="fragment">Same API. <code>StringBuffer</code> came first — every method is <code>synchronized</code>, so it's <em>thread-safe</em> but pays a lock on every call.</li>
+        <li class="fragment"><code>StringBuilder</code> dropped the locks — <em>not</em> thread-safe, and faster. It is the right default, and here's why that default is safe.</li>
       </ul>
       <div>
-        <div class="rwbox fragment" style="border-left-color:var(--good); background:rgba(125,220,154,0.06); border-color:rgba(125,220,154,0.28);"><p style="color:#cfcfd6;"><b style="color:var(--good)">Local = safe.</b> Each thread has its own stack. A local variable lives there, so no other thread can even see it — nothing to race.</p></div>
-        <div class="rwbox fragment" style="border-left-color:var(--bad); background:rgba(255,122,122,0.06); border-color:rgba(255,122,122,0.28);"><p style="color:#cfcfd6;"><b style="color:var(--bad)">static / shared = not safe.</b> A <code>static</code> field is one slot every thread sees. Two threads mutating it race — you need <code>StringBuffer</code>, a lock, or a concurrent type.</p></div>
+        <div class="rwbox fragment" style="border-left-color:var(--good); background:rgba(125,220,154,0.06); border-color:rgba(125,220,154,0.28);"><p><b style="color:var(--good)">Local = safe.</b> Each thread has its own stack. A local variable lives there — no other thread can even see it, so there is nothing to race over. A builder used inside one method is local.</p></div>
+        <div class="rwbox fragment" style="border-left-color:var(--bad); background:rgba(255,122,122,0.06); border-color:rgba(255,122,122,0.28);"><p><b style="color:var(--bad)">static / shared = not safe.</b> A <code>static</code> field is one slot every thread sees. Two threads writing it race. That is when you need a <code>StringBuffer</code>, a lock, or a concurrent type.</p></div>
       </div>
     </div>
-    <p class="fragment" style="margin-top:12px; color:var(--muted);">Rule of thumb: build strings in a local <code>StringBuilder</code>; only reach for synchronization when the state is genuinely shared across threads.</p>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);">Rule of thumb: build in a local <code>StringBuilder</code>; synchronize only state that is genuinely shared across threads.</p>
     <div class="footer-line"><span>creational</span><span>thread safety</span></div>
   </section>
 
-  <!-- 13 SINGLETON -->
+  <!-- 18 SINGLETON -->
   <section class="crea">
     <span class="eyebrow">singleton, and a warning</span>
     <h2>Exactly one instance. Handle with care.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">One instance, one global access point. Fine for a genuinely single thing: a config registry, a connection pool.</li>
-        <li class="fragment"><span style="color:var(--warn)">But it is global mutable state wearing a nice name.</span> It hides dependencies and it makes tests hard.</li>
-        <li class="fragment">Usually, yesterday's answer is better: create it once and <em>inject</em> it, rather than reach for it.</li>
+        <li class="fragment">One instance, one global access point. Fine for a genuinely single thing: a config registry, a connection pool, the runtime.</li>
+        <li class="fragment"><span style="color:var(--warn)">But it is global mutable state wearing a nice name.</span> It hides dependencies — nobody sees it in a constructor — and it makes tests hard, because you cannot swap it out.</li>
+        <li class="fragment">Usually yesterday's answer is better: create it once at startup and <em>inject</em> it, rather than reach out and grab it.</li>
       </ul>
-      <div class="diagram fragment">
-        <svg viewBox="0 0 420 240" width="100%">
-          <defs><marker id="asng" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
-          <rect x="150" y="92" width="130" height="58" rx="10" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/>
-          <text x="215" y="116" text-anchor="middle" fill="var(--accent)" font-size="13">Config</text>
-          <text x="215" y="134" text-anchor="middle" fill="var(--muted)" font-size="10">the one instance</text>
-          <rect x="30" y="26" width="90" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="75" y="48" text-anchor="middle" fill="var(--muted)" font-size="11">A</text>
-          <rect x="30" y="182" width="90" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="75" y="204" text-anchor="middle" fill="var(--muted)" font-size="11">B</text>
-          <rect x="310" y="26" width="90" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="355" y="48" text-anchor="middle" fill="var(--muted)" font-size="11">C</text>
-          <rect x="310" y="182" width="90" height="34" rx="6" fill="#16161a" stroke="var(--line)"/><text x="355" y="204" text-anchor="middle" fill="var(--muted)" font-size="11">D</text>
-          <line x1="105" y1="51" x2="150" y2="100" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#asng)"/>
-          <line x1="105" y1="192" x2="150" y2="142" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#asng)"/>
-          <line x1="325" y1="51" x2="280" y2="100" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#asng)"/>
-          <line x1="325" y1="192" x2="280" y2="142" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#asng)"/>
-        </svg>
+      <div>
+        <div class="rwbox fragment"><p><b>In the JDK:</b> <code>Runtime.getRuntime()</code> returns the one runtime; a logger factory hands back one shared logger per name. Private constructor, one static instance, one accessor.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+private static final Hub INSTANCE = new Hub();
+private Hub() { }                       // nobody else can make one
+public static Hub get() { return INSTANCE; }
+</code></pre>
       </div>
     </div>
-    <div class="rwbox fragment"><p><b>You already use it:</b> <code>Runtime.getRuntime()</code>, a logger, your app's connection pool. One instance, reached from anywhere.</p></div>
     <div class="footer-line"><span>creational</span><span>singleton</span></div>
   </section>
 
-  <!-- ================= STRUCTURAL ================= -->
-  <!-- 14 STRUCTURAL Q -->
+  <!-- ============ STRUCTURAL ============ -->
+  <!-- 19 STRUCTURAL Q -->
   <section class="stru">
-    <span class="eyebrow"><span class="dot"></span> family 2 / structural</span>
+    <span class="eyebrow"><span class="dot"></span> family 2 / structural · how objects compose</span>
     <h2>How do you fit objects together, especially when they don't match?</h2>
-    <p class="fragment lede" style="margin-top:14px;">Structural patterns are about composition: wrapping, bridging, and simplifying.</p>
-    <div class="diagram" style="margin-top:18px;">
-      <svg viewBox="0 0 940 150" width="100%">
-        <line x1="15" y1="120" x2="925" y2="120" stroke="var(--line)" stroke-width="1.5"/>
-        <rect x="30" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="165" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Creational</text>
-        <rect x="335" y="34" width="270" height="86" rx="9" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2.5"/>
-        <circle cx="470" cy="24" r="5" fill="var(--accent)"/><text x="470" y="78" text-anchor="middle" fill="var(--accent)" font-size="19" font-weight="600">Structural</text>
-        <text x="470" y="102" text-anchor="middle" fill="var(--muted)" font-size="13">how objects compose</text>
-        <rect x="640" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="775" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Behavioral</text>
-      </svg>
-    </div>
+    <p class="fragment lede" style="margin-top:14px;">All about composition — the <em>has-a</em> from Day 1. Wrap something, bridge a mismatch, hide a mess, or treat a tree as one thing.</p>
+    <p class="fragment" style="margin-top:12px; color:var(--muted);">Adapter, Decorator, Facade, Composite.</p>
     <div class="footer-line"><span>structural</span><span>question</span></div>
   </section>
 
-  <!-- 15 ADAPTER -->
+  <!-- 20 ADAPTER -->
   <section class="stru">
     <span class="eyebrow">adapter</span>
     <h2>The travel plug for code.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">You have a class the caller cannot use directly: a third-party client, a legacy API.</li>
-        <li class="fragment">The adapter implements the interface the caller <em>expects</em>, and translates each call to the other side.</li>
+        <li class="fragment">You have a class the caller can't use directly — a third-party client, a legacy API with the wrong names or units.</li>
+        <li class="fragment">The adapter implements the interface the caller <em>expects</em>, holds the awkward object, and translates each call across.</li>
         <li class="fragment">Neither side changes. The adapter absorbs the mismatch.</li>
       </ul>
-      <div class="diagram fragment">
-        <svg viewBox="0 0 420 220" width="100%">
-          <defs><marker id="aada" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
-          <rect x="20" y="90" width="96" height="46" rx="8" fill="#16161a" stroke="var(--line)"/><text x="68" y="118" text-anchor="middle" fill="var(--text)" font-size="13">Caller</text>
-          <rect x="162" y="86" width="110" height="54" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="217" y="108" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Adapter</text><text x="217" y="125" text-anchor="middle" fill="var(--muted)" font-size="10">expected API</text>
-          <rect x="312" y="90" width="96" height="46" rx="8" fill="#0a0a0c" stroke="var(--bad)"/><text x="360" y="112" text-anchor="middle" fill="var(--text)" font-size="12">Legacy</text><text x="360" y="128" text-anchor="middle" fill="var(--bad)" font-size="10">odd API</text>
-          <line x1="116" y1="113" x2="160" y2="113" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#aada)"/>
-          <line x1="272" y1="113" x2="310" y2="113" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#aada)"/>
-          <text x="217" y="175" text-anchor="middle" fill="var(--muted)" font-size="11">translates one shape into the other</text>
-        </svg>
+      <div>
+        <div class="rwbox fragment"><p><b>In the JDK:</b> <code>InputStreamReader</code> adapts a byte <code>InputStream</code> into a char <code>Reader</code>. <code>Arrays.asList(arr)</code> adapts a raw array into a <code>List</code>. Both let old shapes flow into new APIs.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+class AmpAdapter implements SoundSystem {   // expected API
+    private final VintageAmp amp;           // 0..11 dial
+    public void setVolume(int pct) {        // 0..100 in
+        amp.dial(pct * 11 / 100);           // ...translated out
+    }
+}
+</code></pre>
       </div>
     </div>
     <div class="footer-line"><span>structural</span><span>adapter</span></div>
   </section>
 
-  <!-- 16 ADAPTER CODE + REAL WORLD -->
-  <section class="stru">
-    <span class="eyebrow">adapter · in code, and in the wild</span>
-    <h2>Scale a 0–100 dial onto a 0–11 amp.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-class AmpAdapter implements SoundSystem {
-    private final VintageAmp amp;     // 0..11 dial
-    AmpAdapter(VintageAmp amp){ this.amp = amp; }
-
-    public void setVolume(int pct) {  // 0..100 in
-        amp.dial(pct * 11 / 100);     // ...scaled out
-    }
-    public void on() { amp.powerUp(); }
-}
-</code></pre>
-      </div>
-      <div>
-        <div class="rwbox fragment"><p><b>You already use it:</b> <code>InputStreamReader</code> adapts a byte <code>InputStream</code> into a char <code>Reader</code>. <code>Arrays.asList(arr)</code> adapts an array into a <code>List</code>.</p></div>
-        <p class="fragment" style="color:var(--muted); font-size:18px; margin-top:14px;">The caller speaks <code>SoundSystem</code>; the amp never learns a new trick. The adapter is the only thing that knows both sides.</p>
-      </div>
-    </div>
-    <div class="footer-line"><span>structural</span><span>adapter · code</span></div>
-  </section>
-
-  <!-- 17 DECORATOR -->
+  <!-- 21 DECORATOR -->
   <section class="stru">
     <span class="eyebrow">decorator</span>
     <h2>Add behaviour by wrapping, not editing.</h2>
     <div class="dgrid">
       <div>
         <p class="fragment">A decorator implements the <em>same interface</em> as the thing it wraps, holds one, and adds its bit before or after delegating.</p>
-        <p class="fragment" style="margin-top:14px;">Because it is the same interface, you can wrap a wrap a wrap: a base call, wrapped in logging, wrapped in retries. New behaviour is a new wrapper, never an edit. Pure open-closed.</p>
+        <p class="fragment" style="margin-top:12px;">Same interface in, same interface out — so you can wrap a wrap a wrap: a base call, wrapped in buffering, wrapped in compression. New behaviour is a new wrapper, never an edit. Pure open-closed.</p>
+        <div class="rwbox fragment"><p><b>java.io is decorators all the way down:</b><br/><code>new BufferedReader(new InputStreamReader(new FileInputStream(f)))</code> — each layer adds one thing. Also <code>Collections.unmodifiableList</code>, <code>synchronizedList</code>.</p></div>
       </div>
       <div class="diagram fragment">
         <svg viewBox="0 0 420 240" width="100%">
-          <rect x="30" y="46" width="360" height="170" rx="12" fill="none" stroke="var(--accent)" stroke-opacity="0.5"/>
-          <text x="210" y="36" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Syrup( ... )  +75</text>
-          <rect x="70" y="82" width="280" height="118" rx="10" fill="none" stroke="var(--accent)" stroke-opacity="0.7"/>
-          <text x="210" y="74" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Milk( ... )  +50</text>
-          <rect x="120" y="118" width="180" height="66" rx="9" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/>
-          <text x="210" y="146" text-anchor="middle" fill="var(--text)" font-size="13">Espresso</text>
-          <text x="210" y="166" text-anchor="middle" fill="var(--muted)" font-size="11" class="mono">200</text>
+          <rect x="30" y="44" width="360" height="168" rx="12" fill="none" stroke="var(--accent)" stroke-opacity="0.5"/>
+          <text x="210" y="34" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">BufferedReader — adds buffering</text>
+          <rect x="72" y="80" width="276" height="116" rx="10" fill="none" stroke="var(--accent)" stroke-opacity="0.7"/>
+          <text x="210" y="72" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">InputStreamReader — bytes to chars</text>
+          <rect x="120" y="116" width="180" height="62" rx="9" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/>
+          <text x="210" y="144" text-anchor="middle" fill="var(--text)" font-size="13">FileInputStream</text>
+          <text x="210" y="164" text-anchor="middle" fill="var(--muted)" font-size="11">the base</text>
         </svg>
       </div>
     </div>
     <div class="footer-line"><span>structural</span><span>decorator</span></div>
   </section>
 
-  <!-- 18 DECORATOR CODE + REAL WORLD -->
-  <section class="stru">
-    <span class="eyebrow">decorator · in code, and in the wild</span>
-    <h2>A stream wrapping a stream.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-class Milk implements Beverage {
-    private final Beverage base;   // wraps one
-    Milk(Beverage base){ this.base = base; }
-    public String description(){
-        return base.description() + ", milk";
-    }
-    public int cents(){ return base.cents() + 50; }
-}
-</code></pre>
-      </div>
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// java.io is decorators all the way down:
-Reader r =
-  new BufferedReader(     // adds buffering
-    new InputStreamReader(  // adapts bytes
-      new FileInputStream(f)));  // the base
-</code></pre>
-        <div class="rwbox fragment"><p><b>You already use it:</b> <code>BufferedInputStream</code>, <code>Collections.unmodifiableList</code>, <code>synchronizedList</code> — each wraps and adds one behaviour.</p></div>
-      </div>
-    </div>
-    <div class="footer-line"><span>structural</span><span>decorator · java.io</span></div>
-  </section>
-
-  <!-- 19 FACADE -->
+  <!-- 22 FACADE -->
   <section class="stru">
     <span class="eyebrow">facade</span>
     <h2>One clean door over a messy room.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">A subsystem of many classes, with a fiddly call order, and you want callers to have one simple entry point.</li>
-        <li class="fragment">The facade is a single class whose only job is to orchestrate the subsystem behind one method.</li>
-        <li class="fragment">Callers depend on the facade, not the tangle. Single responsibility at the boundary.</li>
+        <li class="fragment">A subsystem of many classes with a fiddly call order, and you want callers to have one simple entry point.</li>
+        <li class="fragment">The facade is a single class whose only job is to orchestrate that subsystem behind one method.</li>
+        <li class="fragment">Callers depend on the facade, not the tangle. Single responsibility at the boundary — the facade owns the workflow.</li>
       </ul>
-      <div class="diagram fragment">
-        <svg viewBox="0 0 420 230" width="100%">
-          <defs><marker id="afc2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
-          <rect x="20" y="92" width="96" height="46" rx="8" fill="#16161a" stroke="var(--line)"/><text x="68" y="120" text-anchor="middle" fill="var(--text)" font-size="13">Caller</text>
-          <rect x="160" y="88" width="104" height="54" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="212" y="119" text-anchor="middle" fill="var(--accent)" font-size="13" class="mono">Facade</text>
-          <line x1="116" y1="115" x2="158" y2="115" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#afc2)"/>
-          <rect x="320" y="26" width="86" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="363" y="50" text-anchor="middle" fill="var(--muted)" font-size="11">Lights</text>
-          <rect x="320" y="96" width="86" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="363" y="120" text-anchor="middle" fill="var(--muted)" font-size="11">Sound</text>
-          <rect x="320" y="166" width="86" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="363" y="190" text-anchor="middle" fill="var(--muted)" font-size="11">Screen</text>
-          <line x1="264" y1="110" x2="318" y2="48" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
-          <line x1="264" y1="115" x2="318" y2="115" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
-          <line x1="264" y1="120" x2="318" y2="184" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
-        </svg>
+      <div>
+        <div class="rwbox fragment"><p><b>The name is literal in the wild:</b> SLF4J is a logging <em>facade</em> over Log4j / Logback — you code to one API, swap the backend freely. Spring's <code>JdbcTemplate</code> is one door over JDBC's open-query-map-close dance.</p></div>
+        <div class="diagram fragment" style="margin-top:10px;">
+          <svg viewBox="0 0 420 150" width="100%">
+            <defs><marker id="afc2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
+            <rect x="16" y="56" width="80" height="40" rx="8" fill="#16161a" stroke="var(--line)"/><text x="56" y="80" text-anchor="middle" fill="var(--text)" font-size="12">Caller</text>
+            <rect x="140" y="52" width="96" height="48" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="188" y="80" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Facade</text>
+            <line x1="96" y1="76" x2="138" y2="76" stroke="var(--dim)" stroke-width="1.5" marker-end="url(#afc2)"/>
+            <rect x="290" y="14" width="112" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="346" y="34" text-anchor="middle" fill="var(--muted)" font-size="11">subsystem A</text>
+            <rect x="290" y="60" width="112" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="346" y="80" text-anchor="middle" fill="var(--muted)" font-size="11">subsystem B</text>
+            <rect x="290" y="106" width="112" height="30" rx="6" fill="#16161a" stroke="var(--line)"/><text x="346" y="126" text-anchor="middle" fill="var(--muted)" font-size="11">subsystem C</text>
+            <line x1="236" y1="72" x2="288" y2="30" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
+            <line x1="236" y1="76" x2="288" y2="76" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
+            <line x1="236" y1="80" x2="288" y2="120" stroke="var(--dim)" stroke-width="1.3" marker-end="url(#afc2)"/>
+          </svg>
+        </div>
       </div>
     </div>
-    <div class="rwbox fragment"><p><b>You already use it:</b> SLF4J is literally a logging <em>facade</em> over Log4j/Logback; Spring's <code>JdbcTemplate</code> is one clean door over raw JDBC's open-query-map-close dance.</p></div>
-    <div class="footer-line"><span>structural</span><span>facade · slf4j</span></div>
+    <div class="footer-line"><span>structural</span><span>facade</span></div>
   </section>
 
-  <!-- ================= BEHAVIORAL ================= -->
-  <!-- 20 BEHAVIORAL Q -->
-  <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> family 3 / behavioral</span>
-    <h2>How do objects divide the work and talk at runtime?</h2>
-    <p class="fragment lede" style="margin-top:14px;">Behavioral patterns are about the flow of decisions and messages between objects.</p>
-    <div class="diagram" style="margin-top:18px;">
-      <svg viewBox="0 0 940 150" width="100%">
-        <line x1="15" y1="120" x2="925" y2="120" stroke="var(--line)" stroke-width="1.5"/>
-        <rect x="30" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="165" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Creational</text>
-        <rect x="335" y="48" width="270" height="72" rx="9" fill="#16161a" stroke="var(--line)"/><text x="470" y="90" text-anchor="middle" fill="var(--dim)" font-size="18">Structural</text>
-        <rect x="640" y="34" width="270" height="86" rx="9" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2.5"/>
-        <circle cx="775" cy="24" r="5" fill="var(--accent)"/><text x="775" y="78" text-anchor="middle" fill="var(--accent)" font-size="19" font-weight="600">Behavioral</text>
-        <text x="775" y="102" text-anchor="middle" fill="var(--muted)" font-size="13">how objects interact</text>
-      </svg>
+  <!-- 23 COMPOSITE -->
+  <section class="stru">
+    <span class="eyebrow">composite</span>
+    <h2>Treat a tree like a single thing.</h2>
+    <div class="dgrid">
+      <ul class="clean">
+        <li class="fragment">A part-whole hierarchy — a document is sections of paragraphs, a folder holds files and folders — and you want a leaf and a whole branch treated the same.</li>
+        <li class="fragment">One <code>Node</code> interface. Leaves and containers both implement it; a container holds child Nodes, and an operation just recurses.</li>
+        <li class="fragment">Any code that takes a <code>Node</code> takes the whole tree — no special-casing leaves versus branches.</li>
+      </ul>
+      <div>
+        <div class="rwbox fragment"><p><b>You navigate these daily:</b> the file system (a file and a folder are both "paths"); the HTML/DOM tree; Swing/Android view trees. <code>size()</code> on a folder just sums its children.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+interface Node { int wordCount(); }
+class Section implements Node {         // a container
+    List&lt;Node&gt; children;
+    public int wordCount() {
+        int sum = 0;
+        for (Node n : children) sum += n.wordCount();  // recurse
+        return sum;
+    }
+}
+</code></pre>
+      </div>
     </div>
+    <div class="footer-line"><span>structural</span><span>composite</span></div>
+  </section>
+
+  <!-- ============ BEHAVIORAL ============ -->
+  <!-- 24 BEHAVIORAL Q -->
+  <section class="beha">
+    <span class="eyebrow"><span class="dot"></span> family 3 / behavioral · how objects interact</span>
+    <h2>How do objects divide the work and talk at runtime?</h2>
+    <p class="fragment lede" style="margin-top:14px;">The biggest family — about the flow of decisions and messages between objects.</p>
+    <p class="fragment" style="margin-top:12px; color:var(--muted);">Strategy, Observer, Template Method — and the five behind the editor capstone: Command, Memento, State, Iterator, Visitor, Chain of Responsibility.</p>
     <div class="footer-line"><span>behavioral</span><span>question</span></div>
   </section>
 
-  <!-- 21 STRATEGY -->
+  <!-- 25 STRATEGY -->
   <section class="beha">
     <span class="eyebrow">strategy</span>
     <h2>Swap the algorithm, not the code.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment">You met this yesterday: a family of interchangeable algorithms behind one interface.</li>
-        <li class="fragment">The object holds the interface; you hand it a different implementation to change what it does.</li>
-        <li class="fragment">Different sort order, pricing rule, discount: swap the object. Strategy is polymorphism on purpose.</li>
+        <li class="fragment">You met it yesterday: a family of interchangeable algorithms behind one interface.</li>
+        <li class="fragment">The object holds the interface; you hand it a different implementation to change what it does. Sort order, pricing, discount — swap the object, not the code.</li>
+        <li class="fragment">Strategy is polymorphism on purpose — the purest open-closed.</li>
       </ul>
       <div>
-        <div class="rwbox fragment"><p><b>You already use it:</b> <code>Comparator</code>. <code>list.sort(Comparator.comparing(User::age))</code> — you hand <em>sorting</em> a strategy, and it never changes.</p></div>
-        <pre class="fragment sm" style="margin-top:14px;"><code class="language-java" data-trim>
-class PercentOff implements Discount {
-    public int applyTo(int c){ return c - c*pct/100; }
-}
+        <div class="rwbox fragment"><p><b>The everyday one:</b> <code>Comparator</code>. <code>list.sort(Comparator.comparing(User::age))</code> hands the sort a strategy — the sort algorithm never changes, only the comparison. Also a <code>ThreadPoolExecutor</code>'s rejection policy.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+users.sort(Comparator.comparing(User::name)   // one strategy
+                     .thenComparing(User::age)); // composed
 </code></pre>
       </div>
     </div>
-    <div class="footer-line"><span>behavioral</span><span>strategy · comparator</span></div>
+    <div class="footer-line"><span>behavioral</span><span>strategy</span></div>
   </section>
 
-  <!-- 22 OBSERVER -->
+  <!-- 26 OBSERVER -->
   <section class="beha">
     <span class="eyebrow">observer</span>
     <h2>One changes, many react.</h2>
     <div class="dgrid">
       <ul class="clean">
         <li class="fragment">One object changes and several others must respond — without the first one knowing who they are.</li>
-        <li class="fragment">The subject keeps a list of observers and notifies them all when something happens.</li>
-        <li class="fragment">New listeners subscribe without the subject changing.</li>
+        <li class="fragment">The subject keeps a list of observers and notifies them all when something happens. New listeners subscribe without the subject changing.</li>
+        <li class="fragment">It is how decoupled, event-driven code is wired.</li>
       </ul>
       <div class="diagram fragment">
-        <svg viewBox="0 0 420 230" width="100%">
+        <svg viewBox="0 0 420 220" width="100%">
           <defs><marker id="aobs" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>
-          <rect x="20" y="88" width="130" height="54" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="85" y="110" text-anchor="middle" fill="var(--accent)" font-size="13">Subject</text><text x="85" y="128" text-anchor="middle" fill="var(--muted)" font-size="10">notify()</text>
-          <rect x="290" y="20" width="110" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="345" y="45" text-anchor="middle" fill="var(--text)" font-size="12">Observer A</text>
-          <rect x="290" y="95" width="110" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="345" y="120" text-anchor="middle" fill="var(--text)" font-size="12">Observer B</text>
-          <rect x="290" y="170" width="110" height="40" rx="7" fill="#16161a" stroke="var(--line)"/><text x="345" y="195" text-anchor="middle" fill="var(--text)" font-size="12">Observer C</text>
-          <line x1="150" y1="110" x2="288" y2="42" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
-          <line x1="150" y1="115" x2="288" y2="115" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
-          <line x1="150" y1="120" x2="288" y2="188" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
+          <rect x="20" y="88" width="130" height="52" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="2"/><text x="85" y="110" text-anchor="middle" fill="var(--accent)" font-size="13">Subject</text><text x="85" y="128" text-anchor="middle" fill="var(--muted)" font-size="10">notify()</text>
+          <rect x="290" y="18" width="112" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="346" y="42" text-anchor="middle" fill="var(--text)" font-size="12">Observer A</text>
+          <rect x="290" y="94" width="112" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="346" y="118" text-anchor="middle" fill="var(--text)" font-size="12">Observer B</text>
+          <rect x="290" y="170" width="112" height="38" rx="7" fill="#16161a" stroke="var(--line)"/><text x="346" y="194" text-anchor="middle" fill="var(--text)" font-size="12">Observer C</text>
+          <line x1="150" y1="108" x2="288" y2="40" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
+          <line x1="150" y1="114" x2="288" y2="113" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
+          <line x1="150" y1="120" x2="288" y2="186" stroke="var(--dim)" stroke-width="1.4" marker-end="url(#aobs)"/>
         </svg>
       </div>
     </div>
-    <div class="rwbox fragment"><p><b>You already use it:</b> every UI button's <code>addActionListener</code>; <code>PropertyChangeListener</code>; a Kafka topic fanning one event out to many consumers.</p></div>
-    <div class="footer-line"><span>behavioral</span><span>observer · listeners</span></div>
+    <div class="rwbox fragment"><p><b>You already use it:</b> every UI <code>addActionListener</code>; <code>PropertyChangeListener</code>; a Kafka topic fanning one event to many consumers; the reactive <code>Flow</code> API.</p></div>
+    <div class="footer-line"><span>behavioral</span><span>observer</span></div>
   </section>
 
-  <!-- 23 TEMPLATE METHOD -->
+  <!-- 27 TEMPLATE METHOD -->
   <section class="beha">
     <span class="eyebrow">template method</span>
     <h2>Fixed skeleton, one step left open.</h2>
     <div class="codeflex">
       <div>
-        <p class="fragment">An algorithm with a fixed shape but one or two varying steps. The base class writes the skeleton as a <code>final</code> method and leaves the varying steps as hooks.</p>
-        <p class="fragment" style="margin-top:12px;">The order is locked; only the gap changes. The older, inheritance-based way to be open-closed — perfect when the shape is genuinely fixed.</p>
-        <div class="rwbox fragment"><p><b>You already use it:</b> <code>AbstractList</code> writes the skeleton, you fill <code>get()</code> + <code>size()</code>; a servlet's <code>service()</code> calls your <code>doGet</code>/<code>doPost</code>.</p></div>
+        <p class="fragment">An algorithm with a fixed shape but one or two varying steps. The base class writes the skeleton as a <code>final</code> method — so no subclass can reorder it — and leaves the varying steps as hooks.</p>
+        <p class="fragment" style="margin-top:12px;">The older, inheritance-based way to be open-closed. Perfect when the shape is genuinely fixed and only a step changes.</p>
+        <div class="rwbox fragment"><p><b>In the JDK:</b> <code>AbstractList</code> writes the skeleton, you fill <code>get()</code> and <code>size()</code>. A servlet's <code>service()</code> calls your <code>doGet</code>/<code>doPost</code>.</p></div>
       </div>
       <div>
 <pre class="fragment sm"><code class="language-java" data-trim>
 abstract class Appliance {
-    public final List&lt;String&gt; startUp() {
+    public final List&lt;String&gt; startUp() {  // locked order
         var log = new ArrayList&lt;String&gt;();
         log.add("plugged in");   // fixed
         log.add(warmUp());       // the hook
         log.add("ready");        // fixed
         return log;
     }
-    protected abstract String warmUp();
-}
-class Projector extends Appliance {
-    protected String warmUp(){ return "warming bulb"; }
+    protected abstract String warmUp();    // subclass fills this
 }
 </code></pre>
       </div>
@@ -631,149 +682,157 @@ class Projector extends Appliance {
     <div class="footer-line"><span>behavioral</span><span>template method</span></div>
   </section>
 
-  <!-- ================= THE OTHER SEVEN (CONCISE) ================= -->
-  <!-- 24 BEYOND THE NINE -->
-  <section class="part">
-    <span class="part-tag"><span class="dot" style="background:var(--accent-2)"></span> seven more, briefly</span>
-    <h2 style="margin-top:14px;">Nine you reach for. Seven more to recognise.</h2>
-    <p class="lede fragment" style="margin-top:14px;">These turn up less often, and the third capstone (the text editor) is where you'd actually build them. We'll keep each to one clear idea — enough to recognise it in the wild.</p>
-    <p class="fragment" style="margin-top:12px; color:var(--muted);">Don't worry about mastering all seven today. Know the name and the one-line pain each one solves.</p>
-    <div class="footer-line"><span>the other seven</span><span>recognise, don't force</span></div>
-  </section>
-
-  <!-- 25 COMMAND -->
+  <!-- 28 COMMAND -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> command</span>
+    <span class="eyebrow">command · behind every undo button</span>
     <h2>Wrap an action as an object.</h2>
     <div class="dgrid">
       <ul class="clean">
         <li class="fragment"><b>Pain:</b> you want to trigger, queue, log — and above all <em>undo and redo</em> — actions, without the caller knowing their details.</li>
-        <li class="fragment"><b>Shape:</b> an interface with <code>execute()</code> and <code>undo()</code>. Keep an undo stack and a redo stack.</li>
+        <li class="fragment"><b>Shape:</b> an interface with <code>execute()</code> and <code>undo()</code>. Each command captures what it needs both to do and to reverse its work. Keep an undo stack and a redo stack.</li>
       </ul>
-      <div class="rwbox fragment"><p><b>In the wild:</b> every Undo button; a job queue's tasks; <code>Runnable</code> handed to a thread pool. <br/><b>Editor · part 3:</b> <code>InsertText</code> is a Command; the editor records and replays it.</p></div>
+      <div>
+        <div class="rwbox fragment"><p><b>In the wild:</b> every Undo/Redo; a job queue's tasks; a database transaction log; every <code>Runnable</code> you hand a thread pool is a command.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+void run(Command c){ c.execute(); undo.push(c); redo.clear(); }
+void undo(){ var c = undo.pop(); c.undo(); redo.push(c); }
+void redo(){ var c = redo.pop(); c.execute(); undo.push(c); }
+</code></pre>
+      </div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>command</span></div>
   </section>
 
-  <!-- 26 MEMENTO -->
+  <!-- 29 MEMENTO -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> memento</span>
+    <span class="eyebrow">memento · command's partner</span>
     <h2>Snapshot state, restore it later.</h2>
     <div class="dgrid">
       <ul class="clean">
         <li class="fragment"><b>Pain:</b> undo needs the <em>previous</em> state back — but you don't want to leak the object's internals to get it.</li>
-        <li class="fragment"><b>Shape:</b> the object hands out an opaque <em>snapshot</em>, and later restores itself from one. Only it knows what's inside.</li>
+        <li class="fragment"><b>Shape:</b> the object hands out an opaque <em>snapshot</em> and later restores itself from one. Only it can read the snapshot's contents; everyone else just holds the token.</li>
       </ul>
-      <div class="rwbox fragment"><p><b>In the wild:</b> a game's save file; a database transaction's savepoint; version-control checkpoints. <br/><b>Editor · part 3:</b> <code>snapshot()</code> captures the buffer, <code>restore()</code> puts it back.</p></div>
+      <div class="rwbox fragment"><p><b>In the wild:</b> a game's save file; a database transaction <em>savepoint</em>; a version-control checkpoint; an editor's undo history. Memento captures the "what", Command decides the "when".</p>
+      <p><code>Memento snapshot()</code> captures the buffer; <code>restore(m)</code> puts it back — exactly one class can read inside <code>m</code>.</p></div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>memento</span></div>
   </section>
 
-  <!-- 27 STATE -->
+  <!-- 30 STATE -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> state</span>
+    <span class="eyebrow">state</span>
     <h2>Behaviour that changes with mode.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment"><b>Pain:</b> what an action <em>does</em> depends on a mode, and the code is drowning in <code>if (mode == ...)</code> everywhere.</li>
-        <li class="fragment"><b>Shape:</b> make each mode an object behind one interface. The context delegates to its current state.</li>
+        <li class="fragment"><b>Pain:</b> what an action <em>does</em> depends on a mode, and the code is drowning in <code>if (mode == ...)</code> checks scattered everywhere.</li>
+        <li class="fragment"><b>Shape:</b> make each mode an object behind one interface. The context delegates to its current state; a state can even hand back its successor.</li>
       </ul>
-      <div class="rwbox fragment"><p><b>In the wild:</b> a TCP connection (open/closed/listening); a media player (playing/paused). <br/><b>Editor · part 3:</b> the same keystroke inserts in <code>INSERT</code> and is ignored in <code>READONLY</code> — the mode decides, not an if-ladder.</p></div>
+      <div>
+        <div class="rwbox fragment"><p><b>In the wild:</b> a TCP connection (listen / established / closed); a media player (playing / paused / stopped); an order (placed / paid / shipped). The state object decides — not an if-ladder.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+void type(char c){ mode.type(this, c); }        // delegate to state
+class InsertMode   implements Mode { public void type(Editor e,char c){ e.buf.append(c);} }
+class ReadOnlyMode implements Mode { public void type(Editor e,char c){ /* ignore */ } }
+</code></pre>
+      </div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>state</span></div>
   </section>
 
-  <!-- 28 COMPOSITE -->
-  <section class="stru">
-    <span class="eyebrow"><span class="dot"></span> composite</span>
-    <h2>Treat a tree like a single thing.</h2>
-    <div class="dgrid">
-      <ul class="clean">
-        <li class="fragment"><b>Pain:</b> a part-whole hierarchy — a document is sections of paragraphs — and you want to treat a leaf and a whole branch the same way.</li>
-        <li class="fragment"><b>Shape:</b> one <code>Node</code> interface. Leaves and containers both implement it; an operation just recurses.</li>
-      </ul>
-      <div class="rwbox fragment"><p><b>In the wild:</b> the file system (a file and a folder are both "paths"); the HTML/DOM tree; Swing components. <br/><b>Editor · part 3:</b> <code>Paragraph</code> is a leaf, <code>Section</code> holds Nodes; a whole document is just a <code>Node</code>.</p></div>
-    </div>
-    <div class="footer-line"><span>structural</span><span>composite</span></div>
-  </section>
-
-  <!-- 29 ITERATOR -->
+  <!-- 31 ITERATOR -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> iterator</span>
+    <span class="eyebrow">iterator · the one you use most</span>
     <h2>Walk it without knowing its shape.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment"><b>Pain:</b> visit everything in a structure, in order, without the caller learning it's really a tree.</li>
-        <li class="fragment"><b>Shape:</b> expose a sequence — <code>hasNext()</code> / <code>next()</code>, or Java's <code>Iterable</code>. The caller loops; the traversal stays hidden.</li>
+        <li class="fragment"><b>Pain:</b> visit everything in a structure, in order, without the caller learning it's really a tree, a ring buffer, or a paged list.</li>
+        <li class="fragment"><b>Shape:</b> expose a sequence — <code>hasNext()</code> / <code>next()</code>, or implement Java's <code>Iterable</code>. The caller loops; the traversal stays hidden.</li>
       </ul>
-      <div class="rwbox fragment"><p><b>You already use it:</b> every <code>for (x : collection)</code> loop <em>is</em> the Iterator pattern. <br/><b>Editor · part 3:</b> walk every <code>Paragraph</code> depth-first; the tree looks like a flat list to the reader.</p></div>
+      <div class="rwbox fragment"><p><b>You use it every day:</b> every <code>for (x : collection)</code> loop <em>is</em> the Iterator pattern — the compiler calls <code>iterator()</code>, then <code>hasNext()</code>/<code>next()</code> for you. Implement <code>Iterable</code> on your own tree and it walks like a flat list.</p></div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>iterator</span></div>
   </section>
 
-  <!-- 30 VISITOR (gentle) -->
+  <!-- 32 VISITOR (gentle, detailed) -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> visitor · the hard one, taken gently</span>
+    <span class="eyebrow">visitor · the tricky one, taken slowly</span>
     <h2>New operations, without touching the classes.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment"><b>Pain:</b> you keep needing new operations over a node tree — word count, spell-check, export — and editing every Node class each time is miserable.</li>
-        <li class="fragment"><b>Shape:</b> nodes have <code>accept(visitor)</code>, which calls <code>visitor.visitParagraph(this)</code>. A new operation is a new visitor; the nodes never change.</li>
+        <li class="fragment"><b>Pain:</b> you keep needing new operations over a node tree — word count, spell-check, export to HTML — and editing every Node class each time is miserable.</li>
+        <li class="fragment"><b>Shape:</b> nodes have <code>accept(visitor)</code>, which calls back <code>visitor.visitParagraph(this)</code>. The node picks the method — that two-step is "double dispatch." A new operation is a new visitor; the nodes never change.</li>
       </ul>
       <div>
-        <div class="rwbox fragment"><p><b>The trade-off to remember:</b> Visitor makes new <em>operations</em> easy and new <em>node types</em> hard. That's the whole point of it — and why it's the last one you reach for.</p></div>
-        <p class="fragment" style="margin-top:12px; color:var(--muted); font-size:18px;">If this one doesn't fully land today, that's fine — it's the trickiest of the twenty-three. Recognise the name; build it only if you get to part 3.</p>
+        <pre class="fragment sm"><code class="language-java" data-trim>
+// in each node:
+public void accept(NodeVisitor v){ v.visitParagraph(this); }
+// a new operation = a new visitor, nodes untouched:
+class WordCount implements NodeVisitor {
+    int total;
+    public void visitParagraph(Paragraph p){ total += p.words(); }
+}
+</code></pre>
+        <div class="rwbox fragment"><p><b>The trade-off:</b> Visitor makes new <em>operations</em> easy and new <em>node types</em> hard — the opposite of normal classes. That's why it's the last one you reach for. If it doesn't fully land today, recognise the name and move on.</p></div>
       </div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>visitor</span></div>
   </section>
 
-  <!-- 31 CHAIN OF RESPONSIBILITY -->
+  <!-- 33 CHAIN OF RESPONSIBILITY -->
   <section class="beha">
-    <span class="eyebrow"><span class="dot"></span> chain of responsibility</span>
+    <span class="eyebrow">chain of responsibility</span>
     <h2>A pipeline of handlers.</h2>
     <div class="dgrid">
       <ul class="clean">
-        <li class="fragment"><b>Pain:</b> a request should pass through independent steps, each doing its bit or handing it on — and you want to add, drop, or reorder steps freely.</li>
-        <li class="fragment"><b>Shape:</b> each handler holds the <em>next</em> one; it does its work, then delegates down the chain. Order is just wiring.</li>
+        <li class="fragment"><b>Pain:</b> a request should pass through a series of independent steps, each doing its bit or passing it on — and you want to add, drop, or reorder steps freely.</li>
+        <li class="fragment"><b>Shape:</b> each handler holds the <em>next</em> one; it does its work, then delegates down the chain. The order is just wiring.</li>
       </ul>
-      <div class="rwbox fragment"><p><b>You already use it:</b> a Servlet filter chain; middleware in Express/Spring; try/catch handlers. <br/><b>Editor · part 3:</b> trim → collapse-spaces → censor, each a <code>TextFilter</code> passing text on.</p></div>
+      <div>
+        <div class="rwbox fragment"><p><b>You've met it:</b> a Servlet <em>filter chain</em>; middleware in Express or Spring; a logging framework's handler chain; even a stack of <code>catch</code> blocks. Add a step by inserting a link.</p></div>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+final String process(String t){
+    String out = apply(t);                     // my step
+    return next == null ? out : next.process(out); // hand on
+}
+// chain: trim -> collapse spaces -> censor
+</code></pre>
+      </div>
     </div>
     <div class="footer-line"><span>behavioral</span><span>chain of responsibility</span></div>
   </section>
 
-  <!-- ================= SYNTHESIS ================= -->
-  <!-- 32 YOU ALREADY USE THESE -->
+  <!-- ============ SYNTHESIS ============ -->
+  <!-- 34 YOU ALREADY USE THESE -->
   <section>
     <span class="eyebrow">recognition</span>
     <h2>You have used these for years.</h2>
     <div class="grid g3">
       <div class="card fragment"><h3>Comparator</h3><p>Sorting logic passed into <code>sort</code>. Strategy.</p></div>
-      <div class="card fragment"><h3>for-each</h3><p>Walking a collection. Iterator.</p></div>
+      <div class="card fragment"><h3>for-each</h3><p>Walking any collection. Iterator.</p></div>
       <div class="card fragment"><h3>BufferedReader</h3><p>A stream wrapping a stream. Decorator.</p></div>
       <div class="card fragment"><h3>DriverManager</h3><p>Ask for a Connection by URL. Factory.</p></div>
       <div class="card fragment"><h3>addActionListener</h3><p>Register, get notified. Observer.</p></div>
-      <div class="card fragment"><h3>StringBuilder</h3><p>Name the parts, then build. Builder.</p></div>
+      <div class="card fragment"><h3>Servlet filters</h3><p>Request through a pipeline. Chain.</p></div>
     </div>
-    <p class="fragment" style="margin-top:18px; color:var(--muted);">The value of the names is not new tricks. It is a shared vocabulary for shapes you already trust.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">The value of the names was never new tricks. It is a shared vocabulary for shapes you already trust.</p>
     <div class="footer-line"><span>design patterns</span><span>you already use these</span></div>
   </section>
 
-  <!-- 33 PATTERNS ARE SOLID -->
+  <!-- 35 PATTERNS ARE SOLID -->
   <section>
     <span class="eyebrow">the connection to yesterday</span>
     <h2>Patterns are SOLID, wearing shapes.</h2>
     <ul class="clean">
-      <li class="fragment">Strategy, Observer, Decorator, Factory: extend by adding. That is <em>open-closed</em> and <em>dependency inversion</em>.</li>
+      <li class="fragment">Strategy, Observer, Decorator, Factory, Command: extend by adding. That is <em>open-closed</em> and <em>dependency inversion</em>.</li>
       <li class="fragment">Facade owns one workflow: <em>single responsibility</em> at a boundary.</li>
-      <li class="fragment">Template Method locks a skeleton and trusts its hooks: <em>Liskov</em>, and open-closed by inheritance.</li>
+      <li class="fragment">Template Method locks a skeleton and trusts its hooks: <em>Liskov</em>.</li>
       <li class="fragment">Adapter and the small role interfaces everywhere: <em>interface segregation</em>.</li>
     </ul>
-    <p class="fragment" style="margin-top:16px; color:var(--muted);">They are not a separate subject. They are the principles, named.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">Not a separate subject. The principles, named — which is why they clicked so fast.</p>
     <div class="footer-line"><span>design patterns</span><span>patterns are solid</span></div>
   </section>
 
-  <!-- 34 PATTERNITIS -->
+  <!-- 36 PATTERNITIS -->
   <section>
     <span class="eyebrow">the failure mode</span>
     <h2>Patternitis: forcing patterns where there is no pain.</h2>
@@ -781,95 +840,38 @@ class Projector extends Appliance {
       <div class="card fragment"><span class="tag bad">smells</span><p>A factory that builds one thing. A strategy interface with a single implementation. Five layers of indirection to read one config value.</p></div>
       <div class="card fragment"><span class="tag good">the rule</span><p>Every pattern is indirection, and indirection costs a file, a hop, a name to learn. See the problem happen, then reach for the pattern. Not before.</p></div>
     </div>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">The remaining seven of the twenty-three — Abstract Factory, Prototype, Bridge, Flyweight, Proxy, Mediator, Interpreter — are rarer in backend work. Recognise the names; look one up when you meet its problem.</p>
     <div class="footer-line"><span>design patterns</span><span>patternitis</span></div>
   </section>
 
-  <!-- 35 THE FINAL SEVEN (named) -->
-  <section>
-    <span class="eyebrow">the seven we only name</span>
-    <h2>The rest of the twenty-three.</h2>
-    <div class="grid g3">
-      <div class="card fragment"><h3>Abstract Factory</h3><p>Whole <em>families</em> of matching objects.</p></div>
-      <div class="card fragment"><h3>Prototype</h3><p>Clone a configured object.</p></div>
-      <div class="card fragment"><h3>Bridge</h3><p>Split abstraction from implementation.</p></div>
-      <div class="card fragment"><h3>Flyweight</h3><p>Share one copy of repeated data.</p></div>
-      <div class="card fragment"><h3>Proxy</h3><p>A stand-in that controls access.</p></div>
-      <div class="card fragment"><h3>Mediator · Interpreter</h3><p>A central hub; a tiny language as a tree.</p></div>
-    </div>
-    <p class="fragment" style="margin-top:14px; color:var(--muted);">Rarer in everyday backend work. Look them up when you meet the problem; never go hunting for a place to force one.</p>
-    <div class="footer-line"><span>design patterns</span><span>the final seven</span></div>
-  </section>
-
-  <!-- ================= CAPSTONE ================= -->
-  <!-- 36 BUILD TIME -->
+  <!-- ============ CAPSTONE ============ -->
+  <!-- 37 BUILD TIME -->
   <section class="title-wrap part">
     <span class="part-tag"><span class="dot" style="background:var(--accent-2)"></span> now you build</span>
-    <h1 class="display" style="font-size:76px;">Three shops.<br/><em>Make them green.</em></h1>
-    <p class="subtitle">A coffee shop, a home theater, a text editor — sixteen patterns across the three. First, five minutes to get set up.</p>
+    <h1 class="display" style="font-size:74px;">Three shops.<br/><em>Make them green.</em></h1>
+    <p class="subtitle">A coffee shop, a home theater, a text editor — sixteen patterns across the three. You already have the tools installed from yesterday, so setup is one command.</p>
     <div class="footer-line"><span>day 2 · capstone</span><span>build</span></div>
   </section>
 
-  <!-- 37 SETUP 1/4 GIT -->
+  <!-- 38 SETUP (one slide) -->
   <section class="handson">
-    <div class="handson-head"><span class="handson-badge">Setup · 1 of 4</span></div>
-    <h2>Install Git.</h2>
-    <p class="fragment" style="color:var(--muted); margin-bottom:2px;">Already set up from Day 1? Skip to the last step. New here? Git downloads the code:</p>
-    <div class="setup-steps">
-      <div class="fragment"><span class="oslabel">Windows</span><div class="cmd lg">winget install Git.Git</div></div>
-      <div class="fragment"><span class="oslabel">macOS</span><div class="cmd lg">brew install git</div></div>
-      <div class="fragment"><span class="oslabel">Linux · Debian / Ubuntu</span><div class="cmd lg">sudo apt install git</div></div>
-      <div class="fragment"><span class="oslabel">No package manager? Download</span><div class="setup-link">git-scm.com/downloads</div></div>
-    </div>
-    <p class="fragment setup-note">Check it worked — type: <span class="setup-link" style="color:var(--accent)">git --version</span></p>
-    <div class="footer-line"><span>setup</span><span>1 · git</span></div>
-  </section>
-
-  <!-- 38 SETUP 2/4 JAVA -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge">Setup · 2 of 4</span></div>
-    <h2>Install Java 25 (the JDK).</h2>
-    <p class="fragment" style="color:var(--muted); margin-bottom:2px;">Version 25 — the same one we use all week. Free, from Adoptium Temurin:</p>
-    <div class="setup-steps">
-      <div class="fragment"><span class="oslabel">Windows</span><div class="cmd lg">winget install EclipseAdoptium.Temurin.25.JDK</div></div>
-      <div class="fragment"><span class="oslabel">macOS</span><div class="cmd lg">brew install --cask temurin@25</div></div>
-      <div class="fragment"><span class="oslabel">Linux / any OS — download</span><div class="setup-link">adoptium.net</div></div>
-      <div class="fragment"><span class="oslabel">Then confirm it says 25</span><div class="cmd lg">java -version</div></div>
-    </div>
-    <p class="fragment setup-note">If it shows 8 or 17, an older Java is first on your PATH — flag it now, not mid-exercise.</p>
-    <div class="footer-line"><span>setup</span><span>2 · java 25</span></div>
-  </section>
-
-  <!-- 39 SETUP 3/4 CLONE + OPEN -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge">Setup · 3 of 4</span></div>
-    <h2>Get the code, then open it.</h2>
-    <span class="oslabel fragment">Clone the repo — same command on every OS (skip if you cloned it yesterday)</span>
-    <div class="cmd lg fragment">git clone https://github.com/prasannathapa/byts-bootcamp.git</div>
-    <span class="oslabel fragment">Then step into the folder</span>
-    <div class="cmd lg fragment">cd byts-bootcamp</div>
-    <div class="setup-steps" style="margin-top:14px;">
-      <div class="fragment"><span class="oslabel">IntelliJ IDEA — preferred</span><p class="setup-note" style="margin-top:2px;">File → Open → pick the <code>byts-bootcamp</code> folder → Trust project.</p></div>
-      <div class="fragment"><span class="oslabel">Or VS Code</span><div class="cmd lg">code .</div></div>
-    </div>
-    <div class="footer-line"><span>setup</span><span>3 · clone + open</span></div>
-  </section>
-
-  <!-- 40 SETUP 4/4 RUN -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge">Setup · 4 of 4</span></div>
-    <h2>Go into today's folder and run it.</h2>
-    <span class="oslabel fragment">Step into the Day 2 capstone</span>
+    <div class="handson-head"><span class="handson-badge">Setup</span></div>
+    <h2>Pull the latest, then run.</h2>
+    <p class="fragment" style="color:var(--muted); margin-bottom:2px;">You cloned the repo yesterday and Java 25 is installed. From inside <code>byts-bootcamp</code>:</p>
+    <span class="oslabel fragment">Get today's folder</span>
+    <div class="cmd lg fragment">git pull</div>
+    <p class="fragment" style="color:var(--muted); font-size:17px; margin:2px 0 0;">If git complains about local changes: <code>git reset --hard origin/main</code> (discards your local edits), then <code>git pull</code>.</p>
+    <span class="oslabel fragment">Go in and run the tests</span>
     <div class="cmd lg fragment">cd day-2-capstone</div>
-    <div class="setup-steps" style="margin-top:14px;">
+    <div class="grid g2" style="margin-top:6px;">
       <div class="fragment"><span class="oslabel">macOS / Linux</span><div class="cmd lg">./run.sh</div></div>
       <div class="fragment"><span class="oslabel">Windows · PowerShell</span><div class="cmd lg">.\run.cmd</div></div>
     </div>
-    <p class="fragment setup-note">The <code>./</code> and <code>.\</code> are part of the command — they mean "run the script right <em>here</em>." Don't drop them.</p>
-    <p class="fragment setup-note" style="color:var(--good);">Failing tests are expected — they're your to-do list. Make them green.</p>
-    <div class="footer-line"><span>setup</span><span>4 · run</span></div>
+    <p class="fragment" style="color:var(--good); margin-top:8px; font-size:18px;">Failing tests are expected — they're your to-do list.</p>
+    <div class="footer-line"><span>capstone</span><span>setup</span></div>
   </section>
 
-  <!-- 41 CAPSTONE OVERVIEW -->
+  <!-- 39 OVERVIEW -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Capstone</span></div>
     <h2>Three shops, sixteen patterns.</h2>
@@ -878,11 +880,11 @@ class Projector extends Appliance {
       <div class="card fragment"><span class="tag">part 2 · most of you</span><h3>Home theater</h3><p>Builder · Singleton · Adapter · Facade · Template Method. 5 patterns, 14 tests.</p></div>
       <div class="card fragment"><span class="tag warn">part 3 · stretch</span><h3>Text editor</h3><p>Command · Memento · State · Composite · Iterator · Visitor · Chain. 7 patterns, 19 tests.</p></div>
     </div>
-    <p class="fragment" style="margin-top:16px; color:var(--muted);">Do them in order. Part 1 is the goal for everyone; parts 2 and 3 are there to stretch into. Read <code>RunTests.java</code> first — the tests are the spec.</p>
+    <p class="fragment" style="margin-top:16px; color:var(--muted);">Do them in order. Part 1 is the goal for everyone; 2 and 3 are there to stretch into. Read <code>RunTests.java</code> first — the tests are the spec. We walk the full solutions tomorrow morning.</p>
     <div class="footer-line"><span>capstone</span><span>overview</span></div>
   </section>
 
-  <!-- 42 PART 1 BRIEF -->
+  <!-- 40 PART 1 BRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 1 · coffee shop</span></div>
     <h2>Five moves, four patterns.</h2>
@@ -895,91 +897,24 @@ class Projector extends Appliance {
         <li class="fragment">A <code>Counter</code> places the order and notifies subscribers. <span style="color:var(--muted)">(Observer, CP4)</span></li>
       </ul>
       <div class="diagram fragment">
-        <svg viewBox="0 0 420 290" width="100%">
-          <rect x="30" y="26" width="150" height="34" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.6"/><text x="105" y="48" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Syrup wraps</text>
-          <rect x="50" y="68" width="130" height="32" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.8"/><text x="115" y="89" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Milk wraps</text>
-          <rect x="70" y="108" width="110" height="32" rx="7" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/><text x="125" y="129" text-anchor="middle" fill="var(--text)" font-size="12">Espresso</text>
-          <text x="105" y="164" text-anchor="middle" fill="var(--muted)" font-size="11">Decorator</text>
-          <rect x="250" y="34" width="150" height="38" rx="8" fill="#16161a" stroke="var(--line)"/><text x="325" y="58" text-anchor="middle" fill="var(--text)" font-size="12">BeverageFactory</text>
-          <rect x="250" y="120" width="150" height="38" rx="8" fill="#16161a" stroke="var(--line)"/><text x="325" y="144" text-anchor="middle" fill="var(--text)" font-size="12">Discount</text>
-          <text x="325" y="92" text-anchor="middle" fill="var(--muted)" font-size="11">Factory</text>
-          <text x="325" y="178" text-anchor="middle" fill="var(--muted)" font-size="11">Strategy</text>
-          <rect x="30" y="228" width="370" height="40" rx="8" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.7"/><text x="215" y="253" text-anchor="middle" fill="var(--text)" font-size="12">Counter.placeOrder &#8594; notifies subscribers</text>
-          <text x="215" y="286" text-anchor="middle" fill="var(--muted)" font-size="11">Observer</text>
+        <svg viewBox="0 0 420 280" width="100%">
+          <rect x="30" y="24" width="150" height="32" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.6"/><text x="105" y="45" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Syrup wraps</text>
+          <rect x="50" y="64" width="130" height="30" rx="7" fill="none" stroke="var(--accent)" stroke-opacity="0.8"/><text x="115" y="84" text-anchor="middle" fill="var(--accent)" font-size="12" class="mono">Milk wraps</text>
+          <rect x="70" y="102" width="110" height="30" rx="7" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/><text x="125" y="122" text-anchor="middle" fill="var(--text)" font-size="12">Espresso</text>
+          <text x="105" y="156" text-anchor="middle" fill="var(--muted)" font-size="11">Decorator</text>
+          <rect x="250" y="30" width="150" height="36" rx="8" fill="#16161a" stroke="var(--line)"/><text x="325" y="53" text-anchor="middle" fill="var(--text)" font-size="12">BeverageFactory</text>
+          <rect x="250" y="112" width="150" height="36" rx="8" fill="#16161a" stroke="var(--line)"/><text x="325" y="135" text-anchor="middle" fill="var(--text)" font-size="12">Discount</text>
+          <text x="325" y="86" text-anchor="middle" fill="var(--muted)" font-size="11">Factory</text>
+          <text x="325" y="168" text-anchor="middle" fill="var(--muted)" font-size="11">Strategy</text>
+          <rect x="30" y="222" width="370" height="38" rx="8" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.7"/><text x="215" y="246" text-anchor="middle" fill="var(--text)" font-size="12">Counter.placeOrder &#8594; notifies subscribers</text>
+          <text x="215" y="276" text-anchor="middle" fill="var(--muted)" font-size="11">Observer</text>
         </svg>
       </div>
     </div>
     <div class="footer-line"><span>capstone · part 1</span><span>the shape</span></div>
   </section>
 
-  <!-- 43 PART 1 SOLUTION A -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 1 · solution</span></div>
-    <h2>In code: Factory &amp; Decorator.</h2>
-    <div class="codeflex">
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Factory — ask by name; the call site never writes <code>new Espresso()</code>.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-public Beverage create(String name) {
-    return switch (name.trim().toLowerCase()) {
-        case "espresso" -&gt; new Espresso();
-        case "tea"      -&gt; new Tea();
-        default -&gt; throw new IllegalArgumentException(name);
-    };
-}
-</code></pre>
-      </div>
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Decorator — implement <code>Beverage</code>, hold a <code>Beverage</code>, delegate then add.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-final class Milk implements Beverage {
-    private final Beverage base;
-    Milk(Beverage base) { this.base = base; }
-    public String description() {
-        return base.description() + ", milk";
-    }
-    public int cents() { return base.cents() + 50; }
-}
-</code></pre>
-      </div>
-    </div>
-    <div class="footer-line"><span>capstone · part 1</span><span>solution 1/2</span></div>
-  </section>
-
-  <!-- 44 PART 1 SOLUTION B -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 1 · solution</span></div>
-    <h2>In code: Strategy &amp; Observer — three patterns, one line.</h2>
-    <div class="codeflex">
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Strategy — one method behind an interface; swap the implementation.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-final class PercentOff implements Discount {
-    private final int percent;
-    PercentOff(int p) { this.percent = p; }
-    public int applyTo(int cents) {
-        return cents - (cents * percent / 100);
-    }
-}
-</code></pre>
-      </div>
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Observer — the Counter notifies every subscriber, and never knows who.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-int placeOrder(Beverage drink, Discount discount) {
-    int price = discount.applyTo(drink.cents()); // decorator+strategy
-    for (OrderObserver o : observers)             // observer
-        o.onOrder(drink.description(), price);
-    return price;
-}
-</code></pre>
-      </div>
-    </div>
-    <p class="fragment" style="margin-top:6px; color:var(--muted);"><code>placeOrder</code> prices the decorated drink, applies the strategy, and fans out to observers — three patterns meeting in one method.</p>
-    <div class="footer-line"><span>capstone · part 1</span><span>solution 2/2</span></div>
-  </section>
-
-  <!-- 45 PART 1 DEBRIEF -->
+  <!-- 41 PART 1 DEBRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 1 · debrief</span></div>
     <h2>Which pattern did each test prove?</h2>
@@ -988,11 +923,13 @@ int placeOrder(Beverage drink, Discount discount) {
       <li class="fragment">Building a drink from the string "espresso": <em>Factory</em>.</li>
       <li class="fragment">Swapping no-discount for twenty-percent-off without touching the order: <em>Strategy</em> + open-closed.</li>
       <li class="fragment">A running total and a receipt updating themselves on each order: <em>Observer</em> — the Counter never knows who's listening.</li>
+      <li class="fragment"><code>Counter.placeOrder</code> uses three in one line: price (Decorator), discount (Strategy), notify (Observer).</li>
     </ul>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);">The full worked solution: tomorrow morning.</p>
     <div class="footer-line"><span>capstone · part 1</span><span>debrief</span></div>
   </section>
 
-  <!-- 46 PART 2 BRIEF -->
+  <!-- 42 PART 2 BRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 2 · home theater</span></div>
     <h2>Five patterns, one "watch this scene".</h2>
@@ -1006,75 +943,7 @@ int placeOrder(Beverage drink, Discount discount) {
     <div class="footer-line"><span>capstone · part 2</span><span>the shape</span></div>
   </section>
 
-  <!-- 47 PART 2 SOLUTION A -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 2 · solution</span></div>
-    <h2>In code: Builder, Singleton, Adapter.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// BUILDER: fluent, with defaults
-public static Builder builder(String name){ return new Builder(name); }
-public Builder volume(int p){ this.volume = p; return this; }
-public Scene build(){ return new Scene(this); }
-
-// SINGLETON: private ctor, one instance
-private static final Hub INSTANCE = new Hub();
-public static Hub get(){ return INSTANCE; }
-</code></pre>
-      </div>
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// ADAPTER: 0..100 in, 0..11 to the old amp
-class AmpAdapter implements SoundSystem {
-    private final VintageAmp amp;
-    public void setVolume(int pct){
-        amp.dial(pct * 11 / 100);
-    }
-    public void on(){ amp.powerUp(); }
-}
-</code></pre>
-      </div>
-    </div>
-    <div class="footer-line"><span>capstone · part 2</span><span>solution 1/2</span></div>
-  </section>
-
-  <!-- 48 PART 2 SOLUTION B -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 2 · solution</span></div>
-    <h2>In code: Facade &amp; Template Method.</h2>
-    <div class="codeflex">
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Facade — one call drives four boxes, in order.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-List&lt;String&gt; watch(Scene s) {
-    lights.dim(s.lights());
-    sound.on(); sound.setVolume(s.volume());
-    screen.show(s.source());
-    Hub.get().record(s.name());   // singleton
-    return log;
-}
-</code></pre>
-      </div>
-      <div>
-        <p class="fragment" style="margin:0 0 4px; color:var(--muted); font-size:17px;">Template Method — <code>final</code> skeleton, one open hook.</p>
-<pre class="fragment sm"><code class="language-java" data-trim>
-abstract class Appliance {
-    public final List&lt;String&gt; startUp(){
-        log.add("plugged in");   // fixed
-        log.add(warmUp());       // hook
-        log.add("ready");        // fixed
-    }
-    protected abstract String warmUp();
-}
-</code></pre>
-      </div>
-    </div>
-    <p class="fragment" style="margin-top:6px; color:var(--muted);"><code>watch()</code> ties it together: the Builder's Scene, the Adapter'd sound, the Singleton hub — all behind one Facade.</p>
-    <div class="footer-line"><span>capstone · part 2</span><span>solution 2/2</span></div>
-  </section>
-
-  <!-- 49 PART 2 DEBRIEF -->
+  <!-- 43 PART 2 DEBRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 2 · debrief</span></div>
     <h2>Which pattern did each test prove?</h2>
@@ -1082,13 +951,13 @@ abstract class Appliance {
       <li class="fragment">Building a scene with defaults, skipping parts: <em>Builder</em>.</li>
       <li class="fragment">Two calls to <code>Hub.get()</code> returning the same object: <em>Singleton</em>.</li>
       <li class="fragment">A 0–100 volume landing as a 0–11 dial: <em>Adapter</em>.</li>
-      <li class="fragment">One <code>watch()</code> driving everything in order: <em>Facade</em>.</li>
-      <li class="fragment">Same locked skeleton, a different warm-up per appliance: <em>Template Method</em>.</li>
+      <li class="fragment">One <code>watch()</code> driving lights, sound, screen and hub in order: <em>Facade</em>.</li>
+      <li class="fragment">The same locked skeleton with a different warm-up per appliance: <em>Template Method</em>.</li>
     </ul>
     <div class="footer-line"><span>capstone · part 2</span><span>debrief</span></div>
   </section>
 
-  <!-- 50 PART 3 BRIEF -->
+  <!-- 44 PART 3 BRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 3 · text editor &middot; stretch</span></div>
     <h2>Seven patterns — for when you've nailed the first two.</h2>
@@ -1099,80 +968,11 @@ abstract class Appliance {
       <li class="fragment"><b>Visitor</b> — a word-count over the tree, without touching the node classes. <span style="color:var(--muted)">(CP6, the hard one)</span></li>
       <li class="fragment"><b>Chain of Responsibility</b> — a trim → collapse → censor text pipeline. <span style="color:var(--muted)">(CP7)</span></li>
     </ul>
-    <p class="fragment" style="margin-top:12px; color:var(--muted);">This is the tough module. If you get here, take it one checkpoint at a time — and don't let Visitor derail you.</p>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);">The tough module. One checkpoint at a time, and don't let Visitor derail you — reaching it at all is a win.</p>
     <div class="footer-line"><span>capstone · part 3</span><span>the shape</span></div>
   </section>
 
-  <!-- 51 PART 3 SOLUTION A -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 3 · solution</span></div>
-    <h2>In code: Command, Memento, State.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// COMMAND: do AND undo; two stacks in the editor
-void run(Command c){ c.execute(); undo.push(c); redo.clear(); }
-void undo(){ Command c = undo.pop(); c.undo(); redo.push(c); }
-void redo(){ Command c = redo.pop(); c.execute(); undo.push(c); }
-
-// MEMENTO: opaque snapshot of the buffer
-Memento snapshot(){ return new Memento(buf.toString()); }
-</code></pre>
-      </div>
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// STATE: the mode decides, no if-ladder
-void type(char c){ mode.type(this, c); }
-
-class InsertMode implements Mode {
-    public void type(Editor ed, char c){ ed.buf.append(c); }
-}
-class ReadOnlyMode implements Mode {
-    public void type(Editor ed, char c){ /* ignored */ }
-}
-</code></pre>
-      </div>
-    </div>
-    <div class="footer-line"><span>capstone · part 3</span><span>solution 1/2</span></div>
-  </section>
-
-  <!-- 52 PART 3 SOLUTION B -->
-  <section class="handson">
-    <div class="handson-head"><span class="handson-badge good">Part 3 · solution</span></div>
-    <h2>In code: Composite, Visitor, Chain.</h2>
-    <div class="codeflex">
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// COMPOSITE: leaf and branch share one interface
-interface Node { int wordCount(); void accept(NodeVisitor v); }
-class Section implements Node {
-    List&lt;Node&gt; children;
-    public int wordCount(){
-        int sum = 0;
-        for (Node n : children) sum += n.wordCount(); // recurse
-        return sum;
-    }
-}
-</code></pre>
-      </div>
-      <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
-// VISITOR: node calls back the matching method
-public void accept(NodeVisitor v){ v.visitParagraph(this); }
-
-// CHAIN: each filter does its bit, passes it on
-final String process(String t){
-    String out = apply(t);
-    return next == null ? out : next.process(out);
-}
-</code></pre>
-      </div>
-    </div>
-    <p class="fragment" style="margin-top:6px; color:var(--muted);">Visitor's <code>accept</code>/<code>visitX</code> pair is "double dispatch" — the node picks the method. Read it slowly; it's the one that takes a second pass.</p>
-    <div class="footer-line"><span>capstone · part 3</span><span>solution 2/2</span></div>
-  </section>
-
-  <!-- 53 PART 3 DEBRIEF -->
+  <!-- 45 PART 3 DEBRIEF -->
   <section class="handson">
     <div class="handson-head"><span class="handson-badge">Part 3 · debrief</span></div>
     <h2>Which pattern did each test prove?</h2>
@@ -1182,29 +982,28 @@ final String process(String t){
       <li class="fragment"><code>wordCount()</code> on a section summing its paragraphs: <em>Composite</em>; walking them in order: <em>Iterator</em>.</li>
       <li class="fragment">A word-count visitor with the nodes unchanged: <em>Visitor</em>. A trim→collapse→censor pipeline: <em>Chain</em>.</li>
     </ul>
-    <p class="fragment" style="margin-top:12px; color:var(--muted);">Sixteen patterns across three shops. The other seven you can now recognise by name.</p>
+    <p class="fragment" style="margin-top:10px; color:var(--muted);">Sixteen patterns across three shops. Full solutions — and the Day-3 kickoff — tomorrow.</p>
     <div class="footer-line"><span>capstone · part 3</span><span>debrief</span></div>
   </section>
 
-  <!-- ================= CLOSE ================= -->
-  <!-- 54 RECAP -->
+  <!-- 46 RECAP -->
   <section>
     <span class="eyebrow">the menu</span>
-    <h2>The nine you'll reach for.</h2>
+    <h2>Sixteen shapes, three families.</h2>
     <div class="grid g3">
-      <div class="card fragment"><h3 style="color:#f5a524">Creational</h3><p><b>Factory</b>: ask, don't build.<br/><b>Builder</b>: name the parts.<br/><b>Singleton</b>: one instance (carefully).</p></div>
-      <div class="card fragment"><h3 style="color:#34d399">Structural</h3><p><b>Adapter</b>: translate a mismatch.<br/><b>Decorator</b>: wrap to add.<br/><b>Facade</b>: one door over many.</p></div>
-      <div class="card fragment"><h3 style="color:#a78bfa">Behavioral</h3><p><b>Strategy</b>: swap the algorithm.<br/><b>Observer</b>: one changes, many react.<br/><b>Template</b>: fixed skeleton, open step.</p></div>
+      <div class="card fragment"><h3 style="color:#f5a524">Creational</h3><p><b>Factory</b> · ask, don't build.<br/><b>Builder</b> · name the parts.<br/><b>Singleton</b> · one instance, carefully.</p></div>
+      <div class="card fragment"><h3 style="color:#34d399">Structural</h3><p><b>Adapter</b> · translate a mismatch.<br/><b>Decorator</b> · wrap to add.<br/><b>Facade</b> · one door over many.<br/><b>Composite</b> · a tree as one thing.</p></div>
+      <div class="card fragment"><h3 style="color:#a78bfa">Behavioral</h3><p><b>Strategy · Observer · Template</b><br/><b>Command · Memento · State</b><br/><b>Iterator · Visitor · Chain</b></p></div>
     </div>
-    <p class="fragment" style="margin-top:14px; color:var(--muted);">Plus the seven for the editor, and the seven to just recognise. Twenty-three in all — the same one rule behind every one.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">Each one a principle from Day 1, wearing a shape — and a word your team already shares.</p>
     <div class="footer-line"><span>design patterns</span><span>recap</span></div>
   </section>
 
-  <!-- 55 CLOSE -->
+  <!-- 47 CLOSE -->
   <section class="title-wrap">
     <span class="eyebrow">closing</span>
     <h1 class="display" style="font-size:58px;">Patterns are a<br/><em>vocabulary.</em></h1>
-    <p class="subtitle">Learn the shapes, learn the names, and reach for them only when the problem is real. Tomorrow: high-level design, where these shapes become the boxes and arrows of a whole system.</p>
+    <p class="subtitle">Learn the shapes, learn the names, and reach for them only when the problem is real. Tomorrow we open with the full solutions to today's three shops — then high-level design, where these shapes become the boxes and arrows of a whole system.</p>
     <div class="footer-line"><span>day 2 · design patterns</span><span>now go build</span></div>
   </section>
 

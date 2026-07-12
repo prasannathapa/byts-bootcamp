@@ -6,36 +6,20 @@ shop; part 2 (most of you) a home theater; part 3 (a stretch) a text editor.
 Across the three you build SIXTEEN of the classic Gang-of-Four patterns. Read the
 RunTests.java in each part first - the tests are the specification.
 
-Requires Java 25 (JDK) - the same version used all week. Check:  java -version
+Requires Java 25 (JDK) - installed on Day 1. Check:  java -version
 
 
-SETUP - brand new? follow this exactly (Windows / macOS / Linux)
----------------------------------------------------------------
-If you set up on Day 1, skip to step 5. Otherwise, two tools: Git (downloads the
-code) and a Java 25 JDK (compiles and runs it).
+SETUP - you already cloned this and installed Java on Day 1
+-----------------------------------------------------------
+Just pull today's folder and run. From inside your byts-bootcamp clone:
 
-  1) INSTALL GIT
-       Windows         winget install Git.Git
-       macOS           brew install git
-       Linux           sudo apt install git
-       no package mgr  download from  https://git-scm.com/downloads
-     check it:         git --version
+  1) GET TODAY'S CODE
+       git pull
+     If git complains about local changes from yesterday:
+       git reset --hard origin/main      (discards your local edits)
+       git pull
 
-  2) INSTALL JAVA 25 (JDK) - free, from Adoptium Temurin
-       Windows         winget install EclipseAdoptium.Temurin.25.JDK
-       macOS           brew install --cask temurin@25
-       Linux / any OS  download from  https://adoptium.net
-     check it:         java -version          (must say 25 - not 8 or 17)
-
-  3) CLONE THE CODE  (same command on every OS; skip if you cloned it on Day 1)
-       git clone https://github.com/prasannathapa/byts-bootcamp.git
-       cd byts-bootcamp
-
-  4) OPEN IT IN AN IDE
-       IntelliJ IDEA (preferred): File > Open > pick the byts-bootcamp folder > Trust
-       VS Code:                   run  code .   then install "Extension Pack for Java"
-
-  5) GO TO TODAY'S FOLDER AND RUN THE TESTS
+  2) GO TO TODAY'S FOLDER AND RUN THE TESTS
        cd day-2-capstone
        macOS / Linux:            ./run.sh
        Windows (PowerShell):     .\run.cmd
