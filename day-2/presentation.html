@@ -72,10 +72,15 @@
   .tag.warn { background:rgba(245,184,64,0.07); color:var(--warn); border-color:rgba(245,184,64,0.28); }
 
   .reveal pre { background:#0a0a0c; border:1px solid var(--line); border-radius:10px; box-shadow:none;
-    margin:10px 0; width:100%; }
-  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:15px; line-height:1.48;
-    padding:16px 18px; border-radius:10px; background:transparent; }
-  .reveal pre.sm code { font-size:13px; line-height:1.42; padding:13px 15px; }
+    margin:12px 0; width:100%; }
+  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:19px; line-height:1.62;
+    padding:20px 22px; border-radius:10px; background:transparent; -webkit-tab-size:4; tab-size:4; }
+  .reveal pre.sm code { font-size:16px; line-height:1.55; padding:16px 18px; }
+  /* line numbers: dim, out of the way; highlighted lines pop */
+  .reveal pre code .hljs-ln-numbers { color:var(--dim); text-align:right; padding-right:16px; user-select:none; border-right:1px solid var(--line); }
+  .reveal pre code .hljs-ln-code { padding-left:16px; }
+  .reveal .hljs-ln .hljs-ln-line { line-height:1.62; }
+  .reveal pre .highlight-line { background:rgba(212,255,58,0.10); }
   .reveal code:not(pre code) { font-family:'JetBrains Mono',monospace; font-size:0.86em;
     background:var(--bg-soft); border:1px solid var(--line); padding:1px 6px; border-radius:4px; color:var(--accent); }
 
@@ -153,7 +158,7 @@
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (1 of 3)</span>
     <h2>Account: the balance can never go illegal.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 public final class Account {
     private long balanceCents;                 // private: only these methods touch it
 
@@ -180,7 +185,7 @@ public final class Account {
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (2 of 3)</span>
     <h2>Transactions apply themselves.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 sealed interface Transaction permits Deposit, Withdraw, Transfer {
     void apply(Ledger ledger);
 }
@@ -205,7 +210,7 @@ record Transfer(String from, String to, long cents) implements Transaction {
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the bank (3 of 3)</span>
     <h2>The Ledger owns the accounts.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 public final class Ledger {
     private final Map&lt;String, Account&gt; accounts = new HashMap&lt;&gt;();
 
@@ -227,7 +232,7 @@ public final class Ledger {
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the report (1 of 2)</span>
     <h2>Two formats, one contract.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 final class CsvFormat implements ReportFormat {
     public String format(Report r) {
         if (r.rows().isEmpty()) return r.title();
@@ -250,7 +255,7 @@ final class JsonFormat implements ReportFormat {
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the report (2 of 2)</span>
     <h2>The service injects a format, and validates.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 class ReportService {
     private final ReportFormat format;              // depend on the interface (DIP)
     ReportService(ReportFormat format) { this.format = format; }
@@ -273,7 +278,7 @@ new ReportService(plain).export(r);                          // service UNCHANGE
   <section class="recap">
     <span class="eyebrow"><span class="dot"></span> day 1 solved · the finale</span>
     <h2>The exporter injects a format and delegates.</h2>
-    <pre class="fragment"><code class="language-java" data-trim>
+    <pre class="fragment"><code class="language-java" data-trim data-line-numbers>
 final class StatementExporter {
     private final StatementFormat format;                 // injected from outside (DIP)
     StatementExporter(StatementFormat format) { this.format = format; }
@@ -467,7 +472,7 @@ final class CsvFormat implements StatementFormat {        // a new format = a ne
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>In the JDK:</b> <code>Runtime.getRuntime()</code> returns the one runtime; a logger factory hands back one shared logger per name. Private constructor, one static instance, one accessor.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 private static final Hub INSTANCE = new Hub();
 private Hub() { }                       // nobody else can make one
 public static Hub get() { return INSTANCE; }
@@ -499,7 +504,7 @@ public static Hub get() { return INSTANCE; }
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>In the JDK:</b> <code>InputStreamReader</code> adapts a byte <code>InputStream</code> into a char <code>Reader</code>. <code>Arrays.asList(arr)</code> adapts a raw array into a <code>List</code>. Both let old shapes flow into new APIs.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 class AmpAdapter implements SoundSystem {   // expected API
     private final VintageAmp amp;           // 0..11 dial
     public void setVolume(int pct) {        // 0..100 in
@@ -580,7 +585,7 @@ class AmpAdapter implements SoundSystem {   // expected API
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>You navigate these daily:</b> the file system (a file and a folder are both "paths"); the HTML/DOM tree; Swing/Android view trees. <code>size()</code> on a folder just sums its children.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 interface Node { int wordCount(); }
 class Section implements Node {         // a container
     List&lt;Node&gt; children;
@@ -618,7 +623,7 @@ class Section implements Node {         // a container
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>The everyday one:</b> <code>Comparator</code>. <code>list.sort(Comparator.comparing(User::age))</code> hands the sort a strategy — the sort algorithm never changes, only the comparison. Also a <code>ThreadPoolExecutor</code>'s rejection policy.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 users.sort(Comparator.comparing(User::name)   // one strategy
                      .thenComparing(User::age)); // composed
 </code></pre>
@@ -665,7 +670,7 @@ users.sort(Comparator.comparing(User::name)   // one strategy
         <div class="rwbox fragment"><p><b>In the JDK:</b> <code>AbstractList</code> writes the skeleton, you fill <code>get()</code> and <code>size()</code>. A servlet's <code>service()</code> calls your <code>doGet</code>/<code>doPost</code>.</p></div>
       </div>
       <div>
-<pre class="fragment sm"><code class="language-java" data-trim>
+<pre class="fragment sm"><code class="language-java" data-trim data-line-numbers>
 abstract class Appliance {
     public final List&lt;String&gt; startUp() {  // locked order
         var log = new ArrayList&lt;String&gt;();
@@ -693,7 +698,7 @@ abstract class Appliance {
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>In the wild:</b> every Undo/Redo; a job queue's tasks; a database transaction log; every <code>Runnable</code> you hand a thread pool is a command.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 void run(Command c){ c.execute(); undo.push(c); redo.clear(); }
 void undo(){ var c = undo.pop(); c.undo(); redo.push(c); }
 void redo(){ var c = redo.pop(); c.execute(); undo.push(c); }
@@ -729,7 +734,7 @@ void redo(){ var c = redo.pop(); c.execute(); undo.push(c); }
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>In the wild:</b> a TCP connection (listen / established / closed); a media player (playing / paused / stopped); an order (placed / paid / shipped). The state object decides — not an if-ladder.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 void type(char c){ mode.type(this, c); }        // delegate to state
 class InsertMode   implements Mode { public void type(Editor e,char c){ e.buf.append(c);} }
 class ReadOnlyMode implements Mode { public void type(Editor e,char c){ /* ignore */ } }
@@ -763,7 +768,7 @@ class ReadOnlyMode implements Mode { public void type(Editor e,char c){ /* ignor
         <li class="fragment"><b>Shape:</b> nodes have <code>accept(visitor)</code>, which calls back <code>visitor.visitParagraph(this)</code>. The node picks the method — that two-step is "double dispatch." A new operation is a new visitor; the nodes never change.</li>
       </ul>
       <div>
-        <pre class="fragment sm"><code class="language-java" data-trim>
+        <pre class="fragment sm"><code class="language-java" data-trim data-line-numbers>
 // in each node:
 public void accept(NodeVisitor v){ v.visitParagraph(this); }
 // a new operation = a new visitor, nodes untouched:
@@ -789,7 +794,7 @@ class WordCount implements NodeVisitor {
       </ul>
       <div>
         <div class="rwbox fragment"><p><b>You've met it:</b> a Servlet <em>filter chain</em>; middleware in Express or Spring; a logging framework's handler chain; even a stack of <code>catch</code> blocks. Add a step by inserting a link.</p></div>
-        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim>
+        <pre class="fragment sm" style="margin-top:12px;"><code class="language-java" data-trim data-line-numbers>
 final String process(String t){
     String out = apply(t);                     // my step
     return next == null ? out : next.process(out); // hand on
