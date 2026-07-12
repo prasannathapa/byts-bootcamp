@@ -6,19 +6,19 @@ echo.
 echo ======================================================================
 echo   PART 1 - a tiny bank (the four pillars)
 echo ======================================================================
-call part1-bank\run.cmd
+call "%~dp0part1-bank\run.cmd"
 
 echo.
 echo ======================================================================
 echo   PART 2 - a report exporter (the five principles)
 echo ======================================================================
-call part2-report\run.cmd
+call "%~dp0part2-report\run.cmd"
 
 echo.
 echo ======================================================================
 echo   FINALE - export a bank statement (pillars + SOLID)
 echo ======================================================================
-call part3-finale\run.cmd
+call "%~dp0part3-finale\run.cmd"
 
 echo.
 echo Done. Fill in the TODOs until every part reports 0 failed.
