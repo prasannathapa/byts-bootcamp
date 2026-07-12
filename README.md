@@ -18,7 +18,7 @@ git clone https://github.com/prasannathapa/byts-bootcamp
 | Day | Topic | Slides | Capstone |
 | --- | --- | --- | --- |
 | 1 | Object design: pillars + SOLID | `day-1/` | `day-1-capstone/` (bank + report + finale) |
-| 2 | Design patterns | `patterns/` | `patterns-capstone/` (a coffee shop) |
+| 2 | Design patterns | `day-2/` | `day-2-capstone/` (cafe + theater + editor) |
 | 3 | High-level design | `hld/` | `hld-capstone/` (a design exercise) |
 | 4 | Mini Instagram | `instagram/` | [github.com/prasannathapa/mini-insta](https://github.com/prasannathapa/mini-insta) |
 
