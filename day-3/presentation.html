@@ -110,6 +110,22 @@
     font-family:'JetBrains Mono',monospace; margin-right:10px; }
   .nines td { padding:5px 12px; font-family:'JetBrains Mono',monospace; font-size:14px; }
   .nines .h { color:var(--accent); }
+
+  /* ---- code, for the Day-2 solution review that opens today ---- */
+  .reveal section.sol { --accent:#6ea8ff; }   /* day-2 review - blue */
+  .reveal pre { background:#0a0a0c; border:1px solid var(--line); border-radius:10px; box-shadow:none; margin:12px 0; width:100%; }
+  .reveal pre code { font-family:'JetBrains Mono',monospace; font-size:19px; line-height:1.62;
+    padding:20px 22px; border-radius:10px; background:transparent; -webkit-tab-size:4; tab-size:4; }
+  .reveal pre.sm code { font-size:16px; line-height:1.55; padding:16px 18px; }
+  .reveal pre.xs code { font-size:13px; line-height:1.42; padding:12px 14px; }
+  .reveal pre code .hljs-ln-numbers { color:var(--dim); text-align:right; padding-right:16px; user-select:none; border-right:1px solid var(--line); }
+  .reveal pre code .hljs-ln-code { padding-left:16px; }
+  .codeflex { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; }
+  .handson-badge.good { background:var(--good); }
+  .rwbox { background:rgba(110,168,255,0.06); border:1px solid rgba(110,168,255,0.28);
+    border-left:3px solid var(--accent-2); border-radius:8px; padding:11px 15px; margin-top:12px; }
+  .rwbox b { color:var(--accent-2); }
+  .rwbox p { margin:0; font-size:17px; color:#cfcfd6; line-height:1.45; }
 </style>
 </head>
 <body>
@@ -122,8 +138,531 @@
   <section class="title-wrap">
     <span class="eyebrow"><span class="dot"></span> day 3</span>
     <h1 class="display">High-Level<br/><em>Design</em></h1>
-    <p class="subtitle">Boxes and arrows: the building blocks of a system that has to serve millions. Today we learn the vocabulary and the trade-offs, then design Instagram - the exact system you build tomorrow.</p>
+    <p class="subtitle">First, the full solutions to yesterday's three shops. Then we zoom all the way out: the building blocks of a system that serves millions, and a real design of Instagram - the system you build tomorrow.</p>
     <div class="footer-line"><span>high-level design</span><span>build your technical skills</span></div>
+  </section>
+
+  <!-- D2-A REVIEW INTRO -->
+  <section class="sol">
+    <span class="eyebrow"><span class="dot"></span> first &middot; yesterday, solved</span>
+    <h2>Three shops, the full answers.</h2>
+    <p class="lede fragment">Before we zoom out to whole systems, the worked solutions to yesterday's capstone - the cafe, the theater, the editor - so every pattern you built has a reference.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">Sixteen patterns across three files. Each one is a Day-1 principle wearing a shape. Then we go up a level: systems that serve millions.</p>
+    <div class="footer-line"><span>day 2 solved</span><span>the answers</span></div>
+  </section>
+
+  <!-- CAFE 1 · drinks + factory -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; coffee shop &middot; drinks + factory</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">The interface and two base drinks.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public interface Beverage {
+    String description();
+    int cents();
+}
+public final class Espresso implements Beverage {
+    public String description() { return "Espresso"; }
+    public int cents()          { return 200; }
+}
+public final class Tea implements Beverage {
+    public String description() { return "Tea"; }
+    public int cents()          { return 150; }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">FACTORY - build a base drink from its name.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class BeverageFactory {
+    public Beverage create(String name) {
+        return switch (name.trim().toLowerCase()) {
+            case "espresso" -&gt; new Espresso();
+            case "tea"      -&gt; new Tea();
+            default -&gt; throw new
+                IllegalArgumentException("unknown: " + name);
+        };
+    }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>cafe 1/4</span></div>
+  </section>
+
+  <!-- CAFE 2 · decorators -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; coffee shop &middot; decorators</span></div>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:17px;">DECORATOR - implement <code>Beverage</code>, hold a <code>Beverage</code>, delegate then add. Same interface in and out, so they stack.</p>
+    <div class="codeflex">
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class Milk implements Beverage {
+    private final Beverage base;
+    public Milk(Beverage base) { this.base = base; }
+    public String description() {
+        return base.description() + ", milk";
+    }
+    public int cents() { return base.cents() + 50; }
+}
+</code></pre>
+      </div>
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class Syrup implements Beverage {
+    private final Beverage base;
+    public Syrup(Beverage base) { this.base = base; }
+    public String description() {
+        return base.description() + ", syrup";
+    }
+    public int cents() { return base.cents() + 75; }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>cafe 2/4</span></div>
+  </section>
+
+  <!-- CAFE 3 · strategy -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; coffee shop &middot; strategy</span></div>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:17px;">STRATEGY - a family of interchangeable algorithms behind one interface; swap the object to swap the behaviour.</p>
+    <div class="codeflex">
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+@FunctionalInterface
+public interface Discount {
+    int applyTo(int cents);
+}
+
+public final class NoDiscount implements Discount {
+    public int applyTo(int cents) { return cents; }
+}
+</code></pre>
+      </div>
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class PercentOff implements Discount {
+    private final int percent;
+    public PercentOff(int percent) {
+        this.percent = percent;
+    }
+    public int applyTo(int cents) {
+        return cents - (cents * percent / 100);
+    }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>cafe 3/4</span></div>
+  </section>
+
+  <!-- CAFE 4 · observer -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; coffee shop &middot; observer</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">SUBJECT - notifies every subscriber; never knows who. Three patterns meet in <code>placeOrder</code>.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+@FunctionalInterface
+public interface OrderObserver {
+    void onOrder(String description, int cents);
+}
+public final class Counter {
+    private final List&lt;OrderObserver&gt; observers = new ArrayList&lt;&gt;();
+    public void subscribe(OrderObserver o) { observers.add(o); }
+
+    public int placeOrder(Beverage drink, Discount discount) {
+        int price = discount.applyTo(drink.cents()); // decorator+strategy
+        for (OrderObserver o : observers)             // observer
+            o.onOrder(drink.description(), price);
+        return price;
+    }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">Two observers - each reacts on its own.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public final class SalesTotal implements OrderObserver {
+    private int totalCents = 0;
+    public void onOrder(String d, int cents) {
+        totalCents += cents;
+    }
+    public int totalCents() { return totalCents; }
+}
+public final class ReceiptPrinter implements OrderObserver {
+    private String last = "";
+    public void onOrder(String d, int cents) {
+        last = d + " = " + cents + "c";
+    }
+    public String lastReceipt() { return last; }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>cafe 4/4</span></div>
+  </section>
+
+  <!-- THEATER 1 · adapter -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; home theater &middot; adapter</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">The modern interface, and the legacy amp we can't change (0..11 dial).</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public interface SoundSystem {
+    void on();
+    void setVolume(int percent);   // 0..100
+    String status();
+}
+public final class VintageAmp {    // legacy, do not edit
+    private boolean on; private int dial;   // 0..11
+    public void powerUp() { on = true; }
+    public void dial(int n){ dial = Math.max(0, Math.min(11, n)); }
+    public String report(){ return "amp[dial=" + dial + "]"; }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">ADAPTER - speak <code>SoundSystem</code>, translate to the amp.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class AmpAdapter implements SoundSystem {
+    private final VintageAmp amp;
+    public AmpAdapter(VintageAmp amp) { this.amp = amp; }
+
+    public void on() { amp.powerUp(); }
+    public void setVolume(int pct) {
+        amp.dial(pct * 11 / 100);   // 0..100  ->  0..11
+    }
+    public String status() { return amp.report(); }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>theater 1/4</span></div>
+  </section>
+
+  <!-- THEATER 2 · builder + singleton -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; home theater &middot; builder + singleton</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">BUILDER - fluent, with defaults; a private ctor takes the builder.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public final class Scene {
+    private final String name, source; private final int lights, volume;
+    private Scene(Builder b) {
+        name = b.name; lights = b.lights;
+        volume = b.volume; source = b.source;
+    }
+    public String name(){ return name; }   public int lights(){ return lights; }
+    public int volume(){ return volume; }  public String source(){ return source; }
+    public static Builder builder(String name){ return new Builder(name); }
+
+    public static final class Builder {
+        private final String name;
+        private int lights = 100, volume = 20;   // defaults
+        private String source = "none";
+        private Builder(String name){ this.name = name; }
+        public Builder lights(int p){ lights = p; return this; }
+        public Builder volume(int p){ volume = p; return this; }
+        public Builder source(String s){ source = s; return this; }
+        public Scene build(){ return new Scene(this); }
+    }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">SINGLETON - private ctor, one shared instance via <code>get()</code>.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class Hub {
+    private static final Hub INSTANCE = new Hub();
+    private int scenesRun = 0;
+    private String lastScene = "none";
+    private Hub() { }
+
+    public static Hub get() { return INSTANCE; }
+
+    public void record(String scene) {
+        scenesRun++;
+        lastScene = scene;
+    }
+    public int scenesRun()   { return scenesRun; }
+    public String lastScene(){ return lastScene; }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>theater 2/4</span></div>
+  </section>
+
+  <!-- THEATER 3 · devices + template method -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; home theater &middot; template method</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">Two plain devices the facade drives.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public final class Lights {
+    private int level = 100;
+    public void dim(int p) {
+        level = Math.max(0, Math.min(100, p));
+    }
+    public int level() { return level; }
+}
+public final class Screen {
+    private String showing = "nothing";
+    public void show(String t) { showing = t; }
+    public String showing() { return showing; }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">TEMPLATE METHOD - <code>final</code> skeleton, one open hook per device.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public abstract class Appliance {
+    public final List&lt;String&gt; startUp() {
+        var log = new ArrayList&lt;String&gt;();
+        log.add("plugged in");   // fixed
+        log.add(warmUp());       // the hook
+        log.add("ready");        // fixed
+        return log;
+    }
+    protected abstract String warmUp();
+}
+class Projector extends Appliance {
+    protected String warmUp(){ return "warming the bulb"; }
+}
+class SoundBar extends Appliance {
+    protected String warmUp(){ return "instant on"; }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>theater 3/4</span></div>
+  </section>
+
+  <!-- THEATER 4 · facade -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; home theater &middot; facade</span></div>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:17px;">FACADE - one <code>watch(scene)</code> drives lights, sound, screen and the hub, in order. It ties together the Builder's Scene, the Adapter'd sound, and the Singleton hub.</p>
+<pre><code class="language-java" data-trim data-line-numbers>
+public final class Theater {
+    private final Lights lights; private final SoundSystem sound; private final Screen screen;
+
+    public Theater(Lights lights, SoundSystem sound, Screen screen) {
+        this.lights = lights; this.sound = sound; this.screen = screen;
+    }
+
+    public List&lt;String&gt; watch(Scene scene) {
+        var log = new ArrayList&lt;String&gt;();
+        lights.dim(scene.lights());        log.add("lights -> " + scene.lights() + "%");
+        sound.on();                        log.add("sound on");
+        sound.setVolume(scene.volume());   log.add("volume " + scene.volume());
+        screen.show(scene.source());       log.add("screen -> " + scene.source());
+        Hub.get().record(scene.name());    // singleton
+        return log;
+    }
+}
+</code></pre>
+    <div class="footer-line"><span>day 2 solved</span><span>theater 4/4</span></div>
+  </section>
+
+  <!-- EDITOR 1 · command + memento -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; text editor &middot; command + memento</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">COMMAND - each edit knows how to do AND undo itself.</p>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public interface Command {
+    void execute();
+    void undo();
+}
+final class InsertText implements Command {
+    private final Editor ed; private final String s;
+    InsertText(Editor ed, String s){ this.ed = ed; this.s = s; }
+    public void execute(){ ed.buf.append(s); }
+    public void undo(){
+        ed.buf.setLength(ed.buf.length() - s.length());
+    }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">The editor: two stacks (COMMAND) + an opaque snapshot (MEMENTO).</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public final class Editor {
+    final StringBuilder buf = new StringBuilder();
+    private final Deque&lt;Command&gt; undo = new ArrayDeque&lt;&gt;();
+    private final Deque&lt;Command&gt; redo = new ArrayDeque&lt;&gt;();
+
+    public void run(Command c){ c.execute(); undo.push(c); redo.clear(); }
+    public void undo(){ if(undo.isEmpty())return;
+        var c = undo.pop(); c.undo(); redo.push(c); }
+    public void redo(){ if(redo.isEmpty())return;
+        var c = redo.pop(); c.execute(); undo.push(c); }
+
+    public Memento snapshot(){ return new Memento(buf.toString()); }
+    public void restore(Memento m){
+        buf.setLength(0); buf.append(m.state());
+        undo.clear(); redo.clear();
+    }
+}
+record Memento(String state) { }   // opaque; only Editor reads it
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>editor 1/4</span></div>
+  </section>
+
+  <!-- EDITOR 2 · state -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; text editor &middot; state</span></div>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:17px;">STATE - the mode object decides what a keystroke does. <code>Editor.type</code> just delegates; no <code>if (mode == ...)</code> anywhere.</p>
+    <div class="codeflex">
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+public interface Mode {
+    void type(Editor ed, char c);
+    String name();
+}
+
+// in Editor:
+void setMode(Mode m){ this.mode = m; }
+void type(char c){ mode.type(this, c); }   // delegate
+</code></pre>
+      </div>
+      <div>
+<pre class="sm"><code class="language-java" data-trim data-line-numbers>
+final class InsertMode implements Mode {
+    public void type(Editor ed, char c){ ed.buf.append(c); }
+    public String name(){ return "INSERT"; }
+}
+final class ReadOnlyMode implements Mode {
+    public void type(Editor ed, char c){ /* ignored */ }
+    public String name(){ return "READONLY"; }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>editor 2/4</span></div>
+  </section>
+
+  <!-- EDITOR 3 · composite + iterator -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; text editor &middot; composite + iterator</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">COMPOSITE - leaf and branch share one <code>Node</code>; an op recurses.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public interface Node {
+    int wordCount();
+    void accept(NodeVisitor v);
+}
+final class Paragraph implements Node {          // leaf
+    private final String text;
+    Paragraph(String t){ text = t; }
+    public int wordCount(){ var t = text.trim();
+        return t.isEmpty() ? 0 : t.split("\\s+").length; }
+    public void accept(NodeVisitor v){ v.visitParagraph(this); }
+}
+final class Section implements Node, Iterable&lt;Paragraph&gt; {  // branch
+    private final List&lt;Node&gt; children = new ArrayList&lt;&gt;();
+    Section add(Node n){ children.add(n); return this; }
+    List&lt;Node&gt; children(){ return children; }
+    public int wordCount(){ int s = 0;
+        for (Node n : children) s += n.wordCount(); return s; }
+    public void accept(NodeVisitor v){ v.visitSection(this); }
+    public Iterator&lt;Paragraph&gt; iterator(){ return new ParaIterator(this); }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">ITERATOR - depth-first, in document order; a <code>for-each</code> reads the whole tree.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+final class ParaIterator implements Iterator&lt;Paragraph&gt; {
+    private final Deque&lt;Node&gt; stack = new ArrayDeque&lt;&gt;();
+    ParaIterator(Node root){ stack.push(root); }
+
+    public boolean hasNext(){
+        while (!stack.isEmpty() &amp;&amp; stack.peek() instanceof Section s) {
+            stack.pop();
+            var ch = s.children();
+            for (int i = ch.size()-1; i &gt;= 0; i--) stack.push(ch.get(i));
+        }
+        return !stack.isEmpty();
+    }
+    public Paragraph next(){
+        if (!hasNext()) throw new NoSuchElementException();
+        return (Paragraph) stack.pop();
+    }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>editor 3/4</span></div>
+  </section>
+
+  <!-- EDITOR 4 · visitor + chain -->
+  <section class="sol">
+    <div class="handson-head"><span class="handson-badge good">Day 2 solved &middot; text editor &middot; visitor + chain</span></div>
+    <div class="codeflex">
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">VISITOR - a new operation, nodes unchanged (double dispatch).</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public interface NodeVisitor {
+    void visitParagraph(Paragraph p);
+    void visitSection(Section s);
+}
+final class WordCountVisitor implements NodeVisitor {
+    private int total = 0;
+    int total(){ return total; }
+    public void visitParagraph(Paragraph p){ total += p.wordCount(); }
+    public void visitSection(Section s){
+        for (Node n : s.children()) n.accept(this);
+    }
+}
+</code></pre>
+      </div>
+      <div>
+        <p style="margin:0 0 4px; color:var(--muted); font-size:16px;">CHAIN - each filter does its bit, then hands on. Order is just wiring.</p>
+<pre class="xs"><code class="language-java" data-trim data-line-numbers>
+public abstract class TextFilter {
+    TextFilter next;
+    public static TextFilter chain(TextFilter... fs){
+        for (int i = 0; i &lt; fs.length-1; i++) fs[i].next = fs[i+1];
+        return fs[0];
+    }
+    public final String process(String t){
+        String out = apply(t);
+        return next == null ? out : next.process(out);
+    }
+    protected abstract String apply(String t);
+}
+class TrimFilter extends TextFilter {
+    protected String apply(String t){ return t.trim(); }
+}
+class Censor extends TextFilter {
+    private final String bad;
+    Censor(String bad){ this.bad = bad; }
+    protected String apply(String t){ return t.replace(bad, "***"); }
+}
+</code></pre>
+      </div>
+    </div>
+    <div class="footer-line"><span>day 2 solved</span><span>editor 4/4</span></div>
+  </section>
+
+  <!-- D2-H BRIDGE TO HLD -->
+  <section class="sol">
+    <span class="eyebrow"><span class="dot"></span> now, up a level</span>
+    <h2>Two days inside one program. Today, the whole system.</h2>
+    <p class="lede fragment">Days 1 and 2 were <em>low-level design</em> - the classes and their relationships inside a single program. Today we zoom all the way out to boxes and arrows: which servers, which databases, which queues, and how they talk.</p>
+    <p class="fragment" style="margin-top:14px; color:var(--muted);">Same instinct - draw good boundaries so a big thing stays changeable - one altitude higher. And by this evening, we design Instagram.</p>
+    <div class="footer-line"><span>high-level design</span><span>zoom out</span></div>
   </section>
 
   <!-- 02 THE PLAN -->
@@ -1650,7 +2189,7 @@
     plugins: [ RevealHighlight, RevealNotes ]
   });
 
-  // Folder-scoped sync channel, so other days' decks (same origin) never collide.
+  // Driven by teacher.html in this same folder. Folder-scoped so it never collides with other days.
   var SCOPE = location.pathname.replace(/[^/]*$/, '');
   var CH = 'byts-deck' + SCOPE, K_GOTO = 'byts-deck-goto' + SCOPE, K_HELLO = 'byts-deck-hello' + SCOPE;
   var deckChan = ('BroadcastChannel' in window) ? new BroadcastChannel(CH) : null;

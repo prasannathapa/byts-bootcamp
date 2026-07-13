@@ -1,8 +1,16 @@
-SYSTEMS CAPSTONE - build the HLD building blocks
-================================================
+DAY 3 CAPSTONE - build the HLD building blocks
+==============================================
 
-Day three you learned caches, rate limiters, load balancers, and sharding as
-boxes on a slide. Now you build them, for real, in code.
+Day 3 has TWO parts.
+
+  PART A - DESIGN IT (no code).  In pairs, design Mini Instagram on paper (or a
+  whiteboard) from today's building blocks - boxes, arrows, one reason per choice.
+      design/BRIEF.md       the requirements and the five decisions to make
+      design/REFERENCE.md   one good design to compare against - open it AFTER
+                            (student copies don't include it; the instructor has it)
+
+  PART B - BUILD THE BLOCKS (code).  You met caches, rate limiters, load balancers
+  and sharding as boxes on a slide. Now build them, for real, in code - below.
 
 Six self-contained checkpoints, test-driven. Read systems/RunTests.java first -
 the tests are the specification - then fill the TODOs until they pass, one
@@ -15,9 +23,11 @@ checkpoint at a time.
   CP5  Consistent hashing    systems/HashRing.java       a ring with virtual nodes; a removed node moves only its keys
   CP6  Raft leader election  systems/RaftCluster.java   (boss) simplified election: terms, one vote each, majority
 
-Run it:
-  Windows:        run.cmd
+Setup (you cloned this and installed Java 25 on Day 1 - just pull today's folder):
+  git pull                        (git reset --hard origin/main first, if it conflicts)
+  cd day-3-capstone
   macOS / Linux:  ./run.sh
+  Windows:        run.cmd         (PowerShell: .\run.cmd)
   By hand:        javac systems/*.java  &&  java systems.RunTests
 
 The starter compiles and most tests fail on the TODO stubs - make them green

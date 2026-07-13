@@ -19,7 +19,7 @@ git clone https://github.com/prasannathapa/byts-bootcamp
 | --- | --- | --- | --- |
 | 1 | Object design: pillars + SOLID | `day-1/` | `day-1-capstone/` (bank + report + finale) |
 | 2 | Design patterns | `day-2/` | `day-2-capstone/` (cafe + theater + editor) |
-| 3 | High-level design | `hld/` | `hld-capstone/` (a design exercise) |
+| 3 | High-level design | `day-3/` | `day-3-capstone/` (build the HLD blocks) |
 | 4 | Mini Instagram | `instagram/` | [github.com/prasannathapa/mini-insta](https://github.com/prasannathapa/mini-insta) |
 
 ## Capstones
@@ -28,7 +28,7 @@ Each `*-capstone/` folder is a small Java exercise. Read `RunTests.java` (the
 spec), fill in the TODOs, and run until every test is green:
 
 ```
-cd day-1-capstone     # or patterns-capstone, hld-capstone
+cd day-1-capstone     # or day-2-capstone, day-3-capstone
 ./run.sh              # Windows: run.cmd
 ```
 
