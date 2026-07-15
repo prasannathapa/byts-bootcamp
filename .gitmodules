@@ -1,0 +1,3 @@
+[submodule "day-4-capstone"]
+	path = day-4-capstone
+	url = https://github.com/prasannathapa/mini-insta.git

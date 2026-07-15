@@ -7,8 +7,11 @@ design patterns, and high-level system design.
 so open any `presentation.html` directly, or open `index.html` as a launcher.
 
 ```
-git clone https://github.com/prasannathapa/byts-bootcamp
+git clone --recurse-submodules https://github.com/prasannathapa/byts-bootcamp
 ```
+
+(Day 4's capstone is a git submodule. If you already cloned without `--recurse-submodules`,
+run `git submodule update --init` to fetch it.)
 
 **View the slides online without cloning** (rendered via githack):
 <https://raw.githack.com/prasannathapa/byts-bootcamp/main/index.html>
@@ -20,7 +23,7 @@ git clone https://github.com/prasannathapa/byts-bootcamp
 | 1 | Object design: pillars + SOLID | `day-1/` | `day-1-capstone/` (bank + report + finale) |
 | 2 | Design patterns | `day-2/` | `day-2-capstone/` (cafe + theater + editor) |
 | 3 | High-level design | `day-3/` | `day-3-capstone/` (build the HLD blocks) |
-| 4 | Mini Instagram | `instagram/` | [github.com/prasannathapa/mini-insta](https://github.com/prasannathapa/mini-insta) |
+| 4 | Mini Instagram | `day-4/` | `day-4-capstone/` — [mini-insta](https://github.com/prasannathapa/mini-insta) submodule |
 
 ## Capstones
 
